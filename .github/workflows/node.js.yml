@@ -15,6 +15,8 @@ on:
       - 'postcss.config.js'
       - 'tsconfig.json'
       - 'webpack.config.js'
+      - 'CNAME'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -42,6 +44,9 @@ jobs:
     - run: npm ci
     - name: Build
       run: npm run build
+    - name: Copy some files to the dist folder
+      run: |
+        cp CNAME dist/
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
       with:
