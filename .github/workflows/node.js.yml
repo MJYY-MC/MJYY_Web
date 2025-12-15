@@ -6,8 +6,15 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'src/**'
+      - '.gitignore'
+      - 'global.d.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'postcss.config.js'
+      - 'tsconfig.json'
+      - 'webpack.config.js'
 
 jobs:
   build:
