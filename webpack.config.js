@@ -59,18 +59,22 @@ module.exports = (env, argv) => {
                         loader: 'html-loader',
                         options: {
                             minimize: true, // 压缩html
-                            /*sources: {
+                            sources: {
                                 list: [
                                     "...",
                                     {
+                                        tag: 'div',
+                                        attribute: 'data-image',//处理div中data-image中的uri
+                                        type: 'src',
+                                    },
+                                    /*{
                                         tag: "img",
                                         attribute: "src",
                                         type: "src",
                                         filter: () => false,//忽略img中的src
-                                    },
+                                    },*/
                                 ],
-                            }*/
-
+                            },
                         },
                     },
                 ],
