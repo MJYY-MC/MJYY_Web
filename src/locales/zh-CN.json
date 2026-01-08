@@ -3,11 +3,11 @@
     "index": {
       "introduce": {
         "server_introductory": {
-          "main_version": "1.21.10",
+          "main_version": "1.21.11",
           "java_min": "1.9",
           "java_max": "1.21.x",
-          "bedrock_min": "1.21.90",
-          "bedrock_max": "1.21.124"
+          "bedrock_min": "1.21.111",
+          "bedrock_max": "1.21.130"
         }
       }
     }
