@@ -1,5 +1,8 @@
-localFile
-.vscode
-.idea
 node_modules
 dist
+
+.vscode
+.idea
+
+*.log
+npm-debug.log*
