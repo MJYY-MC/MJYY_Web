@@ -8,13 +8,15 @@ on:
     branches: [ "main" ]
     paths:
       - 'src/**'
-      - '.gitignore'
-      - 'global.d.ts'
+      - 'public/**'
+      - 'script/**'
+      - 'index.html'
       - 'package.json'
       - 'package-lock.json'
-      - 'postcss.config.js'
       - 'tsconfig.json'
-      - 'webpack.config.js'
+      - 'tsconfig.app.json'
+      - 'tsconfig.node.json'
+      - 'vite.config.js'
       - 'CNAME'
   workflow_dispatch:
 
