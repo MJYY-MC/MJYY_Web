@@ -1,0 +1,6 @@
+:root{
+  --logo-color: black;
+}
+:root[data-bs-theme=dark]{
+  --logo-color: white;
+}

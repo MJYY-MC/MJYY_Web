@@ -1,0 +1,6 @@
+.navbar {
+  --nav-item_background-color: rgba(255,255,255,.25);
+}
+[data-bs-theme=dark] .navbar {
+  --nav-item_background-color: rgba(0,0,0,.25);
+}

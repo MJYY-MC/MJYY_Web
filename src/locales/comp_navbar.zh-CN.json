@@ -1,5 +1,16 @@
 {
   "comp_navbar": {
+    "langs": {
+      "lang-sel": "语言选择",
+      "zh-CN": "简体中文",
+      "en-US": "English(英语)"
+    },
+    "theme": {
+      "theme-sel": "主题选择",
+      "light": "浅色",
+      "dark": "深色",
+      "auto": "自动"
+    },
     "home": "主页"
   }
 }
