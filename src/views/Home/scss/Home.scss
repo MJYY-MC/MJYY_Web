@@ -1,0 +1,24 @@
+#home{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  #backimg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("https://cdnjson.com/images/2025/01/15/main2-light-low3b729b9773a39465.jpg");
+    filter: blur(3px);
+  }
+  #title{
+    font-family: "mzd-font", system-ui;
+  }
+}
+[data-bs-theme=dark] #home{
+  #backimg {
+    background-image: url("https://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg");
+  }
+}
