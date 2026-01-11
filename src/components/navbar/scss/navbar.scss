@@ -1,0 +1,25 @@
+.navbar{
+  padding: .2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: .9;
+}
+
+.nav-btn{
+  border-radius: 16px;
+  transition: .5s;
+  padding: .2em;
+}
+.nav-btn:hover{
+  background-color: var(--nav-item_background-color);
+}
+
+.navbar-brand{
+  .svg-logo{
+    //实现改变svg颜色
+    filter: drop-shadow(150vw 0 var(--logo-color));
+    transform: translateX(-150vw);
+  }
+}

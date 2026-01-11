@@ -1,0 +1,14 @@
+@import "../color/bootstrap/var-color";
+
+@import "bootstrap/scss/bootstrap";
+
+@import "../color/bootstrap/cssvar-color";
+
+.d-flex{
+  &.flex-ai-c{
+    align-items: center;
+  }
+  &.flex-jc-c{
+    justify-content: center;
+  }
+}
