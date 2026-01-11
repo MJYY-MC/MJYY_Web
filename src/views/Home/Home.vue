@@ -11,9 +11,14 @@ autoLoadLocale(lp,()=>{
 </script>
 
 <template>
-
+<section id="home">
+  <div id="backimg"></div>
+  <div class="d-flex flex-ai-c flex-jc-c full-wh">
+    <h1 id="title">谧静幽原服务器</h1>
+  </div>
+</section>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss" src="./scss/Home.scss"></style>
+<style scoped lang="scss" src="./scss/utils.scss"></style>
+<style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
