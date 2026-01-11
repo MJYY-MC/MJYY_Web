@@ -18,7 +18,7 @@ export const localeEvents: Emitter<LocaleChangedEvent> = mitt<LocaleChangedEvent
  * @param locale 语言名
  */
 export async function switchLocale(locale: string) {
-    const oldLocale:string=i18nGlobal.locale as unknown as string;
+    const oldLocale:string=i18nGlobal.locale.value;
     if (oldLocale === locale) return;
 
     localeEvents.emit(
@@ -75,8 +75,8 @@ export async function loadOtherLocale(filePrefix:string,locale:string|string[]|n
  * 加载全局语言
  */
 export async function loadGlobalLocale(){
-    await loadLocale(i18nGlobal.locale as unknown as string);
-    const backLoc:string[] = i18nGlobal.fallbackLocale as unknown as string[];
+    await loadLocale(i18nGlobal.locale.value);
+    const backLoc:string[] = i18nGlobal.fallbackLocale.value as string[];
     backLoc.forEach((l:string) =>{
         loadLocale(l);
     })
@@ -98,7 +98,7 @@ export function autoUseI18n(){
  * 获取当前使用的语言名，例：zh-CN、en-US
  */
 export function getCurrentLocale():string{
-    return i18nGlobal.locale as unknown as string;
+    return i18nGlobal.locale.value;
 }
 
 /**
@@ -107,10 +107,10 @@ export function getCurrentLocale():string{
  */
 export function getFallbackLocale(forceArray:boolean=false):string|string[]{
     if (forceArray){
-        const fblv:string|string[]=i18nGlobal.fallbackLocale as unknown as string[];
+        const fblv:string|string[]=i18nGlobal.fallbackLocale.value;
         if (Array.isArray(fblv))
             return fblv;
         else
             return [fblv];
-    }else return i18nGlobal.fallbackLocale as unknown as string[];
+    }else return i18nGlobal.fallbackLocale.value;
 }

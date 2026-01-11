@@ -5,6 +5,7 @@ import {i18n} from "@/plugins/i18n.ts";
 
 import '@/assets/scss/bootstrap/bs-custom.scss';
 import 'bootstrap';
+import 'virtual:svg-icons-register';//vite-plugin-svg-icons的虚拟模块
 
 createApp(App)
     .use(router)
