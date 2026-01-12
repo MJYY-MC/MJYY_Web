@@ -36,10 +36,18 @@ function doThemeSel(tme:string){
   }
   curTheme.value=tme;
 }
+
+import {navbarStyleInit} from './ts/style.ts';
+const {
+  styBackgroundColor
+}=navbarStyleInit();
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav
+      class="navbar navbar-expand-lg"
+      :style="{backgroundColor:styBackgroundColor}"
+  >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
         <img src="@/assets/logo/svg/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">

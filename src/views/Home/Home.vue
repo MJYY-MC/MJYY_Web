@@ -2,12 +2,24 @@
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import {onMounted, onUnmounted, ref} from "vue";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Home";
 autoLoadLocale(lp,()=>{
   useTitle(t(`${lp}.title`));
 });
+
+
+import {scrollValue} from "@/views/Home/ts/scroll.ts";
+import {setBackgroundColor} from "@/components/navbar/ts/style.ts";
+const {scrollY,callback}=scrollValue();
+callback.onScroll=()=>{
+  if (scrollY.value>200)
+    setBackgroundColor('rgba(var(--bs-tertiary-bg-rgb), 1)');
+  else
+    setBackgroundColor('unset');
+}
 </script>
 
 <template>
@@ -17,6 +29,9 @@ autoLoadLocale(lp,()=>{
     <h1 id="title">谧静幽原服务器</h1>
   </div>
 </section>
+  <section id="test" style="height: 200px">
+    <p>{{scrollY}}</p>
+  </section>
 </template>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
