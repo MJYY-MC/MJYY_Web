@@ -21,7 +21,7 @@ const {lt:t}=autoUseI18n();
   <div id="inDevelopmentWaring" class="alert alert-warning" role="alert"
        :style="isDev?{display: 'none'}:{}"
        v-html="t('inDevWarn',{
-         link: '<a href=\'https://mjyy.top\'>https://mjyy.top</a>'
+         link: '<a href=\'https://old.mjyy.top\'>https://old.mjyy.top</a>'
        })"
   ></div>
   <!--endregion-->

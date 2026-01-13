@@ -1,11 +1,27 @@
 <script setup lang="ts">
 import {autoUseI18n, getCurrentLocale, switchLocale} from "@/utils/i18nUtils.ts";
-import {ref, type Ref} from "vue";
+import {
+  type AsyncComponentLoader,
+  type Component,
+  computed,
+  defineAsyncComponent,
+  ref,
+  type Ref,
+  watch,
+} from "vue";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import {useRoute} from "vue-router";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
 autoLoadLocale(lp);
+
+const route = useRoute();
+const meta = computed(() => ({
+  navbar:{
+    sectionLinksComp: route.meta.navbar_sectionLinks_Comp as AsyncComponentLoader<any>,
+  },
+}));
 
 const curLoc:Ref<string>= ref(getCurrentLocale());
 async function doLangSel(lang:string){
@@ -36,10 +52,36 @@ function doThemeSel(tme:string){
   }
   curTheme.value=tme;
 }
+
+import {navbarStyleInit} from './ts/style.ts';
+const {
+  styBackgroundColor
+}=navbarStyleInit();
+
+//region section links
+//页面元素锚点面板组件
+let sectionLinksComp:Component|null=null;
+//变化键，用于检测组件变化并重新渲染
+const sectionLinksComp_key:Ref<string>=ref('');
+watch(
+    ()=>meta.value.navbar.sectionLinksComp,//监听值变化
+    ()=>{
+      if (meta.value.navbar.sectionLinksComp)
+        sectionLinksComp=defineAsyncComponent(meta.value.navbar.sectionLinksComp);
+      else
+        sectionLinksComp=null;
+      sectionLinksComp_key.value=btoa(JSON.stringify(sectionLinksComp));//赋值唯一标识，通过获取其Base64编码字符串
+    },
+    { immediate: true }
+);
+//endregion
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav
+      class="navbar navbar-expand-lg"
+      :style="{backgroundColor:styBackgroundColor}"
+  >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
         <img src="@/assets/logo/svg/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
@@ -56,6 +98,10 @@ function doThemeSel(tme:string){
           </li>
         </ul>
         <ul class="navbar-nav d-flex nav-2">
+          <component
+              :is="sectionLinksComp"
+              :key="sectionLinksComp_key"
+          />
           <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50">
