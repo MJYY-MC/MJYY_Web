@@ -2,7 +2,6 @@
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
-import {onMounted, onUnmounted, ref} from "vue";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Home";
@@ -29,7 +28,7 @@ callback.onScroll=()=>{
     <h1 id="title">谧静幽原服务器</h1>
   </div>
 </section>
-  <section id="test" style="height: 200px">
+  <section id="test" style="height: 2000px">
     <p>{{scrollY}}</p>
   </section>
 </template>
