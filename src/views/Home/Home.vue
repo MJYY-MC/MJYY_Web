@@ -2,6 +2,7 @@
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import {onMounted, onUnmounted} from "vue";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Home";
@@ -10,7 +11,7 @@ autoLoadLocale(lp,()=>{
 });
 
 
-import {scrollValue} from "@/views/Home/ts/scroll.ts";
+import {scrollValue} from "@/ts/global/vue/scroll.ts";
 import {setBackgroundColor} from "@/components/navbar/ts/style.ts";
 const {scrollY,callback}=scrollValue();
 callback.onScroll=()=>{
@@ -19,6 +20,18 @@ callback.onScroll=()=>{
   else
     setBackgroundColor('unset');
 }
+
+import {sectionEvent} from "@/ts/global/navbar_sectionLinks/sectionEvent.ts";
+function handleSectionStayChange(data:{secId:string}) {
+  //用于临时测试，当停留位置更改至另一部分将触发该事件并执行输出
+  console.debug(`[Home.vue][event] section: ${data.secId}`);
+}
+onMounted(()=>{
+  sectionEvent.on('sectionStayChange',handleSectionStayChange);
+});
+onUnmounted(()=>{
+  sectionEvent.off('sectionStayChange',handleSectionStayChange);
+});
 </script>
 
 <template>
