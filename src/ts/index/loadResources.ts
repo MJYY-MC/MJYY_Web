@@ -149,8 +149,8 @@ export async function loadMediaResources(resMode:string,isInit:boolean=true) {
                 case "low":
                     // noinspection HttpUrlsUsage
                     imgUrls = [
-                        "https://cdnjson.com/images/2025/03/18/main2-light-low2.png",
-                        "https://cdnjson.com/images/2025/03/18/main2-dark-low2.png",
+                        "https://cdnjson.com/images/2025/03/18/main2-light-low2.jpg",
+                        "https://cdnjson.com/images/2025/03/18/main2-dark-low2.jpg",
 
                         "https://cdnjson.com/images/2025/03/19/bg1-light-low2.jpg",
                     ];
@@ -159,8 +159,8 @@ export async function loadMediaResources(resMode:string,isInit:boolean=true) {
                 default:
                     // noinspection HttpUrlsUsage
                     imgUrls = [
-                        "https://cdnjson.com/images/2025/01/15/main2-light-low.png",
-                        "https://cdnjson.com/images/2025/01/15/main2-dark-low.png",
+                        "https://cdnjson.com/images/2025/01/15/main2-light-low.jpg",
+                        "https://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg",
 
                         "https://cdnjson.com/images/2025/03/19/bg1-light-low.jpg",
                     ];
