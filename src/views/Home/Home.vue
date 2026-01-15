@@ -12,14 +12,39 @@ autoLoadLocale(lp,()=>{
 
 
 import {scrollValue} from "@/ts/global/vue/scroll.ts";
-import {setBackgroundColor} from "@/components/navbar/ts/style.ts";
+import {toggleClass as navbar_toggleClass} from "@/components/navbar/ts/style.ts";
 const {scrollY,callback}=scrollValue();
-callback.onScroll=()=>{
-  if (scrollY.value>200)
-    setBackgroundColor('rgba(var(--bs-tertiary-bg-rgb), 1)');
-  else
-    setBackgroundColor('unset');
-}
+onMounted(()=>{
+  let navbarBgIsTran:boolean|null=null;
+  let tbcCloseTimeoutLock:boolean=false;
+  function toggleNavbarBackground():void{
+    if (scrollY.value>200) {
+      if (navbarBgIsTran!=false){
+        navbar_toggleClass('background-color-transparent', false);
+        if (!tbcCloseTimeoutLock) {
+          tbcCloseTimeoutLock = true;
+          setTimeout(() => {
+            navbar_toggleClass('transition-background-color', false);
+            tbcCloseTimeoutLock = false;
+          }, 1000);
+        }
+        navbarBgIsTran=false;
+      }
+    }
+    else {
+      if (navbarBgIsTran!=true){
+        navbar_toggleClass('transition-background-color', true);
+        navbar_toggleClass('background-color-transparent', true);
+        navbarBgIsTran=true;
+      }
+    }
+  }
+  callback.onScroll=toggleNavbarBackground;
+  toggleNavbarBackground();
+});
+onUnmounted(()=>{
+  callback.onScroll=null;
+})
 
 import {sectionEvent} from "@/ts/global/navbar_sectionLinks/sectionEvent.ts";
 function handleSectionStayChange(data:{secId:string}) {

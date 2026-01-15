@@ -53,10 +53,10 @@ function doThemeSel(tme:string){
   curTheme.value=tme;
 }
 
-import {navbarStyleInit} from './ts/style.ts';
-const {
-  styBackgroundColor
-}=navbarStyleInit();
+import {navbarClassInit, navbarStyleInit} from './ts/style.ts';
+const navbar:Ref<HTMLDivElement|null> = ref(null);
+navbarStyleInit(navbar);
+navbarClassInit(navbar);
 
 //region section links
 //页面元素锚点面板组件
@@ -86,8 +86,8 @@ watch(
 
 <template>
   <nav
-      class="navbar navbar-expand-lg"
-      :style="{backgroundColor:styBackgroundColor}"
+      ref="navbar"
+      class="navbar navbar-expand-lg bg-body-tertiary-override"
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
@@ -175,3 +175,4 @@ watch(
 </template>
 
 <style scoped lang="scss" src="./scss/navbar.scss"></style>
+<style scoped lang="scss" src="./scss/navbar-change.scss"></style>
