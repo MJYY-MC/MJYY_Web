@@ -2,6 +2,7 @@ section{
   position: relative;
   width: 100vw;
 }
+
 #home{
   height: 100vh;
   #backimg{
@@ -22,5 +23,11 @@ section{
 [data-bs-theme=dark] #home{
   #backimg {
     background-image: url("https://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg");
+  }
+}
+
+#introduce{
+  #introduce-text{
+
   }
 }

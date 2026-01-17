@@ -1,5 +1,10 @@
 {
   "view_Home": {
-    "title": "谧静幽原"
+    "title": "谧静幽原",
+    "introduce": {
+      "version": {
+
+      }
+    }
   }
 }

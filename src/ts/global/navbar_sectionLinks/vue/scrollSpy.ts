@@ -12,20 +12,22 @@ export default function (allEle:HTMLElement[]){
     const curStayEleId:Ref<string|null>=ref(null);
     const {scrollY,callback}=scrollValue();
 
-    onMounted(()=>{
-        callback.onScroll=()=>{
-            for (let i=0;i<allEle.length;i++){
-                const eTop=allEle[i]!.offsetTop;
-                const eTopHeight=eTop+allEle[i]!.offsetHeight;
-                if (scrollY.value>=eTop&&scrollY.value<eTopHeight){
-                    if (curStayEleId.value != allEle[i]!.id) {
-                        curStayEleId.value = allEle[i]!.id;
-                        sectionEvent.emit('sectionStayChange',{secId:curStayEleId.value});
-                    }
-                    break;
+    function doCheck():void{
+        for (let i=0;i<allEle.length;i++){
+            const eTop=allEle[i]!.offsetTop;
+            const eTopHeight=eTop+allEle[i]!.offsetHeight;
+            if (scrollY.value>=eTop&&scrollY.value<eTopHeight){
+                if (curStayEleId.value != allEle[i]!.id) {
+                    curStayEleId.value = allEle[i]!.id;
+                    sectionEvent.emit('sectionStayChange',{secId:curStayEleId.value});
                 }
+                break;
             }
-        };
+        }
+    }
+    onMounted(()=>{
+        callback.onScroll=doCheck;
+        doCheck();
     });
     onUnmounted(()=>{
         callback.onScroll=null;
