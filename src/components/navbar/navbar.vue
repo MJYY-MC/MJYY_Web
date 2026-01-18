@@ -53,10 +53,10 @@ function doThemeSel(tme:string){
   curTheme.value=tme;
 }
 
-import {navbarStyleInit} from './ts/style.ts';
-const {
-  styBackgroundColor
-}=navbarStyleInit();
+import {navbarClassInit, navbarStyleInit} from './ts/style.ts';
+const navbar:Ref<HTMLDivElement|null> = ref(null);
+navbarStyleInit(navbar);
+navbarClassInit(navbar);
 
 //region section links
 //页面元素锚点面板组件
@@ -75,12 +75,19 @@ watch(
     { immediate: true }
 );
 //endregion
+const curRouteName:Ref<string|undefined>=ref(undefined);
+watch(
+    ()=>route.name,
+    ()=>{
+      curRouteName.value=route.name as string|undefined;
+    }
+)
 </script>
 
 <template>
   <nav
-      class="navbar navbar-expand-lg"
-      :style="{backgroundColor:styBackgroundColor}"
+      ref="navbar"
+      class="navbar navbar-expand-lg bg-body-tertiary-override"
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
@@ -92,7 +99,7 @@ watch(
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item nav-btn">
-            <router-link class="nav-link" aria-current="page" :to="{ name: 'home'}">
+            <router-link class="nav-link" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
               <strong>{{t(`${lp}.home`)}}</strong>
             </router-link>
           </li>
@@ -102,6 +109,8 @@ watch(
               :is="sectionLinksComp"
               :key="sectionLinksComp_key"
           />
+        </ul>
+        <ul class="navbar-nav d-flex nav-2">
           <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50">
@@ -166,3 +175,4 @@ watch(
 </template>
 
 <style scoped lang="scss" src="./scss/navbar.scss"></style>
+<style scoped lang="scss" src="./scss/navbar-change.scss"></style>

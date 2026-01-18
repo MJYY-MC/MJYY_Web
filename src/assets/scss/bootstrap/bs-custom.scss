@@ -12,3 +12,14 @@
     justify-content: center;
   }
 }
+.bg-body-tertiary-override{
+  --bs-bg-opacity: 1;
+  //重写，去掉!important
+  background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
+}
+.mt-6 {
+  margin-top: 4rem !important;
+}
+.pt-6 {
+  padding-top: 4rem !important;
+}

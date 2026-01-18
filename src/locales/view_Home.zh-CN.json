@@ -1,5 +1,9 @@
 {
   "view_Home": {
-    "title": "谧静幽原"
+    "title": "谧静幽原",
+    "joinUs": {
+      "qgQrcodeHover": "点击加入群聊",
+      "qdQrcodeHover": "点击加入频道"
+    }
   }
 }

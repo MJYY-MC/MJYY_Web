@@ -1,5 +1,9 @@
 {
   "view_Home": {
-    "title": "MJYY"
+    "title": "MJYY",
+    "joinUs": {
+      "qgQrcodeHover": "Click to join the qqgroup",
+      "qdQrcodeHover": "Click to join the qqdiscord"
+    }
   }
 }
