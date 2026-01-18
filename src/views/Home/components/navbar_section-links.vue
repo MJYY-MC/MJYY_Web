@@ -8,6 +8,8 @@ const {curStayEleId}=scrollSpy([
     document.getElementById('home')!,
     document.getElementById('introduce')!,
     document.getElementById('photo')!,
+    document.getElementById('rule')!,
+    document.getElementById('join-us')!,
 ]);
 </script>
 
@@ -33,6 +35,20 @@ const {curStayEleId}=scrollSpy([
         class="nav-link"
     >{{t('photo')}}</router-link>
   </li>
+  <li class="nav-item nav-btn">
+    <router-link
+        :class="{'active':(curStayEleId=='rule')}"
+        :to="{ hash: '#rule' }"
+        class="nav-link"
+    >{{t('rule')}}</router-link>
+  </li>
+  <li class="nav-item nav-btn">
+    <router-link
+        :class="{'active':(curStayEleId=='join-us')}"
+        :to="{ hash: '#join-us' }"
+        class="nav-link"
+    >{{t('joinUs')}}</router-link>
+  </li>
 </template>
 
 <style scoped lang="scss">
@@ -44,12 +60,16 @@ const {curStayEleId}=scrollSpy([
   "zh-CN": {
     "home": "首页",
     "introduce": "介绍",
-    "photo": "相片"
+    "photo": "相片",
+    "rule": "规则",
+    "joinUs": "加入我们"
   },
   "en-US": {
     "home": "Title",
     "introduce": "Introduce",
-    "photo": "Photo"
+    "photo": "Photo",
+    "rule": "Rule",
+    "joinUs": "Join Us"
   }
 }
 </i18n>

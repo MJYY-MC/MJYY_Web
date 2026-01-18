@@ -70,6 +70,10 @@ onUnmounted(()=>{
 });*/
 
 import {marked} from "marked";
+const introduceText:Ref<HTMLDivElement|null> = ref(null);
+const ruleText:Ref<HTMLDivElement|null> = ref(null);
+const addressText:Ref<HTMLDivElement|null> = ref(null);
+const joinUsText:Ref<HTMLDivElement|null> = ref(null);
 async function doMd(){
   const tryLocale:string[]=[
     ...[getCurrentLocale()],//当前语言
@@ -84,11 +88,16 @@ async function doMd(){
               .replace("{javaVersionMax}",lt('introduce.version.javaVersionMax'))
               .replace("{bedrockVersionMin}",lt("introduce.version.bedrockVersionMin"))
               .replace("{bedrockVersionMax}",lt('introduce.version.bedrockVersionMax'));
+      ruleText.value!.innerHTML=
+          (marked((await import(`./md/serverRule.${tryLocale[i]}.md?raw`)).default) as string);
+      addressText.value!.innerHTML=
+          (marked((await import(`./md/serverAddress.${tryLocale[i]}.md?raw`)).default) as string);
+      joinUsText.value!.innerHTML=
+          (marked((await import(`./md/joinUsText.${tryLocale[i]}.md?raw`)).default) as string);
       break;
     }catch {}
   }
 }
-const introduceText:Ref<HTMLDivElement|null> = ref(null);
 onMounted(async ()=>{
   await doMd();
   localeEvents.on('afterLocaleChange',doMd);
@@ -371,6 +380,63 @@ onUnmounted(async ()=>{
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="rule" class="pt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div ref="ruleText"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="join-us" class="pt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg"></div>
+        <div class="col-12 col-md-6 col-lg-4 d-flex flex-ai-c flex-jc-c">
+          <div ref="addressText"></div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 d-flex flex-ai-c">
+          <div ref="joinUsText"></div>
+        </div>
+        <div class="col-lg"></div>
+      </div>
+      <div class="row">
+        <div class="col-md"></div>
+        <div class="col-6 col-md-5 col-lg-3">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="qrcode"
+                     @load="imgLoaded" @error="imgError"
+                     src="@/assets/img/copy/qqGroupQRcode-low.png">
+                <a href="https://qm.qq.com/q/siqAtkac9i" class="qrcode-link">
+                  <span>{{t(`${lp}.joinUs.qgQrcodeHover`)}}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-5 col-lg-3">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="qrcode"
+                     @load="imgLoaded" @error="imgError"
+                     src="@/assets/img/copy/qqDiscodeQRCode-low.png">
+                <a href="https://pd.qq.com/s/cci7lavxo" class="qrcode-link">
+                  <span>{{t(`${lp}.joinUs.qdQrcodeHover`)}}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md"></div>
       </div>
     </div>
   </section>

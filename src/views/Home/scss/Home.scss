@@ -31,3 +31,27 @@ section{
 
   }
 }
+
+#join-us{
+  .qrcode-link{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    transition: opacity .5s;
+    opacity: 0;
+    text-decoration:none;
+    span{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .qrcode-link:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+}
