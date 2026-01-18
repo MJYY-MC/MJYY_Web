@@ -3,6 +3,7 @@ import {autoUseI18n, getCurrentLocale, getFallbackLocale, localeEvents} from "@/
 import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {onMounted, onUnmounted, type Ref, ref} from "vue";
+import {imgLoaded,imgError} from "@/views/Home/ts/imgLoader.ts";
 
 const {gt:t,lt}=autoUseI18n();
 const lp:string="view_Home";
@@ -106,23 +107,279 @@ onUnmounted(async ()=>{
       <h1 id="title">谧静幽原服务器</h1>
     </div>
   </section>
-  <section id="introduce">
+  <section id="introduce" class="pt-6">
     <div class="container">
       <div class="row">
-        <div class="col-12 mt-6">
+        <div class="col-12">
           <div ref="introduceText" id="introduce-text"></div>
         </div>
       </div>
     </div>
   </section>
-  <section id="photo">
-
+  <section id="photo" class="pt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/03/18/photo-21-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-2-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-18-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-15-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-17-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/03/18/photo-22-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-6-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-5-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/03/18/photo-23-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/03/18/photo-24-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/03/18/photo-25-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-7-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-8-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-9-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-10-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-11-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-12-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-19-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-20-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-13-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mt-2">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box">
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     src="https://cdnjson.com/images/2025/01/15/photo-14-low.jpg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/utils.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
+<style scoped lang="scss" src="./scss/imgLoader.scss"></style>
 
 <i18n>
 {

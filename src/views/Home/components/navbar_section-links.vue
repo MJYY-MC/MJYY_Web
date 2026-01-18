@@ -7,6 +7,7 @@ const {lt:t}=autoUseI18n();
 const {curStayEleId}=scrollSpy([
     document.getElementById('home')!,
     document.getElementById('introduce')!,
+    document.getElementById('photo')!,
 ]);
 </script>
 
@@ -25,6 +26,13 @@ const {curStayEleId}=scrollSpy([
         class="nav-link"
     >{{t('introduce')}}</router-link>
   </li>
+  <li class="nav-item nav-btn">
+    <router-link
+        :class="{'active':(curStayEleId=='photo')}"
+        :to="{ hash: '#photo' }"
+        class="nav-link"
+    >{{t('photo')}}</router-link>
+  </li>
 </template>
 
 <style scoped lang="scss">
@@ -35,11 +43,13 @@ const {curStayEleId}=scrollSpy([
 {
   "zh-CN": {
     "home": "首页",
-    "introduce": "介绍"
+    "introduce": "介绍",
+    "photo": "相片"
   },
   "en-US": {
     "home": "Title",
-    "introduce": "Introduce"
+    "introduce": "Introduce",
+    "photo": "Photo"
   }
 }
 </i18n>
