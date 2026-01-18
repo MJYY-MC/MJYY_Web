@@ -3,11 +3,11 @@ This is a warm and cozy home for Minecraft players, a pure survival server brimm
 
 #### Version Support
 
-Server native version: **Java** Edition <strong data-i18n="shared.index.introduce.server_introductory.main_version">?</strong>\
+Server native version: **Java** Edition **{serverVersion}**\
 Supported client versions for the server:
 
-- Java Edition: <strong data-i18n="shared.index.introduce.server_introductory.java_min">?</strong> - <strong data-i18n="shared.index.introduce.server_introductory.java_max">?</strong>
-- Bedrock Edition: <strong data-i18n="shared.index.introduce.server_introductory.bedrock_min">?</strong> - <strong data-i18n="shared.index.introduce.server_introductory.bedrock_max">?</strong>
+- Java Edition: **{javaVersionMin}** - **{javaVersionMax}**
+- Bedrock Edition: **{bedrockVersionMin}** - **{bedrockVersionMax}**
 
 #### Features and Highlights
 

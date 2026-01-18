@@ -4,7 +4,7 @@ import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {onMounted, onUnmounted, type Ref, ref} from "vue";
 
-const {gt:t}=autoUseI18n();
+const {gt:t,lt}=autoUseI18n();
 const lp:string="view_Home";
 autoLoadLocale(lp,()=>{
   useTitle(t(`${lp}.title`));
@@ -76,7 +76,13 @@ async function doMd(){
   ]
   for (let i=0;i<tryLocale.length;i++){
     try{
-      introduceText.value!.innerHTML=marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string;
+      introduceText.value!.innerHTML=
+          (marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string)
+              .replace("{serverVersion}",lt('introduce.version.serverVersion'))
+              .replace("{javaVersionMin}",lt('introduce.version.javaVersionMin'))
+              .replace("{javaVersionMax}",lt('introduce.version.javaVersionMax'))
+              .replace("{bedrockVersionMin}",lt("introduce.version.bedrockVersionMin"))
+              .replace("{bedrockVersionMax}",lt('introduce.version.bedrockVersionMax'));
       break;
     }catch {}
   }
@@ -109,8 +115,27 @@ onUnmounted(async ()=>{
       </div>
     </div>
   </section>
+  <section id="photo">
+
+  </section>
 </template>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/utils.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
+
+<i18n>
+{
+  "en-US": {
+    "introduce": {
+      "version": {
+        "serverVersion": "1.21.11",
+        "javaVersionMin": "1.9",
+        "javaVersionMax": "1.21.x",
+        "bedrockVersionMin": "1.21.111",
+        "bedrockVersionMax": "1.21.130"
+      }
+    }
+  }
+}
+</i18n>
