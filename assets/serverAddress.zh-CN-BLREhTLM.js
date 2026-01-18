@@ -1,0 +1,1 @@
+const n="#### 服务器地址\n\n主地址：\n- Java版：`mc.mjyy.top`\n- 基岩版：\n  - 地址：`mc.mjyy.top`\n  - 端口：`19132`\n\n备用地址：\n- Java版：`je.mjyy.top:30303`\n- 基岩版：\n  - 地址：`be.mjyy.top`\n  - 端口：`30303`";export{n as default};

@@ -1,0 +1,1 @@
+const d="#### Server Address\n\nPrimary Address:\n- Java Edition: `mc.mjyy.top`\n- Bedrock Edition:\n    - Address: `mc.mjyy.top`\n    - Port: `19132`\n\nBackup Address:\n- Java Edition: `je.mjyy.top:30303`\n- Bedrock Edition:\n    - Address: `be.mjyy.top`\n    - Port: `30303`";export{d as default};

@@ -1,0 +1,1 @@
+const t={view_Home:{title:{t:0,b:{t:2,i:[{t:3}],s:"MJYY"}},joinUs:{qgQrcodeHover:{t:0,b:{t:2,i:[{t:3}],s:"Click to join the qqgroup"}},qdQrcodeHover:{t:0,b:{t:2,i:[{t:3}],s:"Click to join the qqdiscord"}}}}};export{t as default};
