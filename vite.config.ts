@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
+import { createHtmlPlugin } from "vite-plugin-html";
 
 export default defineConfig({
     plugins: [
@@ -24,6 +25,10 @@ export default defineConfig({
             ],
             symbolId: 'svg-[dir]-[name]',
             customDomId: '__svg__icons__dom__',
+        }),
+        createHtmlPlugin({
+            minify: true,
+            template: "public/index.html",
         }),
     ],
     resolve: {
