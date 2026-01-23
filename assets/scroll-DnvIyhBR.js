@@ -1,1 +1,0 @@
-import{r as e,o as r,j as c}from"./index-BmftZ-Sy.js";function s(){const l=e(0);function n(){l.value=window.scrollY||window.pageYOffset||document.documentElement.scrollTop,o.onScroll&&o.onScroll()}const o={onScroll:null};return r(()=>{window.addEventListener("scroll",n)}),c(()=>{window.removeEventListener("scroll",n)}),{scrollY:l,callback:o}}export{s};
