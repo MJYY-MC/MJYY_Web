@@ -103,6 +103,11 @@ watch(
               <strong>{{t(`${lp}.home`)}}</strong>
             </router-link>
           </li>
+          <li class="nav-item nav-btn">
+            <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
+              <strong>{{t(`${lp}.old`)}}</strong>
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav d-flex nav-2">
           <component
