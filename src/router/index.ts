@@ -1,11 +1,12 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createMemoryHistory, createRouter, createWebHashHistory, createWebHistory} from 'vue-router';
 import {nextTick} from "vue";
+import renderMode from "@/ts/env/renderMode.ts";
 
 export function hashCheckAndScroll(){
     //元素锚点跳转处理。示例url：/#/#home
     nextTick(() => {
         const hash:string[] = window.location.hash.split('#');
-        if (hash.length==2+1) {
+        if (hash.length>1) {
             const sectionHash: string | undefined = (()=>{
                 const popStr:string|undefined=hash.pop();
                 if (popStr!=undefined){
@@ -32,7 +33,18 @@ export function hashCheckAndScroll(){
 }
 
 const router = createRouter({
-    history: createWebHashHistory(),//hash模式，使用'#'内部导航，'#'及后面的内容不会发送给服务器，避免了非'/'时404的情况。
+    history: (()=>{
+        switch (renderMode){
+            case 'ssg':
+                return import.meta.env.SSR ? createMemoryHistory() : createWebHistory();
+            case 'spa':
+                return createWebHistory();
+            case 'spa-hash':
+                return createWebHashHistory();//hash模式，使用'#'内部导航，'#'及后面的内容不会发送给服务器，避免了非'/'时404的情况。
+            default:
+                throw new Error(`Unknown RENDER_MODE: ${renderMode}`);
+        }
+    })(),
     routes: [
         {
             path: '/',

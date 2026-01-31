@@ -11,6 +11,19 @@ const {curStayEleId}=scrollSpy([
     document.getElementById('rule')!,
     document.getElementById('join-us')!,
 ]);
+
+
+import renderMode from "@/ts/env/renderMode.ts";
+import {hashCheckAndScroll} from "@/router";
+import {watch} from "vue";
+import { useRoute } from 'vue-router';
+if(renderMode=='ssg') {
+  const route = useRoute();
+  watch(()=>route.hash, (_newHash: string) => {//监听hash变化
+    if (renderMode == 'ssg')//如果是ssg模式则需要手动触发滚动
+      hashCheckAndScroll();
+  }, {immediate: true})
+}
 </script>
 
 <template>
