@@ -446,6 +446,7 @@ onUnmounted(async ()=>{
 <style scoped lang="scss" src="./scss/utils.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
 <style scoped lang="scss" src="./scss/imgLoader.scss"></style>
+<style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
 
 <i18n>
 {

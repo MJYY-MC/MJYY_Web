@@ -1,11 +1,14 @@
 .navbar{
+  --bs-bg-opacity: 0.8;
+  --navbar-bg-rgb: var(--bs-tertiary-bg-rgb);
+  background-color: rgba(var(--navbar-bg-rgb), var(--bs-bg-opacity));
+
   padding: .2rem;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
 
-  --bs-bg-opacity: 0.8;
   backdrop-filter: blur(4px);
 }
 
