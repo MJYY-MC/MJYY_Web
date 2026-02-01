@@ -140,29 +140,29 @@ export async function loadMediaResources(resMode:string,isInit:boolean=true) {
                 case "source":
                     // noinspection HttpUrlsUsage
                     imgUrls = [
-                        "http://cdnjson.com/images/2025/01/13/main2-light.png",
-                        "http://cdnjson.com/images/2025/01/13/main2-dark.png",
+                        "https://cdnjson.com/images/2025/01/13/main2-light.png",
+                        "https://cdnjson.com/images/2025/01/13/main2-dark.png",
 
-                        "http://cdnjson.com/images/2025/03/19/bg1-light.png",
+                        "https://cdnjson.com/images/2025/03/19/bg1-light.png",
                     ];
                     break;
                 case "low":
                     // noinspection HttpUrlsUsage
                     imgUrls = [
-                        "http://cdnjson.com/images/2025/03/18/main2-light-low2.png",
-                        "http://cdnjson.com/images/2025/03/18/main2-dark-low2.png",
+                        "https://cdnjson.com/images/2025/03/18/main2-light-low2.jpg",
+                        "https://cdnjson.com/images/2025/03/18/main2-dark-low2.jpg",
 
-                        "http://cdnjson.com/images/2025/03/19/bg1-light-low2.jpg",
+                        "https://cdnjson.com/images/2025/03/19/bg1-light-low2.jpg",
                     ];
                     break;
                 case "normal":
                 default:
                     // noinspection HttpUrlsUsage
                     imgUrls = [
-                        "http://cdnjson.com/images/2025/01/15/main2-light-low.png",
-                        "http://cdnjson.com/images/2025/01/15/main2-dark-low.png",
+                        "https://cdnjson.com/images/2025/01/15/main2-light-low.jpg",
+                        "https://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg",
 
-                        "http://cdnjson.com/images/2025/03/19/bg1-light-low.jpg",
+                        "https://cdnjson.com/images/2025/03/19/bg1-light-low.jpg",
                     ];
                     break;
             }
@@ -216,86 +216,86 @@ export async function loadMediaResources(resMode:string,isInit:boolean=true) {
                     case "source":
                         // noinspection HttpUrlsUsage
                         imgUrls = [
-                            "http://cdnjson.com/images/2025/03/18/photo-21.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-2.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-18.png",
+                            "https://cdnjson.com/images/2025/03/18/photo-21.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-2.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-18.png",
                             //"http://cdnjson.com/images/2024/12/28/photo-4.png",
 
-                            "http://cdnjson.com/images/2024/12/28/photo-15.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-17.png",
-                            "http://cdnjson.com/images/2025/03/18/photo-22.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-6.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-5.png",
-                            "http://cdnjson.com/images/2025/03/18/photo-23.png",
-                            "http://cdnjson.com/images/2025/03/18/photo-24.png",
-                            "http://cdnjson.com/images/2025/03/18/photo-25.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-7.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-8.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-9.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-10.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-11.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-12.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-19.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-20.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-13.png",
-                            "http://cdnjson.com/images/2024/12/28/photo-14.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-15.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-17.png",
+                            "https://cdnjson.com/images/2025/03/18/photo-22.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-6.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-5.png",
+                            "https://cdnjson.com/images/2025/03/18/photo-23.png",
+                            "https://cdnjson.com/images/2025/03/18/photo-24.png",
+                            "https://cdnjson.com/images/2025/03/18/photo-25.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-7.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-8.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-9.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-10.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-11.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-12.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-19.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-20.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-13.png",
+                            "https://cdnjson.com/images/2024/12/28/photo-14.png",
                         ];
                         break;
                     case "low":
                         // noinspection HttpUrlsUsage
                         imgUrls = [
-                            "http://cdnjson.com/images/2025/03/18/photo-21-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-2-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-18-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-21-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-2-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-18-low2.jpg",
                             //"http://cdnjson.com/images/2025/03/18/photo-4-low2.jpg",
 
-                            "http://cdnjson.com/images/2025/03/18/photo-15-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-17-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-22-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-6-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-5-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-23-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-24-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-25-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-7-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-8-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-9-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-10-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-11-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-12-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-19-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-20-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-13-low2.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-14-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-15-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-17-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-22-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-6-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-5-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-23-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-24-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-25-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-7-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-8-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-9-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-10-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-11-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-12-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-19-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-20-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-13-low2.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-14-low2.jpg",
                         ];
                         break;
                     default:
                     case "normal":
                         // noinspection HttpUrlsUsage
                         imgUrls = [
-                            "http://cdnjson.com/images/2025/03/18/photo-21-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-2-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-18-low.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-21-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-2-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-18-low.jpg",
                             //"http://cdnjson.com/images/2025/01/15/photo-4-low.jpg",
 
-                            "http://cdnjson.com/images/2025/01/15/photo-15-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-17-low.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-22-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-6-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-5-low.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-23-low.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-24-low.jpg",
-                            "http://cdnjson.com/images/2025/03/18/photo-25-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-7-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-8-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-9-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-10-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-11-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-12-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-19-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-20-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-13-low.jpg",
-                            "http://cdnjson.com/images/2025/01/15/photo-14-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-15-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-17-low.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-22-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-6-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-5-low.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-23-low.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-24-low.jpg",
+                            "https://cdnjson.com/images/2025/03/18/photo-25-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-7-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-8-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-9-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-10-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-11-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-12-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-19-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-20-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-13-low.jpg",
+                            "https://cdnjson.com/images/2025/01/15/photo-14-low.jpg",
                         ];
                         break;
                 }
