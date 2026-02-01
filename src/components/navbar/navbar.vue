@@ -87,7 +87,7 @@ watch(
 <template>
   <nav
       ref="navbar"
-      class="navbar navbar-expand-lg bg-body-tertiary-override"
+      class="navbar navbar-expand-lg"
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
@@ -181,3 +181,4 @@ watch(
 
 <style scoped lang="scss" src="./scss/navbar.scss"></style>
 <style scoped lang="scss" src="./scss/navbar-change.scss"></style>
+<style scoped lang="scss" src="@/assets/scss/color/component/navbar.scss"></style>

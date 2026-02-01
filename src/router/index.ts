@@ -54,11 +54,6 @@ const router = createRouter({
                 navbar_sectionLinks_Comp: () => import("@/views/Home/components/navbar_section-links.vue"),
             }
         },
-        {
-            path: '/test',
-            name: 'test',
-            component: ()=>import('@/views/test/test.vue'),
-        }
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

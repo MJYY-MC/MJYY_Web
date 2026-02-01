@@ -27,7 +27,7 @@ onMounted(()=>{
   let navbarBgIsTran:boolean|null=null;
   let tbcCloseTimeoutLock:boolean=false;
   function toggleNavbarBackground():void{
-    if (scrollY.value>200) {
+    if (scrollY.value>200) {//在顶部时导航栏全透明，往下滚动后导航栏变为半透明
       if (navbarBgIsTran!=false){
         navbar_toggleClass('background-color-transparent', false);
         if (!tbcCloseTimeoutLock) {
@@ -113,7 +113,7 @@ onUnmounted(async ()=>{
   <section id="home">
     <div id="backimg"></div>
     <div class="d-flex flex-ai-c flex-jc-c full-wh">
-      <h1 id="title">谧静幽原服务器</h1>
+      <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
     </div>
   </section>
   <section id="introduce" class="pt-6">
@@ -446,6 +446,9 @@ onUnmounted(async ()=>{
 <style scoped lang="scss" src="./scss/utils.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
 <style scoped lang="scss" src="./scss/imgLoader.scss"></style>
+<style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
+
+<style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
 
 <i18n>
 {
