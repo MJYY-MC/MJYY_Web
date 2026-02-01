@@ -4,7 +4,9 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  opacity: .9;
+
+  --bs-bg-opacity: 0.8;
+  backdrop-filter: blur(4px);
 }
 
 .nav-btn{

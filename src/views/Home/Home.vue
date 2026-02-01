@@ -27,7 +27,7 @@ onMounted(()=>{
   let navbarBgIsTran:boolean|null=null;
   let tbcCloseTimeoutLock:boolean=false;
   function toggleNavbarBackground():void{
-    if (scrollY.value>200) {
+    if (scrollY.value>200) {//在顶部时导航栏全透明，往下滚动后导航栏变为半透明
       if (navbarBgIsTran!=false){
         navbar_toggleClass('background-color-transparent', false);
         if (!tbcCloseTimeoutLock) {

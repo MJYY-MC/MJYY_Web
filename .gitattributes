@@ -1,3 +1,6 @@
+src/locales/*.json linguist-detectable=true
+src/views/Home/md/*.md linguist-detectable=true
+
 src/assets/img/**/* filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
