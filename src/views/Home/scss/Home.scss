@@ -19,6 +19,14 @@ section{
   #title{
     font-family: "mzd-font", system-ui;
   }
+  #mc-status{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: var(--mc-status-bg);
+    padding: .5rem;
+    border-radius: 10px;
+  }
 }
 [data-bs-theme=dark] #home{
   #backimg {

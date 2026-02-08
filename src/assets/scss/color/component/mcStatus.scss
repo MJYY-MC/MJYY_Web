@@ -1,0 +1,8 @@
+#mcStatus-root{
+  //玩家列表背景色
+  --mcstatus-player-list-bg: rgba(211, 211, 211, 0.85);
+}
+
+[data-bs-theme=dark] #mcStatus-root{
+  --mcstatus-player-list-bg: rgba(0, 0, 0, 0.7);
+}
