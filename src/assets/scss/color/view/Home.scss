@@ -1,0 +1,8 @@
+#home{
+  //我的世界服务器状态组件背景色
+  --mc-status-bg: rgba(211, 211, 211, 0.45);
+}
+
+[data-bs-theme=dark] #home{
+  --mc-status-bg: rgba(0, 0, 0, 0.3);
+}

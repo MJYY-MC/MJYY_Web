@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import McStatus from "@/components/mcStatus.vue";
+
 import {autoUseI18n, getCurrentLocale, getFallbackLocale, localeEvents} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
@@ -114,6 +116,9 @@ onUnmounted(async ()=>{
     <div id="backimg"></div>
     <div class="d-flex flex-ai-c flex-jc-c full-wh">
       <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
+    </div>
+    <div id="mc-status" class="unSelectable">
+      <McStatus/>
     </div>
   </section>
   <section id="introduce" class="pt-6">
