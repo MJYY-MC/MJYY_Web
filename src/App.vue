@@ -9,7 +9,7 @@ loadGlobalLocale();
 (async ()=>{
   console.log(beBaseUrl);
   if (beBaseUrl && isClient) {
-    const res = await fetch(`${beBaseUrl}/api/test`,{
+    const res = await fetch(`${beBaseUrl}/api/check`,{
       headers: {'X-API-Key':apiKey!}
     });
     if (res.ok) {
