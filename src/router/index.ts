@@ -54,6 +54,11 @@ const router = createRouter({
                 navbar_sectionLinks_Comp: () => import("@/views/Home/components/navbar_section-links.vue"),
             }
         },
+        {
+            path: '/messageboard',
+            name: 'messageBoard',
+            component: () => import('@/views/MessageBoard/MessageBoard.vue'),
+        }
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

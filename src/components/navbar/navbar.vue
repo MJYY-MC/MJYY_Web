@@ -53,7 +53,7 @@ function doThemeSel(tme:string){
   curTheme.value=tme;
 }
 
-import {navbarClassInit, navbarStyleInit} from './ts/style.ts';
+import {navbarClassInit, navbarStyleInit, toggleClass} from './ts/style.ts';
 const navbar:Ref<HTMLDivElement|null> = ref(null);
 navbarStyleInit(navbar);
 navbarClassInit(navbar);
@@ -80,6 +80,10 @@ watch(
     ()=>route.name,
     ()=>{
       curRouteName.value=route.name as string|undefined;
+
+      //切换页面的时候恢复导航栏背景
+      toggleClass('transition-background-color', false);
+      toggleClass('background-color-transparent', false);
     }
 )
 </script>
@@ -107,6 +111,16 @@ watch(
             <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
               <strong>{{t(`${lp}.old`)}}</strong>
             </a>
+          </li>
+          <li class="nav-item dropdown hover-dropdown nav-btn">
+            <a class="nav-link" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <router-link class="nav-link" aria-current="page"
+                             :class="{'active':(curRouteName=='messageBoard')}"
+                             :to="{name: 'messageBoard'}">{{t(`${lp}.messageBoard`)}}</router-link>
+              </li>
+            </ul>
           </li>
         </ul>
         <ul class="navbar-nav d-flex nav-2">
