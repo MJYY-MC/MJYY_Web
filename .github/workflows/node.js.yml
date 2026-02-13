@@ -50,6 +50,11 @@ jobs:
         cache: 'npm'
     - run: npm ci
 
+    - name: Inject environment variables #注入环境变量至.env.production
+      run: |
+        echo "VITE_BACKEND_BASE_URL=${{ secrets.VITE_BACKEND_BASE_URL }}" >> .env.production
+        echo "VITE_BACKEND_API_KEY=${{ secrets.VITE_BACKEND_API_KEY }}" >> .env.production
+
     - name: Build
       run: npm run build
 
