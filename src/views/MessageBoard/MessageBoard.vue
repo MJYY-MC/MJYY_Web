@@ -1,35 +1,81 @@
 <script setup lang="ts">
-import {apiKey, baseUrl as beBaseUrl} from "@/ts/env/backend.ts";
-import {isClient} from "@/ts/env/ssr.ts";
+import backendPost from '@/ts/backend/post.ts';
+import {ref, type Ref} from "vue";
+import PasswordInput from "@/components/passwordInput.vue";
 
-(async ()=>{
-  console.log(beBaseUrl);
-  if (beBaseUrl && isClient) {
-    const res = await fetch(`${beBaseUrl}/gateway/mjyytest`,{
-      method: 'POST',
-      headers: {
-        'X-API-Key':apiKey!,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({Password:"testpw"}),
-    });
-    if (res.ok) {
-      console.log(res.json());
+const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
+const passwordInput:Ref<InstanceType<typeof PasswordInput>|null>=ref(null);
+
+async function onPasswdEnter(password:string){
+  if (passwordInput.value) {
+    passwordInput.value.showFeedback('alert-secondary', 4);
+    passwordInput.value.lockInput();
+    const res = await backendPost("/gateway/minecraft_messagepage", {Password: password});
+    if (res.result != undefined) {
+      if (res.result.ok) {
+        passwordInput.value.showFeedback('alert-success', 3);
+        mainIframe.value!.src = `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`;
+      }else{
+        if(res.result.statusCode==401) {
+          passwordInput.value.showFeedback('alert-danger', 1);
+          passwordInput.value.unlockInput();
+        }
+        else {
+          passwordInput.value.showFeedback('alert-warning', 2);
+          passwordInput.value.unlockInput();
+        }
+      }
     }
-    else if (res.status == 401){
-
+    else {
+      passwordInput.value.showFeedback('alert-warning', 2);
+      passwordInput.value.unlockInput();
     }
   }
-})();
+}
+
+function mainIframe_onLoad(){
+  if (mainIframe.value) {
+    if(mainIframe.value.src!=""){
+      mainIframe.value.style.display = '';
+      passwordInput.value?.hidePanel();
+    }
+  }
+}
 </script>
 
 <template>
-  <!--<iframe src=''
-          style='width:100%;height:100vh;border:none'
+  <iframe ref="mainIframe" id="mainIframe"
+          src=''
+          :onload="mainIframe_onLoad"
+          style="display:none;"
           sandbox='allow-scripts allow-same-origin allow-forms'
-  ></iframe>-->
+  ></iframe>
+  <div id="fullContainer">
+    <PasswordInput ref="passwordInput"
+                   @passwdEnter="onPasswdEnter"
+    />
+  </div>
 </template>
 
 <style scoped lang="scss">
-
+#mainIframe{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  border:none;
+  z-index: 1;
+}
+#fullContainer{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
 </style>
