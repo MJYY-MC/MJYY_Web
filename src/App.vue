@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import navbar from "@/components/navbar/navbar.vue";
 import {loadGlobalLocale} from "@/utils/i18nUtils.ts";
-import {ref, type Ref} from "vue";
-import type {RouteRecordNameGeneric} from "vue-router";
+import {computed, onMounted, ref, type Ref, watch} from "vue";
+import {useRoute} from "vue-router";
 //import {apiKey, baseUrl as beBaseUrl} from "@/ts/env/backend.ts";
 //import {isClient} from "@/ts/env/ssr.ts";
 
@@ -19,28 +19,62 @@ loadGlobalLocale();
     }
   }
 })();*/
+const route = useRoute();
+const meta = computed(() => ({
+  app:{
+    view:{
+      //为view添加顶部内边距，防止导航栏遮挡。默认false
+      usePaddingTop: (
+          route.meta.app_view_usePaddingTop != undefined
+              ? route.meta.app_view_usePaddingTop
+              : false
+      ) as boolean,
+      //将view大小固定为全屏。默认false
+      useFullScreen: (
+          route.meta.app_view_useFullScreen != undefined
+              ? route.meta.app_view_useFullScreen
+              : false
+      ) as boolean,
+    },
+  },
+}));
+
 const view:Ref<HTMLDivElement|null> = ref(null);
-
 const navbarRef:Ref<InstanceType<typeof navbar>|null>=ref(null);
-function routeOnChange(routeName: RouteRecordNameGeneric){
-  if (view.value && navbarRef.value) {
-    if (routeName!="home") {//排除home页面
-      //更改view的顶部内边距，避免导航栏遮挡
-      view.value.style.paddingTop = `${navbarRef.value.offsetHeight_get() || 0}px`;
 
-      view.value.style.height='100vh';
-      view.value.style.width='100vw'
+function routeName_onChange(){
+  if (view.value && navbarRef.value) {
+    if (meta.value.app.view.usePaddingTop) {
+      view.value.style.paddingTop = `${navbarRef.value.offsetHeight_get() || 0}px`;
     }
     else{
       view.value.style.paddingTop = '0';
     }
+
+    if (meta.value.app.view.useFullScreen){
+      view.value.style.height='100vh';
+      view.value.style.width='100%';
+    }
+    else{
+      view.value.style.height='';
+      view.value.style.width='';
+    }
   }
 }
+watch(
+    ()=>route.name,
+    ()=>{
+      routeName_onChange();
+    }
+)
+
+onMounted(()=>{
+  routeName_onChange();
+});
 </script>
 
 <template>
   <navbar ref="navbarRef"
-          @route_onChange="routeOnChange"
   />
   <div id="view" ref="view">
     <router-view/>

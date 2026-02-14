@@ -3,6 +3,13 @@ import backendPost from '@/ts/backend/post.ts';
 import {ref, type Ref} from "vue";
 import PasswordInput from "@/components/passwordInput.vue";
 
+const props = defineProps({
+  targetUrlPath: {
+    type: String,
+    required: true,
+  },
+});
+
 const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
 let mainIframe_haveSrc:boolean = false;
 const passwordInput:Ref<InstanceType<typeof PasswordInput>|null>=ref(null);
@@ -11,7 +18,7 @@ async function onPasswdEnter(password:string){
   if (passwordInput.value) {
     passwordInput.value.showFeedback('alert-secondary', 4);
     passwordInput.value.lockInput();
-    const res = await backendPost("/gateway/minecraft_messagepage", {Password: password});
+    const res = await backendPost(props.targetUrlPath, {Password: password});
     if (res.result != undefined) {
       if (res.result.ok) {
         passwordInput.value.showFeedback('alert-success', 3);

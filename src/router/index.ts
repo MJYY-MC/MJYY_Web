@@ -57,7 +57,18 @@ const router = createRouter({
         {
             path: '/messageboard',
             name: 'messageBoard',
-            component: () => import('@/views/MessageBoard/MessageBoard.vue'),
+            component: () => import('@/views/ReuseParentSubPage.vue'),
+            meta:{
+                //为view添加顶部内边距，防止导航栏遮挡
+                app_view_usePaddingTop: true,
+                //将view大小固定为全屏
+                app_view_useFullScreen: true,
+
+                //目标请求地址
+                authSubPage_targetUrlPath: '/gateway/minecraft_messagepage',
+                //语言文件前缀
+                localePrefix: 'view_rpsp_messageBoard',
+            }
         }
     ],
 });
