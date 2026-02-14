@@ -23,6 +23,10 @@ const meta = computed(() => ({
   },
 }));
 
+const emit = defineEmits<{
+  (e: 'normal_offsetHeight_onInit',normal_offsetHeight:number):void;
+}>();
+
 const curLoc:Ref<string>= ref(getCurrentLocale());
 async function doLangSel(lang:string){
   await switchLocale(lang);
@@ -90,10 +94,16 @@ function routeName_onChange(){
 
 onMounted(()=>{
   routeName_onChange();
+
+  normal_offsetHeight=navbar.value!.offsetHeight;
+  emit('normal_offsetHeight_onInit',normal_offsetHeight);
 });
 
+//导航栏正常大小下的高度。只被赋值一次，避免导航栏后续进行展开等导致高度被改变。
+let normal_offsetHeight:number|undefined;
 defineExpose({
-  offsetHeight_get():number|undefined{return navbar.value?.offsetHeight},
+  normal_offsetHeight_get():number|undefined{return normal_offsetHeight;},
+  offsetHeight_get():number|undefined{return navbar.value?.offsetHeight;},
 });
 </script>
 
@@ -117,9 +127,9 @@ defineExpose({
             </router-link>
           </li>
           <li class="nav-item nav-btn">
-            <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
-              <strong>{{t(`${lp}.old`)}}</strong>
-            </a>
+            <router-link class="nav-link" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
+              <strong>{{t(`${lp}.serverMap`)}}</strong>
+            </router-link>
           </li>
           <li class="nav-item dropdown hover-dropdown nav-btn">
             <a class="nav-link" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
@@ -133,6 +143,11 @@ defineExpose({
                 <router-link class="nav-link" aria-current="page"
                              :class="{'active':(curRouteName=='game_fiar')}"
                              :to="{name: 'game_fiar'}">{{t(`${lp}.game_fiar`)}}</router-link>
+              </li>
+              <li class="dropdown-item">
+                <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
+                  <strong>{{t(`${lp}.old`)}}</strong>
+                </a>
               </li>
             </ul>
           </li>

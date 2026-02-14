@@ -24,7 +24,7 @@ autoLoadLocale(lp,()=>{
 </script>
 
 <template>
-  <AuthSubPage :targetUrlPath="meta.authSubPage.targetUrlPath"/>
+  <AuthSubPage :targetUrlPath="meta.authSubPage.targetUrlPath" :title="gt(`${lp}.subTitle`)"/>
 </template>
 
 <style scoped lang="scss">

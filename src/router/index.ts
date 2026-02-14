@@ -55,6 +55,20 @@ const router = createRouter({
             }
         },
         {
+            path: '/servermap',
+            name: 'serverMap',
+            component: () => import('@/views/ReuseParentSubPage.vue'),
+            meta:{
+                route_reloadKey: "serverMap",
+
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+
+                authSubPage_targetUrlPath: '/gateway/minecraft_servermap',
+                localePrefix: 'view_rpsp_serverMap',
+            },
+        },
+        {
             path: '/messageboard',
             name: 'messageBoard',
             component: () => import('@/views/ReuseParentSubPage.vue'),
