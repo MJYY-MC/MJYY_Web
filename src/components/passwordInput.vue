@@ -136,7 +136,17 @@ defineExpose({
     "title": "访问限制内容"
   },
   "en-US": {
-
+    "label": "Access Password",
+    "enterBtn": "Enter",
+    "inputText": "Password",
+    "feedback": {
+      "0": "Password cannot be empty",
+      "1": "Incorrect password",
+      "2": "Unable to connect to the service",
+      "3": "Verification successful, waiting to load",
+      "4": "Verifying"
+    },
+    "title": "Restricted Content"
   }
 }
 </i18n>
