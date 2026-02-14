@@ -1,0 +1,1 @@
+import{c as a,r as p,i as r,_ as t}from"./virtual_svg-icons-register-Cl4E2ipK.js";import"./bootstrap.esm--3AG11oG.js";import"./app-CPi8I4Yn.js";function e(){a(t).use(p).use(r).mount("#app")}export{e as default};
