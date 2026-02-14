@@ -4,13 +4,13 @@ import {
   type AsyncComponentLoader,
   type Component,
   computed,
-  defineAsyncComponent,
+  defineAsyncComponent, onMounted,
   ref,
   type Ref,
   watch,
 } from "vue";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
-import {useRoute} from "vue-router";
+import {type RouteRecordNameGeneric, useRoute} from "vue-router";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -22,6 +22,10 @@ const meta = computed(() => ({
     sectionLinksComp: route.meta.navbar_sectionLinks_Comp as AsyncComponentLoader<any>,
   },
 }));
+
+const emit = defineEmits<{
+  (e: 'route_onChange',routeName:RouteRecordNameGeneric):void;
+}>();
 
 const curLoc:Ref<string>= ref(getCurrentLocale());
 async function doLangSel(lang:string){
@@ -78,14 +82,25 @@ watch(
 const curRouteName:Ref<string|undefined>=ref(undefined);
 watch(
     ()=>route.name,
-    ()=>{
-      curRouteName.value=route.name as string|undefined;
-
-      //切换页面的时候恢复导航栏背景
-      toggleClass('transition-background-color', false);
-      toggleClass('background-color-transparent', false);
-    }
+    ()=>{routeName_onChange();}
 )
+function routeName_onChange(){
+  curRouteName.value=route.name as string|undefined;
+
+  //切换页面的时候恢复导航栏背景
+  toggleClass('transition-background-color', false);
+  toggleClass('background-color-transparent', false);
+
+  emit('route_onChange',route.name);
+}
+
+onMounted(()=>{
+  routeName_onChange();
+});
+
+defineExpose({
+  offsetHeight_get():number|undefined{return navbar.value?.offsetHeight},
+});
 </script>
 
 <template>

@@ -4,6 +4,7 @@ import {ref, type Ref} from "vue";
 import PasswordInput from "@/components/passwordInput.vue";
 
 const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
+let mainIframe_haveSrc:boolean = false;
 const passwordInput:Ref<InstanceType<typeof PasswordInput>|null>=ref(null);
 
 async function onPasswdEnter(password:string){
@@ -14,6 +15,7 @@ async function onPasswdEnter(password:string){
     if (res.result != undefined) {
       if (res.result.ok) {
         passwordInput.value.showFeedback('alert-success', 3);
+        mainIframe_haveSrc = true;
         mainIframe.value!.src = `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`;
       }else{
         if(res.result.statusCode==401) {
@@ -35,7 +37,7 @@ async function onPasswdEnter(password:string){
 
 function mainIframe_onLoad(){
   if (mainIframe.value) {
-    if(mainIframe.value.src!=""){
+    if(mainIframe_haveSrc){
       mainIframe.value.style.display = '';
       passwordInput.value?.hidePanel();
     }
@@ -44,20 +46,29 @@ function mainIframe_onLoad(){
 </script>
 
 <template>
-  <iframe ref="mainIframe" id="mainIframe"
-          src=''
-          :onload="mainIframe_onLoad"
-          style="display:none;"
-          sandbox='allow-scripts allow-same-origin allow-forms'
-  ></iframe>
-  <div id="fullContainer">
-    <PasswordInput ref="passwordInput"
-                   @passwdEnter="onPasswdEnter"
-    />
+  <div id="main">
+    <iframe ref="mainIframe" id="mainIframe"
+            src=''
+            :onload="mainIframe_onLoad"
+            style="display:none;"
+            sandbox='allow-scripts allow-same-origin allow-forms'
+    ></iframe>
+    <div id="fullContainer">
+      <PasswordInput ref="passwordInput"
+                     @passwdEnter="onPasswdEnter"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+#main{
+  position: relative;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
 #mainIframe{
   position: absolute;
   width:100%;
