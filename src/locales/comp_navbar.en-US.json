@@ -12,6 +12,9 @@
       "auto": "Auto"
     },
     "home": "Home",
-    "old": "Old official website"
+    "old": "Old official website",
+    "more": "More",
+    "messageBoard": "Message board",
+    "game_fiar": "Gomoku game"
   }
 }
