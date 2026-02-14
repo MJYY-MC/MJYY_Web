@@ -3,24 +3,19 @@ import navbar from "@/components/navbar/navbar.vue";
 import {loadGlobalLocale} from "@/utils/i18nUtils.ts";
 import {computed, onMounted, ref, type Ref, watch} from "vue";
 import {useRoute} from "vue-router";
-//import {apiKey, baseUrl as beBaseUrl} from "@/ts/env/backend.ts";
-//import {isClient} from "@/ts/env/ssr.ts";
 
 loadGlobalLocale();
 
-/*(async ()=>{
-  console.log(beBaseUrl);
-  if (beBaseUrl && isClient) {
-    const res = await fetch(`${beBaseUrl}/api/check`,{
-      headers: {'X-API-Key':apiKey!}
-    });
-    if (res.ok) {
-      console.log(res.json());
-    }
-  }
-})();*/
 const route = useRoute();
 const meta = computed(() => ({
+  route:{
+    reloadKey: (
+        //此值变化后可使router-view重新加载
+        route.meta.route_reloadKey != undefined
+            ? route.meta.route_reloadKey
+            : "def"
+    ) as string,
+  },
   app:{
     view:{
       //为view添加顶部内边距，防止导航栏遮挡。默认false
@@ -77,7 +72,7 @@ onMounted(()=>{
   <navbar ref="navbarRef"
   />
   <div id="view" ref="view">
-    <router-view/>
+    <router-view :key="meta.route.reloadKey"/>
   </div>
 </template>
 

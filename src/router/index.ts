@@ -59,6 +59,9 @@ const router = createRouter({
             name: 'messageBoard',
             component: () => import('@/views/ReuseParentSubPage.vue'),
             meta:{
+                //使用不同的key，让router-view重新加载复用页面
+                route_reloadKey: "messageBoard",
+
                 //为view添加顶部内边距，防止导航栏遮挡
                 app_view_usePaddingTop: true,
                 //将view大小固定为全屏
@@ -69,7 +72,21 @@ const router = createRouter({
                 //语言文件前缀
                 localePrefix: 'view_rpsp_messageBoard',
             }
-        }
+        },
+        {
+            path: '/game/fiar',
+            name: 'game_fiar',
+            component: () => import('@/views/ReuseParentSubPage.vue'),
+            meta:{
+                route_reloadKey: "game_fiar",
+
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+
+                authSubPage_targetUrlPath: '/gateway/game_fiar',
+                localePrefix: 'view_rpsp_game_fiar',
+            }
+        },
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

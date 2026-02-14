@@ -129,6 +129,11 @@ defineExpose({
                              :class="{'active':(curRouteName=='messageBoard')}"
                              :to="{name: 'messageBoard'}">{{t(`${lp}.messageBoard`)}}</router-link>
               </li>
+              <li class="dropdown-item">
+                <router-link class="nav-link" aria-current="page"
+                             :class="{'active':(curRouteName=='game_fiar')}"
+                             :to="{name: 'game_fiar'}">{{t(`${lp}.game_fiar`)}}</router-link>
+              </li>
             </ul>
           </li>
         </ul>
