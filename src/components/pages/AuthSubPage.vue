@@ -8,10 +8,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  title:{
+    type: String,
+    default: '',
+  }
 });
 
 const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
 let mainIframe_haveSrc:boolean = false;
+const authContainer:Ref<HTMLDivElement|null> = ref(null);
 const passwordInput:Ref<InstanceType<typeof PasswordInput>|null>=ref(null);
 
 async function onPasswdEnter(password:string){
@@ -43,10 +48,11 @@ async function onPasswdEnter(password:string){
 }
 
 function mainIframe_onLoad(){
-  if (mainIframe.value) {
+  if (mainIframe.value && authContainer.value) {
     if(mainIframe_haveSrc){
       mainIframe.value.style.display = '';
-      passwordInput.value?.hidePanel();
+      //passwordInput.value?.hidePanel();
+      authContainer.value.style.display = 'none';
     }
   }
 }
@@ -60,7 +66,10 @@ function mainIframe_onLoad(){
             style="display:none;"
             sandbox='allow-scripts allow-same-origin allow-forms'
     ></iframe>
-    <div id="fullContainer">
+  </div>
+  <div id="authContainer" ref="authContainer">
+    <div id="authBox">
+      <h2 id="mainTitle">{{props.title}}</h2>
       <PasswordInput ref="passwordInput"
                      @passwdEnter="onPasswdEnter"
       />
@@ -83,9 +92,8 @@ function mainIframe_onLoad(){
   top:0;
   left:0;
   border:none;
-  z-index: 1;
 }
-#fullContainer{
+#authContainer{
   position: absolute;
   width:100%;
   height:100%;
@@ -94,6 +102,11 @@ function mainIframe_onLoad(){
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 0;
+  z-index: 1;
+  #authBox{
+    #mainTitle{
+      text-align: center;
+    }
+  }
 }
 </style>
