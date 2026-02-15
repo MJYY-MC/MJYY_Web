@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {type Ref, ref} from "vue";
+import type {NamedValue} from "vue-i18n";
 
 const {lt:t} = autoUseI18n();
 
@@ -16,9 +17,18 @@ const feedback:Ref<HTMLElement|null> = ref(null);
 type alertClass =('alert-secondary'|'alert-success'|'alert-warning'|'alert-danger');
 const feedbackClass:Ref<alertClass> =ref('alert-secondary');
 
-function showFeedback(styleClass:alertClass,textId:number){
+/**
+ * 显示反馈框
+ * @param styleClass 反馈框风格
+ * @param textId 内容id
+ * @param named 内嵌命名参数。没有参数则留空或设置为null
+ */
+function showFeedback(styleClass:alertClass,textId:number,named:NamedValue|null=null){
   if (feedback.value){
-    feedback.value.innerText=t(`feedback.${textId}`);
+    if (named == null)
+      feedback.value.innerText=t(`feedback.${textId}`);
+    else
+      feedback.value.innerText=t(`feedback.${textId}`,named);
     feedbackClass.value=styleClass;
     passwordInput_isInvalid.value = styleClass == 'alert-danger';
     feedback.value.style.display = '';
@@ -131,7 +141,10 @@ defineExpose({
       "1": "密码错误",
       "2": "无法连接至服务",
       "3": "验证成功，等待加载",
-      "4": "正在验证"
+      "4": "正在验证",
+      "5": "密码错误次数过多，{timeSec}秒后再试",
+      "6": "{timeSec}秒后再次尝试",
+      "7": "当前拒绝密码验证，{timeSec}秒后再试"
     },
     "title": "访问限制内容"
   },
@@ -144,7 +157,10 @@ defineExpose({
       "1": "Incorrect password",
       "2": "Unable to connect to the service",
       "3": "Verification successful, waiting to load",
-      "4": "Verifying"
+      "4": "Verifying",
+      "5": "Too many incorrect password attempts. Please try again in {timeSec} seconds.",
+      "6": "Try again in {timeSec} seconds.",
+      "7": "Password verification is being refused. Please try again in {timeSec} seconds."
     },
     "title": "Restricted Content"
   }

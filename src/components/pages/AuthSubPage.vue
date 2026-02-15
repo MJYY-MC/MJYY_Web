@@ -2,6 +2,7 @@
 import backendPost from '@/ts/backend/post.ts';
 import {ref, type Ref} from "vue";
 import PasswordInput from "@/components/passwordInput.vue";
+import {useCookies} from "@vueuse/integrations/useCookies";
 
 const props = defineProps({
   targetUrlPath: {
@@ -11,6 +12,10 @@ const props = defineProps({
   title:{
     type: String,
     default: '',
+  },
+  other:{
+    type: Object,
+    default: {},
   }
 });
 
@@ -19,10 +24,39 @@ let mainIframe_haveSrc:boolean = false;
 const authContainer:Ref<HTMLDivElement|null> = ref(null);
 const passwordInput:Ref<InstanceType<typeof PasswordInput>|null>=ref(null);
 
+/**
+ * 获取目标时间与当前时间的差
+ * @param future 目标时间
+ * @return 单位：秒
+ */
+function toFutureTime(future:Date|string):number{
+  const futTime:Date=(()=>{
+    if (future instanceof Date)
+      return future;
+    else
+      return new Date(future);
+  })();
+  return (futTime.getTime()-Date.now())/1000;
+}
+
 async function onPasswdEnter(password:string){
   if (passwordInput.value) {
     passwordInput.value.showFeedback('alert-secondary', 4);
     passwordInput.value.lockInput();
+
+    {
+      const unlockTime=useCookies().get('passwordAuthLockDown_unlockTime');
+      if (unlockTime!=undefined){
+        passwordInput.value.showFeedback(
+            'alert-danger',
+            6,
+            {timeSec:Math.round(toFutureTime(unlockTime))}
+        );
+        passwordInput.value.unlockInput();
+        return;
+      }
+    }
+
     const res = await backendPost(props.targetUrlPath, {Password: password});
     if (res.result != undefined) {
       if (res.result.ok) {
@@ -31,8 +65,37 @@ async function onPasswdEnter(password:string){
         mainIframe.value!.src = `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`;
       }else{
         if(res.result.statusCode==401) {
-          passwordInput.value.showFeedback('alert-danger', 1);
-          passwordInput.value.unlockInput();
+          switch (res.result.json.errorId){
+            case 0:
+              passwordInput.value.showFeedback('alert-danger', 1);
+              passwordInput.value.unlockInput();
+              break;
+            case 1:
+            case 2:
+              const unlockTime=res.result.json.unlockTime;
+              const waitTime=Math.round(toFutureTime(unlockTime));
+              switch (res.result.json.errorId){
+                case 1:
+                  passwordInput.value.showFeedback(
+                      'alert-danger',
+                      5,
+                      {timeSec:waitTime}
+                  );
+                  break;
+                case 2:
+                  passwordInput.value.showFeedback(
+                      'alert-danger',
+                      7,
+                      {timeSec:waitTime}
+                  );
+                  break;
+              }
+              passwordInput.value.unlockInput();
+              useCookies().set('passwordAuthLockDown_unlockTime',unlockTime,{
+                expires: new Date(unlockTime)
+              });
+              break;
+          }
         }
         else {
           passwordInput.value.showFeedback('alert-warning', 2);
@@ -53,6 +116,16 @@ function mainIframe_onLoad(){
       mainIframe.value.style.display = '';
       //passwordInput.value?.hidePanel();
       authContainer.value.style.display = 'none';
+
+      if (props.other.doServerMapFix==true){
+        (async ()=>{
+          const {sleep}=await import('@/utils/sleep');
+          const smFix = (await import('@/components/pages/serverMap/ts/serverMap_fix.ts')).default;
+
+          await sleep(2600);//容错时间，等待子页完全加载
+          await smFix();//使用document对其进行修复操作，避免修复操作被vue优化掉
+        })();
+      }
     }
   }
 }
@@ -64,7 +137,9 @@ function mainIframe_onLoad(){
             src=''
             :onload="mainIframe_onLoad"
             style="display:none;"
-            sandbox='allow-scripts allow-same-origin allow-forms'
+            allow="fullscreen; pointer-lock;"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
     ></iframe>
   </div>
   <div id="authContainer" ref="authContainer">

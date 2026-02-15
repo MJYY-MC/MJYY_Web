@@ -66,6 +66,10 @@ const router = createRouter({
 
                 authSubPage_targetUrlPath: '/gateway/minecraft_servermap',
                 localePrefix: 'view_rpsp_serverMap',
+
+                navbar_sectionLinks_Comp: () => import("@/components/pages/serverMap/component/navbar_tool-button.vue"),
+                //执行serverMap页面所需的问题修复代码
+                authSubPage_doServerMapFix: true,
             },
         },
         {

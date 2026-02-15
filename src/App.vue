@@ -18,13 +18,13 @@ const meta = computed(() => ({
   },
   app:{
     view:{
-      //为view添加顶部内边距，防止导航栏遮挡。默认false
+      //是否为view添加顶部内边距，防止导航栏遮挡。默认false
       usePaddingTop: (
           route.meta.app_view_usePaddingTop != undefined
               ? route.meta.app_view_usePaddingTop
               : false
       ) as boolean,
-      //将view大小固定为全屏。默认false
+      //是否将view大小固定为全屏。默认false
       useFullScreen: (
           route.meta.app_view_useFullScreen != undefined
               ? route.meta.app_view_useFullScreen

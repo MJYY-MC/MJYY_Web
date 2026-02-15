@@ -11,6 +11,13 @@ const meta = computed(() => ({
   authSubPage:{
     //目标请求地址
     targetUrlPath: route.meta.authSubPage_targetUrlPath as string,
+
+    //是否执行serverMap页面所需的问题修复代码
+    doServerMapFix: (
+        route.meta.authSubPage_doServerMapFix != undefined
+            ? route.meta.authSubPage_doServerMapFix
+            : false
+    )as boolean,
   },
   //语言文件前缀
   localePrefix: route.meta.localePrefix as string,
@@ -24,7 +31,12 @@ autoLoadLocale(lp,()=>{
 </script>
 
 <template>
-  <AuthSubPage :targetUrlPath="meta.authSubPage.targetUrlPath" :title="gt(`${lp}.subTitle`)"/>
+  <AuthSubPage :targetUrlPath="meta.authSubPage.targetUrlPath"
+               :title="gt(`${lp}.subTitle`)"
+               :other="{
+                 doServerMapFix: meta.authSubPage.doServerMapFix,
+               }"
+  />
 </template>
 
 <style scoped lang="scss">
