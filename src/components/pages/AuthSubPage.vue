@@ -12,6 +12,10 @@ const props = defineProps({
   title:{
     type: String,
     default: '',
+  },
+  other:{
+    type: Object,
+    default: {},
   }
 });
 
@@ -112,6 +116,16 @@ function mainIframe_onLoad(){
       mainIframe.value.style.display = '';
       //passwordInput.value?.hidePanel();
       authContainer.value.style.display = 'none';
+
+      if (props.other.doServerMapFix==true){
+        (async ()=>{
+          const {sleep}=await import('@/utils/sleep');
+          const smFix = (await import('@/components/pages/serverMap/ts/serverMap_fix.ts')).default;
+
+          await sleep(2600);//容错时间，等待子页完全加载
+          await smFix();//使用document对其进行修复操作，避免修复操作被vue优化掉
+        })();
+      }
     }
   }
 }
@@ -123,7 +137,9 @@ function mainIframe_onLoad(){
             src=''
             :onload="mainIframe_onLoad"
             style="display:none;"
-            sandbox='allow-scripts allow-same-origin allow-forms'
+            allow="fullscreen; pointer-lock;"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
     ></iframe>
   </div>
   <div id="authContainer" ref="authContainer">
