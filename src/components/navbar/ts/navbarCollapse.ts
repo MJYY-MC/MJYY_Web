@@ -1,30 +1,41 @@
-import {Collapse as bsCollapse} from 'bootstrap'
+import { isClient } from "@/ts/env/ssr";
 import { onMounted, onUnmounted, type Ref } from "vue";
 
 export default function (
     //navbar: Ref<HTMLDivElement | null>,
-    navbarCollapseContent: Ref<HTMLDivElement | null>
+    navbarCollapseContent: Ref<HTMLDivElement | null>,
 ) {
-    let collapser: bsCollapse | null;
-    let navLinks: NodeListOf<Element>|null|undefined;
-    function getCollapseInstance(): bsCollapse | null {
-        return bsCollapse.getInstance(navbarCollapseContent.value!);
+    let bootstrap: typeof import("bootstrap") | undefined;
+    if (isClient) {
+        (async () => {
+            return await import("bootstrap");
+        })().then((module) => {
+            bootstrap = module;
+        });
+    }
+
+    let collapser: bootstrap.Collapse | null;
+    let navLinks: NodeListOf<Element> | null | undefined;
+    function getCollapseInstance(): bootstrap.Collapse | null {
+        if (bootstrap)
+            return bootstrap.Collapse.getInstance(navbarCollapseContent.value!);
+        else
+            return null;
     }
     function navLinks_click() {
         if (!collapser) {
             //如果实例不存在则再尝试获取一次
             collapser = getCollapseInstance();
             //console.log(collapser)
-            if (!collapser)
-                return;
+            if (!collapser) return;
         }
         collapser.hide();
     }
     function bindNavLinks() {
         navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', navLinks_click);
+        navLinks.forEach((link) => {
+            link.addEventListener("click", navLinks_click);
             //console.log(link);
         });
 
@@ -45,6 +56,7 @@ export default function (
     });
 
     return {
-        bindNavLinks,unbindNavLinks,
-    }
+        bindNavLinks,
+        unbindNavLinks,
+    };
 }

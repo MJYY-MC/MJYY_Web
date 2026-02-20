@@ -2,11 +2,15 @@ import {type Composer, createI18n, type I18n} from 'vue-i18n';
 import {nextTick, type WritableComputedRef} from 'vue'
 import {isDev, isProd} from "@/ts/env/packMode.ts";
 import { useCookies } from '@vueuse/integrations/useCookies';
+import { isClient } from '@/ts/env/ssr';
 
 export const i18n:I18n = createI18n({
     locale: //获取用户cookie存储的语言设置，其次判断用户的浏览器语言，如果都不可用则默认使用en-US
         useCookies().get('locale') ||
-        navigator.language ||
+        (() => {
+            if (isClient) return navigator.language;
+            else return null;
+        })() ||
         'en-US'/*'zh-CN'*/,
     fallbackLocale: ['en-US','zh-CN'],
     messages: undefined,//留空，后续动态加载
