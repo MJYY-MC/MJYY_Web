@@ -1,14 +1,6 @@
 ### Welcome to the MJYY Server
 This is a warm and cozy home for Minecraft players, a pure survival server brimming with the joys of exploration, creation, and social interaction. Whether you are a novice player or a seasoned builder, you can find your own fun here.
 
-#### Version Support
-
-Server native version: **Java** Edition **{serverVersion}**\
-Supported client versions for the server:
-
-- Java Edition: **{javaVersionMin}** - **{javaVersionMax}**
-- Bedrock Edition: **{bedrockVersionMin}** - **{bedrockVersionMax}**
-
 #### Features and Highlights
 
 - **Pure Survival Experience**
