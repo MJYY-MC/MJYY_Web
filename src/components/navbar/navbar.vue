@@ -97,7 +97,7 @@ onMounted(()=>{
 
   normal_offsetHeight=navbar.value!.offsetHeight;
   emit('normal_offsetHeight_onInit',normal_offsetHeight);
-  //document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
+  document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
 });
 
 //导航栏正常大小下的高度。只被赋值一次，避免导航栏后续进行展开等导致高度被改变。
@@ -106,6 +106,13 @@ defineExpose({
   normal_offsetHeight_get():number|undefined{return normal_offsetHeight;},
   offsetHeight_get():number|undefined{return navbar.value?.offsetHeight;},
 });
+
+const navbarCollapseContent: Ref<HTMLDivElement | null> = ref(null);
+import navbarCollapse from "@/components/navbar/ts/navbarCollapse.ts";
+const { bindNavLinks, } = navbarCollapse(navbarCollapseContent);
+function sectionLinksComp_onMounted() {
+  bindNavLinks();//组件挂载后对其内的链接进行绑定
+}
 </script>
 
 <template>
@@ -117,10 +124,10 @@ defineExpose({
       <router-link class="navbar-brand" :to="{ name: 'home'}">
         <img src="@/assets/logo/svg/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
       </router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" ref="navbarCollapseContent" id="navbarCollapseContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item nav-btn">
             <router-link class="nav-link" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
@@ -148,6 +155,7 @@ defineExpose({
               <li class="dropdown-item">
                 <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
                   <strong>{{t(`${lp}.old`)}}</strong>
+                  <svg class="bi" width="12" height="12" ><use xlink:href="#svg-bsi-box-arrow-up-right"></use></svg>
                 </a>
               </li>
             </ul>
@@ -157,6 +165,7 @@ defineExpose({
           <component
               :is="sectionLinksComp"
               :key="sectionLinksComp_key"
+              @onMounted="sectionLinksComp_onMounted"
           />
         </ul>
         <ul class="navbar-nav d-flex nav-2">

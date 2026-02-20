@@ -24,6 +24,12 @@ if(renderMode=='ssg') {
       hashCheckAndScroll();
   }, {immediate: true})
 }
+
+//#region 组件挂载或卸载时的回调函数
+import onMountedCallBack, { type Emits as onMountedEmits } from "@/components/navbar/components/ts/shared/onMountedCallBack";
+const emit=defineEmits<onMountedEmits>();
+onMountedCallBack(emit);
+//#endregion
 </script>
 
 <template>
