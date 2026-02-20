@@ -5,13 +5,13 @@
   //包括大部分文字和没单独定义颜色的内容
   ///--bs-body-color: unset;
   //背景色，主要背景色以及没单独定义背景色的内容
-  ///--bs-body-bg: unset;
+  --bs-body-bg: rgb(247,249,252);
   //code标签内的文本颜色
   ///--bs-code-color: unset;
 }
 .navbar {
   //导航栏按钮背景色
-  --nav-item_background-color: rgba(193, 193, 193, .25);
+  --nav-item_background-color: rgba(202, 202, 202, 0.5);
   //导航栏选中高亮色
   ///--bs-navbar-active-color: unset;
 }
@@ -46,11 +46,11 @@
 :root[data-bs-theme=dark]{
   //--bs-heading-color: var(--test-color);
   //--bs-body-color: var(--test-color);
-  //--bs-body-bg: var(--test-color);
+  --bs-body-bg: rgb(19,19,26);
   //--bs-code-color: var(--test-color);
 }
 [data-bs-theme=dark] .navbar {
-  --nav-item_background-color: rgba(0,0,0,.25);
+  --nav-item_background-color: rgba(63, 63, 75, 0.5);
   //--bs-navbar-active-color: var(--test-color);
 }
 [data-bs-theme=dark] .nav-link{
