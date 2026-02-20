@@ -97,7 +97,7 @@ onMounted(()=>{
 
   normal_offsetHeight=navbar.value!.offsetHeight;
   emit('normal_offsetHeight_onInit',normal_offsetHeight);
-  //document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
+  document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
 });
 
 //导航栏正常大小下的高度。只被赋值一次，避免导航栏后续进行展开等导致高度被改变。
@@ -155,6 +155,7 @@ function sectionLinksComp_onMounted() {
               <li class="dropdown-item">
                 <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
                   <strong>{{t(`${lp}.old`)}}</strong>
+                  <svg class="bi" width="12" height="12" ><use xlink:href="#svg-bsi-box-arrow-up-right"></use></svg>
                 </a>
               </li>
             </ul>
