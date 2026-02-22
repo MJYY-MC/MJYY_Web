@@ -1,1 +1,0 @@
-import{a as e,o as r,g as c}from"./virtual_svg-icons-register-BOjPpHEs.js";function s(){const l=e(0);function n(){l.value=window.scrollY||window.pageYOffset||document.documentElement.scrollTop,o.onScroll&&o.onScroll()}const o={onScroll:null};return r(()=>{window.addEventListener("scroll",n)}),c(()=>{window.removeEventListener("scroll",n)}),{scrollY:l,callback:o}}export{s};
