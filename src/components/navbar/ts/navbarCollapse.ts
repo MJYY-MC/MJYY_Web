@@ -32,7 +32,7 @@ export default function (
         collapser.hide();
     }
     function bindNavLinks() {
-        navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
+        navLinks = document.querySelectorAll(".nav-link:not(.dropdown-toggle):not(.hover-dropdown-btn)");
 
         navLinks.forEach((link) => {
             link.addEventListener("click", navLinks_click);

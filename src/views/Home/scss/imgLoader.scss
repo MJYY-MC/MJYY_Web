@@ -10,6 +10,10 @@
   width: 100%;
   min-width: 100px;
   min-height: 100px;
+  &.loaded {
+    min-width: unset;
+    min-height: unset;
+  }
 
   img{
     width: 100%;
