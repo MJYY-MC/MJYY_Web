@@ -64,7 +64,7 @@ const router = createRouter({
                 app_view_usePaddingTop: true,
                 app_view_useFullScreen: true,
 
-                authSubPage_targetUrlPath: '/gateway/minecraft_servermap',
+                authSubPage_targetUrlPath: '/gateway/post/minecraft_servermap',
                 localePrefix: 'view_rpsp_serverMap',
 
                 navbar_sectionLinks_Comp: () => import("@/components/pages/serverMap/component/navbar_tool-button.vue"),
@@ -86,7 +86,7 @@ const router = createRouter({
                 app_view_useFullScreen: true,
 
                 //目标请求地址
-                authSubPage_targetUrlPath: '/gateway/minecraft_messagepage',
+                authSubPage_targetUrlPath: '/gateway/post/minecraft_messagepage',
                 //语言文件前缀
                 localePrefix: 'view_rpsp_messageBoard',
             }
@@ -101,7 +101,7 @@ const router = createRouter({
                 app_view_usePaddingTop: true,
                 app_view_useFullScreen: true,
 
-                authSubPage_targetUrlPath: '/gateway/game_fiar',
+                authSubPage_targetUrlPath: '/gateway/post/game_fiar',
                 localePrefix: 'view_rpsp_game_fiar',
             }
         },

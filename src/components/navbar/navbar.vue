@@ -140,7 +140,7 @@ function sectionLinksComp_onMounted() {
             </router-link>
           </li>
           <li class="nav-item dropdown hover-dropdown nav-btn">
-            <a class="nav-link" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
+            <a class="nav-link hover-dropdown-btn" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item">
                 <router-link class="nav-link" aria-current="page"
