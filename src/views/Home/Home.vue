@@ -250,7 +250,7 @@ const photoObjects = ref([
       <div class="row">
         <div class="col-md"></div>
         <div class="col-6 col-md-5 col-lg-3">
-          <div class="card card_img-box">
+          <div class="card card_img-box joinUs-qrcode-card">
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
@@ -265,7 +265,7 @@ const photoObjects = ref([
           </div>
         </div>
         <div class="col-6 col-md-5 col-lg-3">
-          <div class="card card_img-box">
+          <div class="card card_img-box joinUs-qrcode-card">
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
