@@ -29,6 +29,7 @@
     "@vueuse/integrations": "^14.1.0",
     "bootstrap": "^5.3.8",
     "marked": "^17.0.1",
+    "minecraft-text": "^1.2.18",
     "mitt": "^3.0.1",
     "node-mcstatus": "^1.2.1",
     "universal-cookie": "^8.0.1",

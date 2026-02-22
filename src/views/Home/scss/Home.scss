@@ -29,13 +29,10 @@ section{
     border-radius: 10px;
     z-index: 1;
   }
-  #broadcast{
+  #broadcast-container{
     z-index: 1;
     position: absolute;
     top:var(--navbar-normal_offsetHeight);
-    #broadcast-content{
-
-    }
   }
 }
 [data-bs-theme=dark] #home{

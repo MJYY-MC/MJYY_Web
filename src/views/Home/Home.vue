@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import McStatus from "@/components/mcStatus.vue";
+import Broadcast from "@/components/broadcast.vue";
 
 import {autoUseI18n, getCurrentLocale, getFallbackLocale, localeEvents} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
@@ -178,30 +179,12 @@ const photoObjects = ref([
     photo: "https://cdnjson.com/images/2025/01/15/photo-14-low.jpg",
   },
 ])
-
-//#region 广播
-import backendGet from "@/ts/backend/get.ts";
-const broadcast: Ref<HTMLDivElement | null> = ref(null);
-const broadcastContent: Ref<HTMLSpanElement | null> = ref(null);
-onMounted(async () => {
-  const res = await backendGet('/gateway/minecraft_broadcast');
-  if (res.result != undefined) {
-    if (res.result.ok) {
-      broadcast.value!.style.display = '';
-      console.log(broadcastContent.value);//用于占位
-    }
-  }
-});
-//#endregion
 </script>
 
 <template>
   <section id="home">
     <div id="backimg"></div>
-    <div ref="broadcast" id="broadcast" style="display:none;">
-      <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-megaphone-fill"></use></svg>
-      <span ref="broadcastContent" id="broadcast-content"></span>
-    </div>
+    <broadcast id="broadcast-container"/>
     <div class="d-flex flex-ai-c flex-jc-c full-wh">
       <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
     </div>
