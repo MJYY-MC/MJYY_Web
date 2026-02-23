@@ -2,6 +2,7 @@
 import backendGet from "@/ts/backend/get.ts";
 import {onMounted, ref, type Ref} from "vue";
 import { render as mcRender } from "minecraft-text";
+import urlAddParam from "@/utils/urlAddParam.ts";
 
 const broadcast: Ref<HTMLDivElement | null> = ref(null);
 const broadcastContent: Ref<HTMLSpanElement | null> = ref(null);
@@ -10,7 +11,18 @@ onMounted(async () => {
     const res = await backendGet('/gateway/get/minecraft_broadcast');
     if (res.result != undefined) {
       if (res.result.ok)
-        return `${res.result.json.url}&passkey=${res.result.json.paras.passkey}`;
+        return urlAddParam(res.result.json.url,{
+          params:[
+            {
+              name: 'passkey',
+              value: res.result.json.paras.passkey,
+            },
+            {
+              name: 'source',
+              value: res.result.json.paras.source,
+            }
+          ]
+        });
       else
         return null;
     }
