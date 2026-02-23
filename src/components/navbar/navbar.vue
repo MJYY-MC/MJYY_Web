@@ -144,6 +144,11 @@ function sectionLinksComp_onMounted() {
             <ul class="dropdown-menu">
               <li class="dropdown-item">
                 <router-link class="nav-link" aria-current="page"
+                             :class="{'active':(curRouteName=='analyticsPanel')}"
+                             :to="{name: 'analyticsPanel'}">{{t(`${lp}.analyticsPanel`)}}</router-link>
+              </li>
+              <li class="dropdown-item">
+                <router-link class="nav-link" aria-current="page"
                              :class="{'active':(curRouteName=='messageBoard')}"
                              :to="{name: 'messageBoard'}">{{t(`${lp}.messageBoard`)}}</router-link>
               </li>

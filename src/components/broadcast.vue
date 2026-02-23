@@ -10,7 +10,7 @@ onMounted(async () => {
     const res = await backendGet('/gateway/get/minecraft_broadcast');
     if (res.result != undefined) {
       if (res.result.ok)
-        return `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`;
+        return `${res.result.json.url}&passkey=${res.result.json.paras.passkey}`;
       else
         return null;
     }

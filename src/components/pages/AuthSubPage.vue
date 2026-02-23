@@ -62,7 +62,10 @@ async function onPasswdEnter(password:string){
       if (res.result.ok) {
         passwordInput.value.showFeedback('alert-success', 3);
         mainIframe_haveSrc = true;
-        mainIframe.value!.src = `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`;
+        mainIframe.value!.src =
+            (res.result.json.url as string).includes('?')
+                ? `${res.result.json.url}&passkey=${res.result.json.paras.passkey}`
+                : `${res.result.json.url}?passkey=${res.result.json.paras.passkey}`
       }else{
         if(res.result.statusCode==401) {
           switch (res.result.json.errorId){

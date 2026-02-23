@@ -73,6 +73,20 @@ const router = createRouter({
             },
         },
         {
+            path: '/analyticspanel',
+            name: 'analyticsPanel',
+            component: () => import('@/views/ReuseParentSubPage.vue'),
+            meta:{
+                route_reloadKey: "analyticsPanel",
+
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+
+                authSubPage_targetUrlPath: '/gateway/post/minecraft_plan',
+                localePrefix: 'view_rpsp_analyticsPanel',
+            },
+        },
+        {
             path: '/messageboard',
             name: 'messageBoard',
             component: () => import('@/views/ReuseParentSubPage.vue'),
