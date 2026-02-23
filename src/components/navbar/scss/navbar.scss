@@ -10,14 +10,21 @@
   z-index: 1000;
   backdrop-filter: blur(4px);
   max-height: 100vh;
-  overflow-y: scroll;
 
-  //隐藏滚动条
-  scrollbar-width: none;//Firefox
-  -ms-overflow-style: none;//IE
-}
-.navbar::-webkit-scrollbar {
-  display: none; //Chrome隐藏滚动条
+  #navbarCollapseContent{
+    &.show{
+      overflow-y: scroll;
+    }
+
+    max-height: calc(100vh - var(--navbar-normal_offsetHeight));
+
+    //隐藏滚动条
+    scrollbar-width: none;//Firefox
+    -ms-overflow-style: none;//IE
+  }
+  #navbarCollapseContent::-webkit-scrollbar {
+    display: none; //Chrome隐藏滚动条
+  }
 }
 
 .nav-btn{
