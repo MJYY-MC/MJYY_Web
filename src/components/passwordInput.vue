@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {type Ref, ref} from "vue";
+import {onMounted, type PropType, type Ref, ref} from "vue";
 import type {NamedValue} from "vue-i18n";
+import {useCookies} from "@vueuse/integrations/useCookies";
 
 const {lt:t} = autoUseI18n();
 
@@ -9,10 +10,26 @@ const emit = defineEmits<{
   (e: 'passwdEnter',password:string):void;
 }>();
 
+export type SavePasswordProp={
+  cookie:{
+    path:string,
+    name:string,
+  }
+}|null;
+
+const props = defineProps({
+  savePassword: {
+    type: Object as PropType<SavePasswordProp>,
+    default: null,
+  },
+});
+
 const pswIptPanel:Ref<HTMLDivElement|null> = ref(null);
 const passwordInput:Ref<HTMLInputElement|null>=ref(null);
 const passwordInput_isInvalid:Ref<boolean> = ref(false);
 const enterButton:Ref<HTMLButtonElement|null>=ref(null);
+const savePaswdSw:Ref<HTMLInputElement|null> = ref(null);
+const autoEnterSw:Ref<HTMLInputElement|null> = ref(null);
 const feedback:Ref<HTMLElement|null> = ref(null);
 type alertClass =('alert-secondary'|'alert-success'|'alert-warning'|'alert-danger');
 const feedbackClass:Ref<alertClass> =ref('alert-secondary');
@@ -39,11 +56,71 @@ function passwordEnter(){
   if (passwordInput.value){
     if (passwordInput.value.value!="") {
       emit('passwdEnter', passwordInput.value.value);
+      if (
+            savePaswdSw.value
+          &&props.savePassword!=null
+          &&savePaswdSw.value.checked
+      ){
+        useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.value`,passwordInput.value.value, {
+          path: props.savePassword.cookie.path,
+          secure: true,
+          sameSite: 'none',
+          maxAge: 2592000,
+        });
+      }
     }
     else
       showFeedback('alert-danger',0);
   }
 }
+
+function savePaswdSw_change(){
+  if (
+        props.savePassword!=null
+      &&savePaswdSw.value
+  ) {
+    useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.enable`,savePaswdSw.value.checked, {
+      path: props.savePassword.cookie.path
+    });
+  }
+}
+function autoEnterSw_change(setCookie:boolean=true){
+  if (
+        props.savePassword!=null
+      &&savePaswdSw.value
+      &&autoEnterSw.value
+  ) {
+    if (autoEnterSw.value.checked){
+      savePaswdSw.value.disabled=true;
+      savePaswdSw.value.checked = true;
+    }
+    else savePaswdSw.value.disabled=false;
+
+    if (setCookie) useCookies().set(`passwordInput.${props.savePassword.cookie.name}.autoEnter`,autoEnterSw.value.checked, {
+      path: props.savePassword.cookie.path
+    });
+  }
+}
+onMounted(()=>{
+  if (props.savePassword!=null){
+    savePaswdSw.value!.disabled=false;
+    autoEnterSw.value!.disabled=false;
+    const spe:boolean|undefined = useCookies().get(`passwordInput.${props.savePassword.cookie.name}.savePassword.enable`);
+    const spv:string|undefined = useCookies().get(`passwordInput.${props.savePassword.cookie.name}.savePassword.value`);
+    const ae:boolean|undefined = useCookies().get(`passwordInput.${props.savePassword.cookie.name}.autoEnter`);
+    if (spv!=undefined) {
+      if (ae == true) {
+        autoEnterSw.value!.checked = true;
+        autoEnterSw_change(false);
+        passwordInput.value!.value = spv;
+        passwordEnter();
+      } else if (spe == true) {
+        savePaswdSw.value!.checked = true;
+        passwordInput.value!.value = spv;
+      }
+    }
+  }
+});
 
 /**
  * 锁定输入元素
@@ -115,6 +192,16 @@ defineExpose({
                 @click="passwordEnter"
         >{{t('enterBtn')}}</button>
       </div>
+      <div class="input-group d-flex justify-content-evenly mt-1">
+        <div class="form-check form-switch">
+          <input ref="savePaswdSw" @change="savePaswdSw_change()" class="form-check-input" type="checkbox" role="switch" disabled>
+          <label class="form-check-label">{{t('savePaswdSw')}}</label>
+        </div>
+        <div class="form-check form-switch">
+          <input ref="autoEnterSw" @change="autoEnterSw_change()" class="form-check-input" type="checkbox" role="switch" disabled>
+          <label class="form-check-label">{{t('autoEnterSw')}}</label>
+        </div>
+      </div>
       <div ref="feedback"
            class="alert mt-3 mb-0"
            role="alert"
@@ -146,7 +233,9 @@ defineExpose({
       "6": "{timeSec}秒后再次尝试",
       "7": "当前拒绝密码验证，{timeSec}秒后再试"
     },
-    "title": "访问限制内容"
+    "title": "访问限制内容",
+    "savePaswdSw": "保存密码",
+    "autoEnterSw": "自动进入"
   },
   "en-US": {
     "label": "Access Password",
@@ -162,7 +251,9 @@ defineExpose({
       "6": "Try again in {timeSec} seconds.",
       "7": "Password verification is being refused. Please try again in {timeSec} seconds."
     },
-    "title": "Restricted Content"
+    "title": "Restricted Content",
+    "savePaswdSw": "Save Password",
+    "autoEnterSw": "Auto Enter"
   }
 }
 </i18n>

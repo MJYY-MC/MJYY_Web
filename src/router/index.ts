@@ -65,6 +65,12 @@ const router = createRouter({
                 app_view_useFullScreen: true,
 
                 authSubPage_targetUrlPath: '/gateway/post/minecraft_servermap',
+                authSubPage_savePassword:{
+                    cookie: {
+                        path: '/servermap',
+                        name: 'serverMap'
+                    }
+                },
                 localePrefix: 'view_rpsp_serverMap',
 
                 navbar_sectionLinks_Comp: () => import("@/components/pages/serverMap/component/navbar_tool-button.vue"),
@@ -83,6 +89,12 @@ const router = createRouter({
                 app_view_useFullScreen: true,
 
                 authSubPage_targetUrlPath: '/gateway/post/minecraft_plan',
+                authSubPage_savePassword:{
+                    cookie: {
+                        path: '/analyticspanel',
+                        name: 'analyticsPanel'
+                    }
+                },
                 localePrefix: 'view_rpsp_analyticsPanel',
             },
         },
@@ -101,6 +113,13 @@ const router = createRouter({
 
                 //目标请求地址
                 authSubPage_targetUrlPath: '/gateway/post/minecraft_messagepage',
+                //保存密码功能参数
+                authSubPage_savePassword:{
+                    cookie: {
+                        path: '/messageboard',
+                        name: 'messageBoard'
+                    }
+                },
                 //语言文件前缀
                 localePrefix: 'view_rpsp_messageBoard',
             }
@@ -116,6 +135,12 @@ const router = createRouter({
                 app_view_useFullScreen: true,
 
                 authSubPage_targetUrlPath: '/gateway/post/game_fiar',
+                authSubPage_savePassword:{
+                    cookie: {
+                        path: '/game/fiar',
+                        name: 'game_fiar'
+                    }
+                },
                 localePrefix: 'view_rpsp_game_fiar',
             }
         },
