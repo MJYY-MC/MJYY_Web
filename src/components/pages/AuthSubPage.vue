@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import backendPost from '@/ts/backend/post.ts';
-import {ref, type Ref} from "vue";
-import PasswordInput from "@/components/passwordInput.vue";
+import {type PropType, ref, type Ref} from "vue";
+import PasswordInput, {type SavePasswordProp} from "@/components/passwordInput.vue";
 import {useCookies} from "@vueuse/integrations/useCookies";
 import urlAddParam from "@/utils/urlAddParam.ts";
 
@@ -17,7 +17,11 @@ const props = defineProps({
   other:{
     type: Object,
     default: {},
-  }
+  },
+  savePassword: {
+    type: Object as PropType<SavePasswordProp>,
+    default: null,
+  },
 });
 
 const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
@@ -159,6 +163,7 @@ function mainIframe_onLoad(){
       <h2 id="mainTitle">{{props.title}}</h2>
       <PasswordInput ref="passwordInput"
                      @passwdEnter="onPasswdEnter"
+                     :savePassword="props.savePassword"
       />
     </div>
   </div>

@@ -5,12 +5,15 @@ import {computed} from "vue";
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
+import type {SavePasswordProp} from "@/components/passwordInput.vue";
 
 const route = useRoute();
 const meta = computed(() => ({
   authSubPage:{
     //目标请求地址
     targetUrlPath: route.meta.authSubPage_targetUrlPath as string,
+    //保存密码功能参数
+    savePassword: route.meta.authSubPage_savePassword as SavePasswordProp,
 
     //是否执行serverMap页面所需的问题修复代码
     doServerMapFix: (
@@ -36,6 +39,7 @@ autoLoadLocale(lp,()=>{
                :other="{
                  doServerMapFix: meta.authSubPage.doServerMapFix,
                }"
+               :savePassword="meta.authSubPage.savePassword"
   />
 </template>
 

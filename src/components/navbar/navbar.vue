@@ -11,6 +11,7 @@ import {
 } from "vue";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {useRoute} from "vue-router";
+import {useCookies} from "@vueuse/integrations/useCookies";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -35,7 +36,7 @@ async function doLangSel(lang:string){
 
 const themeIcon:Ref<string> = ref("#svg-bsi-circle-half");
 const curTheme:Ref<string> = ref("auto");
-function doThemeSel(tme:string){
+function doThemeSel(tme:string,setCookie:boolean=true){
   const html:HTMLHtmlElement = document.querySelector("html")!;
   switch(tme){
     case 'auto':
@@ -55,6 +56,8 @@ function doThemeSel(tme:string){
       break;
   }
   curTheme.value=tme;
+  if (setCookie)
+    useCookies().set('theme', tme);
 }
 
 import {navbarClassInit, navbarStyleInit, toggleClass} from './ts/style.ts';
@@ -93,6 +96,12 @@ function routeName_onChange(){
 }
 
 onMounted(()=>{
+  {
+    const theme:string|undefined=useCookies().get('theme');
+    if (theme)
+      doThemeSel(theme,false);
+  }
+
   routeName_onChange();
 
   normal_offsetHeight=navbar.value!.offsetHeight;
