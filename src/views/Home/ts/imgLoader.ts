@@ -5,5 +5,7 @@ export function imgLoaded(e: Event){
 }
 
 export function imgError(e: Event){
-    (e.target as HTMLElement).parentElement?.classList.add('error');
+    const ele=(e.target as HTMLElement) as HTMLImageElement;
+    if(ele.src!=='')
+        ele.parentElement?.classList.add('error');
 }

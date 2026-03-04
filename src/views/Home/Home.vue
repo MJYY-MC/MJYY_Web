@@ -114,76 +114,21 @@ onUnmounted(async ()=>{
   localeEvents.off('afterLocaleChange',doMd);
 })
 
-const photoObjects = ref([
-  {
-    photo: "https://cdnjson.com/images/2025/03/18/photo-21-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-2-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-18-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-15-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-17-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/03/18/photo-22-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-6-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-5-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/03/18/photo-23-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/03/18/photo-24-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/03/18/photo-25-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-7-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-8-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-9-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-10-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-11-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-12-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-19-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-20-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-13-low.jpg",
-  },
-  {
-    photo: "https://cdnjson.com/images/2025/01/15/photo-14-low.jpg",
-  },
-])
+import loadImage from "@/views/Home/ts/loadImage.ts";
+import {imageQuality} from "@/components/navbar/ts/imageQuality.ts";
+const {photoObjects,backImgSrc_get,imgSrc_get} = loadImage();
 </script>
 
 <template>
   <section id="home">
-    <div id="backimg"></div>
+    <div id="backimg" class="img-box">
+      <div class="loader-animation"></div>
+      <img :key="imageQuality"
+           alt="qrcode"
+           @load="imgLoaded" @error="imgError"
+           :src="backImgSrc_get()"
+      >
+    </div>
     <broadcast id="broadcast-container"/>
     <div class="d-flex flex-ai-c flex-jc-c full-wh">
       <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
@@ -208,7 +153,7 @@ const photoObjects = ref([
   </section>
   <section id="photo" class="pt-6">
     <div class="container">
-      <div class="row">
+      <div class="row" :key="imageQuality">
         <div v-for="(pObj,index) in photoObjects" 
              :key="index"
              class="col-12 col-sm-6 col-md-4 col-xl-3 mt-2">
@@ -218,7 +163,7 @@ const photoObjects = ref([
                 <div class="loader-animation"></div>
                 <img alt="photo"
                      @load="imgLoaded" @error="imgError"
-                     :src="pObj.photo">
+                     :src="pObj.photo[imageQuality]">
               </div>
             </div>
           </div>
@@ -254,9 +199,10 @@ const photoObjects = ref([
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
-                <img alt="qrcode"
+                <img :key="imageQuality"
+                     alt="qrcode"
                      @load="imgLoaded" @error="imgError"
-                     src="@/assets/img/copy/qqGroupQRcode-low.png">
+                     :src="imgSrc_get('qrcode/qqGroupQRcode')">
                 <a href="https://qm.qq.com/q/siqAtkac9i" class="qrcode-link">
                   <span>{{t(`${lp}.joinUs.qgQrcodeHover`)}}</span>
                 </a>
@@ -269,9 +215,10 @@ const photoObjects = ref([
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
-                <img alt="qrcode"
+                <img :key="imageQuality"
+                     alt="qrcode"
                      @load="imgLoaded" @error="imgError"
-                     src="@/assets/img/copy/qqDiscodeQRCode-low.png">
+                     :src="imgSrc_get('qrcode/qqDiscodeQRCode')">
                 <a href="https://pd.qq.com/s/cci7lavxo" class="qrcode-link">
                   <span>{{t(`${lp}.joinUs.qdQrcodeHover`)}}</span>
                 </a>

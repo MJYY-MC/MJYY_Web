@@ -11,7 +11,8 @@ import {
 } from "vue";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {useRoute} from "vue-router";
-import {useCookies} from "@vueuse/integrations/useCookies";
+import {curSelTheme, doThemeSel, themeIcon, init as themeInit} from "@/components/navbar/ts/theme.ts";
+import {doImgQualSel, imageQuality, init as imgQuaInit} from "@/components/navbar/ts/imageQuality.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -34,31 +35,7 @@ async function doLangSel(lang:string){
   curLoc.value=getCurrentLocale();
 }
 
-const themeIcon:Ref<string> = ref("#svg-bsi-circle-half");
-const curTheme:Ref<string> = ref("auto");
-function doThemeSel(tme:string,setCookie:boolean=true){
-  const html:HTMLHtmlElement = document.querySelector("html")!;
-  switch(tme){
-    case 'auto':
-      themeIcon.value = '#svg-bsi-circle-half';
-      if (window.matchMedia("(prefers-color-scheme: dark)"))
-        html.setAttribute('data-bs-theme','dark');
-      else
-        html.setAttribute('data-bs-theme','light');
-      break;
-    case 'light':
-      themeIcon.value = '#svg-bsi-sun';
-      html.setAttribute('data-bs-theme','light');
-      break;
-    case 'dark':
-      themeIcon.value = '#svg-bsi-moon-stars';
-      html.setAttribute('data-bs-theme','dark');
-      break;
-  }
-  curTheme.value=tme;
-  if (setCookie)
-    useCookies().set('theme', tme);
-}
+themeInit();
 
 import {navbarClassInit, navbarStyleInit, toggleClass} from './ts/style.ts';
 const navbar:Ref<HTMLDivElement|null> = ref(null);
@@ -96,12 +73,6 @@ function routeName_onChange(){
 }
 
 onMounted(()=>{
-  {
-    const theme:string|undefined=useCookies().get('theme');
-    if (theme)
-      doThemeSel(theme,false);
-  }
-
   routeName_onChange();
 
   normal_offsetHeight=navbar.value!.offsetHeight;
@@ -122,6 +93,8 @@ const { bindNavLinks, } = navbarCollapse(navbarCollapseContent);
 function sectionLinksComp_onMounted() {
   bindNavLinks();//组件挂载后对其内的链接进行绑定
 }
+
+imgQuaInit();
 </script>
 
 <template>
@@ -196,24 +169,31 @@ function sectionLinksComp_onMounted() {
                 <h6 class="dropdown-header">{{t(`${lp}.theme.theme-sel`)}}</h6>
               </li>
               <li>
-                <button @click="doThemeSel('auto')" :class="{ 'active': (curTheme=='auto') }" class="dropdown-item">
-                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-circle-half"></use></svg>
+                <button @click="doThemeSel('auto')" :class="{ 'active': (curSelTheme=='auto') }" class="dropdown-item">
+                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-clock"></use></svg>
                   {{t(`${lp}.theme.auto`)}}
-                  <svg :style="(curTheme!='auto')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='auto')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
               <li>
-                <button @click="doThemeSel('light')" :class="{ 'active': (curTheme=='light') }" class="dropdown-item">
+                <button @click="doThemeSel('system')" :class="{ 'active': (curSelTheme=='system') }" class="dropdown-item">
+                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-circle-half"></use></svg>
+                  {{t(`${lp}.theme.system`)}}
+                  <svg :style="(curSelTheme!='system')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doThemeSel('light')" :class="{ 'active': (curSelTheme=='light') }" class="dropdown-item">
                   <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-sun"></use></svg>
                   {{t(`${lp}.theme.light`)}}
-                  <svg :style="(curTheme!='light')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='light')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
               <li>
-                <button @click="doThemeSel('dark')" :class="{ 'active': (curTheme=='dark') }" class="dropdown-item">
+                <button @click="doThemeSel('dark')" :class="{ 'active': (curSelTheme=='dark') }" class="dropdown-item">
                   <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-moon-stars"></use></svg>
                   {{t(`${lp}.theme.dark`)}}
-                  <svg :style="(curTheme!='dark')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='dark')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
             </ul>
@@ -236,6 +216,52 @@ function sectionLinksComp_onMounted() {
                 <button @click="doLangSel('en-US')" :class="{ 'active': (curLoc=='en-US') }" class="dropdown-item">
                   {{t(`${lp}.langs.en-US`)}}
                   <svg :style="(curLoc!='en-US')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown d-flex flex-ai-c">
+            <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-images"></use></svg>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <h6 class="dropdown-header">{{t(`${lp}.imageQuality.selTitle`)}}</h6>
+              </li>
+              <li>
+                <button @click="doImgQualSel('source')" :class="{ 'active': (imageQuality=='source') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.source`)}}
+                  <svg :style="(imageQuality!='source')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('high')" :class="{ 'active': (imageQuality=='high') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.high`)}}
+                  <svg :style="(imageQuality!='high')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('normal')" :class="{ 'active': (imageQuality=='normal') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.normal`)}}
+                  <svg :style="(imageQuality!='normal')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('mid')" :class="{ 'active': (imageQuality=='mid') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.mid`)}}
+                  <svg :style="(imageQuality!='mid')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('low')" :class="{ 'active': (imageQuality=='low') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.low`)}}
+                  <svg :style="(imageQuality!='low')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('potato')" :class="{ 'active': (imageQuality=='potato') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.potato`)}}
+                  <svg :style="(imageQuality!='potato')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
             </ul>

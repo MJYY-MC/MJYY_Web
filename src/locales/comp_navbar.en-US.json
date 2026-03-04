@@ -9,7 +9,17 @@
       "theme-sel": "Theme Selection",
       "light": "Light",
       "dark": "Dark",
-      "auto": "Auto"
+      "auto": "Auto",
+      "system": "System"
+    },
+    "imageQuality": {
+      "selTitle": "Image Quality Selection",
+      "source": "Source",
+      "high": "High",
+      "normal": "Normal",
+      "mid": "Medium",
+      "low": "Low",
+      "potato": "Potato"
     },
     "home": "Home",
     "old": "Old official website",

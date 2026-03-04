@@ -14,6 +14,8 @@ const iconsName = [//需要复制的图标名
     'circle-half',
     'megaphone-fill',
     'box-arrow-up-right',
+    'clock',
+    'images',
 ];
 const sourceDir = path.resolve(__dirname, '../node_modules/bootstrap-icons/icons');
 const targetDir = path.resolve(__dirname, '../src/assets/_svg/bsi');
