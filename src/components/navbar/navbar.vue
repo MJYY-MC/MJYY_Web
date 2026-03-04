@@ -11,8 +11,8 @@ import {
 } from "vue";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {useRoute} from "vue-router";
-import {useCookies} from "@vueuse/integrations/useCookies";
-import {curSelTheme, doThemeSel, themeIcon, type ThemeSelect_Theme} from "@/components/navbar/ts/theme.ts";
+import {curSelTheme, doThemeSel, themeIcon, init as themeInit} from "@/components/navbar/ts/theme.ts";
+import {doImgQualSel, imageQuality, init as imgQuaInit} from "@/components/navbar/ts/imageQuality.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -34,6 +34,8 @@ async function doLangSel(lang:string){
   await switchLocale(lang);
   curLoc.value=getCurrentLocale();
 }
+
+themeInit();
 
 import {navbarClassInit, navbarStyleInit, toggleClass} from './ts/style.ts';
 const navbar:Ref<HTMLDivElement|null> = ref(null);
@@ -71,14 +73,6 @@ function routeName_onChange(){
 }
 
 onMounted(()=>{
-  {
-    const theme:ThemeSelect_Theme|undefined=useCookies().get('theme');
-    if (theme)
-      doThemeSel(theme,false);
-    else
-      doThemeSel('auto',true);
-  }
-
   routeName_onChange();
 
   normal_offsetHeight=navbar.value!.offsetHeight;
@@ -99,6 +93,8 @@ const { bindNavLinks, } = navbarCollapse(navbarCollapseContent);
 function sectionLinksComp_onMounted() {
   bindNavLinks();//组件挂载后对其内的链接进行绑定
 }
+
+imgQuaInit();
 </script>
 
 <template>
@@ -220,6 +216,52 @@ function sectionLinksComp_onMounted() {
                 <button @click="doLangSel('en-US')" :class="{ 'active': (curLoc=='en-US') }" class="dropdown-item">
                   {{t(`${lp}.langs.en-US`)}}
                   <svg :style="(curLoc!='en-US')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown d-flex flex-ai-c">
+            <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-images"></use></svg>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <h6 class="dropdown-header">{{t(`${lp}.imageQuality.selTitle`)}}</h6>
+              </li>
+              <li>
+                <button @click="doImgQualSel('source')" :class="{ 'active': (imageQuality=='source') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.source`)}}
+                  <svg :style="(imageQuality!='source')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('high')" :class="{ 'active': (imageQuality=='high') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.high`)}}
+                  <svg :style="(imageQuality!='high')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('normal')" :class="{ 'active': (imageQuality=='normal') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.normal`)}}
+                  <svg :style="(imageQuality!='normal')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('mid')" :class="{ 'active': (imageQuality=='mid') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.mid`)}}
+                  <svg :style="(imageQuality!='mid')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('low')" :class="{ 'active': (imageQuality=='low') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.low`)}}
+                  <svg :style="(imageQuality!='low')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doImgQualSel('potato')" :class="{ 'active': (imageQuality=='potato') }" class="dropdown-item">
+                  {{t(`${lp}.imageQuality.potato`)}}
+                  <svg :style="(imageQuality!='potato')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
             </ul>

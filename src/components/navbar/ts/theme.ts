@@ -1,4 +1,4 @@
-import {ref, type Ref} from "vue";
+import {onMounted, ref, type Ref} from "vue";
 import {useCookies} from "@vueuse/integrations/useCookies";
 
 //主题，用于data-bs-theme
@@ -53,4 +53,14 @@ export function doThemeSel(tme:ThemeSelect_Theme,setCookie:boolean=true){
     curSelTheme.value=tme;
     if (setCookie)
         useCookies().set('theme', tme);
+}
+
+export function init(){
+    onMounted(()=>{
+        const theme:ThemeSelect_Theme|undefined=useCookies().get('theme');
+        if (theme)
+            doThemeSel(theme,false);
+        else
+            doThemeSel('auto',true);
+    });
 }

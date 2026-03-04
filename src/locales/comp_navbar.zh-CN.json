@@ -12,6 +12,15 @@
       "auto": "自动",
       "system": "跟随系统"
     },
+    "imageQuality": {
+      "selTitle": "图像品质选择",
+      "source": "原图",
+      "high": "高质量",
+      "normal": "正常",
+      "mid": "低质量",
+      "low": "省流",
+      "potato": "极低"
+    },
     "home": "主页",
     "old": "旧官网",
     "more": "更多",
