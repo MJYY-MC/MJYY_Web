@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import navbar from "@/components/navbar/navbar.vue";
-import {loadGlobalLocale} from "@/utils/i18nUtils.ts";
+import {autoSetHtmlLang, loadGlobalLocale} from "@/utils/i18nUtils.ts";
 import {computed, onMounted, ref, type Ref, watch} from "vue";
 import {useRoute} from "vue-router";
+import { useHead } from '@unhead/vue';
+import {isServer} from "@/ts/env/ssr.ts";
+
+if (isServer) {
+  useHead({
+    htmlAttrs: {
+      lang: 'zh',//html的lang静态值设置为zh。lang属性值将根据网站当前使用的语言动态更改
+    }
+  });
+}
 
 loadGlobalLocale();
 
@@ -83,6 +93,8 @@ watch(
 
 onMounted(()=>{
   routeName_onChange();
+
+  autoSetHtmlLang();//加载完毕后自动设置一下html标签的lang属性
 });
 </script>
 
