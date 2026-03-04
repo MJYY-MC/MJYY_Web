@@ -12,6 +12,7 @@ import {
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {useRoute} from "vue-router";
 import {useCookies} from "@vueuse/integrations/useCookies";
+import {curSelTheme, doThemeSel, themeIcon, type ThemeSelect_Theme} from "@/components/navbar/ts/theme.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -32,32 +33,6 @@ const curLoc:Ref<string>= ref(getCurrentLocale());
 async function doLangSel(lang:string){
   await switchLocale(lang);
   curLoc.value=getCurrentLocale();
-}
-
-const themeIcon:Ref<string> = ref("#svg-bsi-circle-half");
-const curTheme:Ref<string> = ref("auto");
-function doThemeSel(tme:string,setCookie:boolean=true){
-  const html:HTMLHtmlElement = document.querySelector("html")!;
-  switch(tme){
-    case 'auto':
-      themeIcon.value = '#svg-bsi-circle-half';
-      if (window.matchMedia("(prefers-color-scheme: dark)"))
-        html.setAttribute('data-bs-theme','dark');
-      else
-        html.setAttribute('data-bs-theme','light');
-      break;
-    case 'light':
-      themeIcon.value = '#svg-bsi-sun';
-      html.setAttribute('data-bs-theme','light');
-      break;
-    case 'dark':
-      themeIcon.value = '#svg-bsi-moon-stars';
-      html.setAttribute('data-bs-theme','dark');
-      break;
-  }
-  curTheme.value=tme;
-  if (setCookie)
-    useCookies().set('theme', tme);
 }
 
 import {navbarClassInit, navbarStyleInit, toggleClass} from './ts/style.ts';
@@ -97,9 +72,11 @@ function routeName_onChange(){
 
 onMounted(()=>{
   {
-    const theme:string|undefined=useCookies().get('theme');
+    const theme:ThemeSelect_Theme|undefined=useCookies().get('theme');
     if (theme)
       doThemeSel(theme,false);
+    else
+      doThemeSel('auto',true);
   }
 
   routeName_onChange();
@@ -196,24 +173,31 @@ function sectionLinksComp_onMounted() {
                 <h6 class="dropdown-header">{{t(`${lp}.theme.theme-sel`)}}</h6>
               </li>
               <li>
-                <button @click="doThemeSel('auto')" :class="{ 'active': (curTheme=='auto') }" class="dropdown-item">
-                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-circle-half"></use></svg>
+                <button @click="doThemeSel('auto')" :class="{ 'active': (curSelTheme=='auto') }" class="dropdown-item">
+                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-clock"></use></svg>
                   {{t(`${lp}.theme.auto`)}}
-                  <svg :style="(curTheme!='auto')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='auto')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
               <li>
-                <button @click="doThemeSel('light')" :class="{ 'active': (curTheme=='light') }" class="dropdown-item">
+                <button @click="doThemeSel('system')" :class="{ 'active': (curSelTheme=='system') }" class="dropdown-item">
+                  <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-circle-half"></use></svg>
+                  {{t(`${lp}.theme.system`)}}
+                  <svg :style="(curSelTheme!='system')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button @click="doThemeSel('light')" :class="{ 'active': (curSelTheme=='light') }" class="dropdown-item">
                   <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-sun"></use></svg>
                   {{t(`${lp}.theme.light`)}}
-                  <svg :style="(curTheme!='light')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='light')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
               <li>
-                <button @click="doThemeSel('dark')" :class="{ 'active': (curTheme=='dark') }" class="dropdown-item">
+                <button @click="doThemeSel('dark')" :class="{ 'active': (curSelTheme=='dark') }" class="dropdown-item">
                   <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-moon-stars"></use></svg>
                   {{t(`${lp}.theme.dark`)}}
-                  <svg :style="(curTheme!='dark')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+                  <svg :style="(curSelTheme!='dark')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
                 </button>
               </li>
             </ul>

@@ -80,7 +80,8 @@ function savePaswdSw_change(){
       &&savePaswdSw.value
   ) {
     useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.enable`,savePaswdSw.value.checked, {
-      path: props.savePassword.cookie.path
+      path: props.savePassword.cookie.path,
+      maxAge: 2592000,
     });
   }
 }
@@ -97,7 +98,8 @@ function autoEnterSw_change(setCookie:boolean=true){
     else savePaswdSw.value.disabled=false;
 
     if (setCookie) useCookies().set(`passwordInput.${props.savePassword.cookie.name}.autoEnter`,autoEnterSw.value.checked, {
-      path: props.savePassword.cookie.path
+      path: props.savePassword.cookie.path,
+      maxAge: 2592000,
     });
   }
 }

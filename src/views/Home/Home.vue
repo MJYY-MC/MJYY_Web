@@ -1,3 +1,4 @@
+<!--suppress RequiredAttributes -->
 <script setup lang="ts">
 import McStatus from "@/components/mcStatus.vue";
 import Broadcast from "@/components/broadcast.vue";
@@ -179,11 +180,21 @@ const photoObjects = ref([
     photo: "https://cdnjson.com/images/2025/01/15/photo-14-low.jpg",
   },
 ])
+
+import loadImage from "@/views/Home/ts/loadImage.ts";
+const backimg_img:Ref<HTMLImageElement|null> = ref(null);
+loadImage(backimg_img);
 </script>
 
 <template>
   <section id="home">
-    <div id="backimg"></div>
+    <div id="backimg" class="img-box">
+      <div class="loader-animation"></div>
+      <img alt="qrcode"
+           @load="imgLoaded" @error="imgError"
+           ref="backimg_img"
+      >
+    </div>
     <broadcast id="broadcast-container"/>
     <div class="d-flex flex-ai-c flex-jc-c full-wh">
       <h1 id="title" class="unSelectable">谧静幽原服务器</h1>

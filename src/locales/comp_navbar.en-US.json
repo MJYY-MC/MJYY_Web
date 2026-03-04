@@ -9,7 +9,8 @@
       "theme-sel": "Theme Selection",
       "light": "Light",
       "dark": "Dark",
-      "auto": "Auto"
+      "auto": "Auto",
+      "system": "System"
     },
     "home": "Home",
     "old": "Old official website",
