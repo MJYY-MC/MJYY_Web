@@ -128,10 +128,12 @@ function toLargeImageView(e:Event){
 
 <template>
   <section id="home">
-    <div id="backimg" class="img-box">
+    <div id="backimg"
+         class="img-box"
+         :key="imageQuality"
+    ><!--由于loadstart经测试后不生效，所以将:key放置到父元素上，以解决重复加载不同质量的图片时图片加载动画不显示的问题-->
       <div class="loader-animation"></div>
-      <img :key="imageQuality"
-           alt="background"
+      <img alt="background"
            @load="imgLoaded" @error="imgError"
            :src="backImgSrc_get()"
       >
@@ -206,10 +208,11 @@ function toLargeImageView(e:Event){
         <div class="col-6 col-md-5 col-lg-3">
           <div class="card card_img-box joinUs-qrcode-card">
             <div class="card-body card-body_img-box">
-              <div class="img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
                 <div class="loader-animation"></div>
-                <img :key="imageQuality"
-                     alt="qrcode"
+                <img alt="qrcode"
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqGroupQRcode')">
                 <a href="https://qm.qq.com/q/siqAtkac9i" class="qrcode-link">
@@ -222,10 +225,11 @@ function toLargeImageView(e:Event){
         <div class="col-6 col-md-5 col-lg-3">
           <div class="card card_img-box joinUs-qrcode-card">
             <div class="card-body card-body_img-box">
-              <div class="img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
                 <div class="loader-animation"></div>
-                <img :key="imageQuality"
-                     alt="qrcode"
+                <img alt="qrcode"
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqDiscodeQRCode')">
                 <a href="https://pd.qq.com/s/cci7lavxo" class="qrcode-link">
