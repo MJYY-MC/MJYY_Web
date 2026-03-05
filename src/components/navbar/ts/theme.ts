@@ -22,7 +22,7 @@ export function doThemeSel(tme:ThemeSelect_Theme,setCookie:boolean=true){
             themeIcon.value = '#svg-bsi-clock';
             {
                 const hour=(new Date()).getHours();
-                if (hour>=7 && hour<7)
+                if (hour>=7 && hour<19)
                     dataBsTheme_='light';
                 else
                     dataBsTheme_='dark';

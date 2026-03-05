@@ -95,7 +95,7 @@ export default function (){
                 code = '1720';
             } else if (hour >= 20 && hour < 23) {
                 code = '2023';
-            } else if (hour >= 23 && hour < 2) {
+            } else if (hour >= 23 || hour < 2) {
                 code = '2302';
             }
             return imgs[
