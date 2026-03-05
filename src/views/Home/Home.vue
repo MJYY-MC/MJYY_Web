@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import McStatus from "@/components/mcStatus.vue";
 import Broadcast from "@/components/broadcast.vue";
+import LargeImageView from "@/components/largeImageView.vue";
 
 import {autoUseI18n, getCurrentLocale, getFallbackLocale, localeEvents} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
@@ -117,6 +118,12 @@ onUnmounted(async ()=>{
 import loadImage from "@/views/Home/ts/loadImage.ts";
 import {imageQuality} from "@/components/navbar/ts/imageQuality.ts";
 const {photoObjects,backImgSrc_get,imgSrc_get} = loadImage();
+
+const largeImageView:Ref<InstanceType<typeof LargeImageView>|null> = ref(null);
+function toLargeImageView(e:Event){
+  if (largeImageView.value && e.target)
+    largeImageView.value.largeImageView_show((e.target as HTMLImageElement).src);
+}
 </script>
 
 <template>
@@ -124,7 +131,7 @@ const {photoObjects,backImgSrc_get,imgSrc_get} = loadImage();
     <div id="backimg" class="img-box">
       <div class="loader-animation"></div>
       <img :key="imageQuality"
-           alt="qrcode"
+           alt="background"
            @load="imgLoaded" @error="imgError"
            :src="backImgSrc_get()"
       >
@@ -162,6 +169,8 @@ const {photoObjects,backImgSrc_get,imgSrc_get} = loadImage();
               <div class="img-box">
                 <div class="loader-animation"></div>
                 <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
                      :src="pObj.photo[imageQuality]">
               </div>
@@ -230,6 +239,7 @@ const {photoObjects,backImgSrc_get,imgSrc_get} = loadImage();
       </div>
     </div>
   </section>
+  <LargeImageView ref="largeImageView"/>
 </template>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
