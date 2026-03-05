@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import {imageQuality} from "@/components/navbar/ts/imageQuality.ts";
+import {imageQuality, imgQual_to_imgQualFileName} from "@/components/navbar/ts/imageQuality.ts";
 import {isClient} from "@/ts/env/ssr.ts";
 
 export default function (){
@@ -101,7 +101,7 @@ export default function (){
             return imgs[
                 imageQuality.value == 'source'
                     ? `${home_root_path}/mainbkg/main-bkg-time${code}.png`
-                    : `${home_root_path}/mainbkg/main-bkg-time${code}-${imageQuality.value}.webp`
+                    : `${home_root_path}/mainbkg/main-bkg-time${code}-${imgQual_to_imgQualFileName(imageQuality.value)}.webp`
                 ] as string;
         }else return '';
     });
@@ -113,7 +113,7 @@ export default function (){
         return imgs[
             imageQuality.value=='source'
                 ? `${home_root_path}/${relaPath}.png`
-                : `${home_root_path}/${relaPath}-${imageQuality.value}.webp`
+                : `${home_root_path}/${relaPath}-${imgQual_to_imgQualFileName(imageQuality.value)}.webp`
             ] as string;
     });
 
