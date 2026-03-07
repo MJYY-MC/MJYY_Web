@@ -7,7 +7,9 @@ export const imageQuality:Ref<ImageQuality>=ref('normal');
 export function doImgQualSel(imgQua:ImageQuality,setCookie:boolean=true){
     imageQuality.value=imgQua;
     if (setCookie)
-        useCookies().set('imageQuality', imgQua);
+        useCookies().set('imageQuality', imgQua,{
+            maxAge: 60*60*24*365,
+        });
 }
 
 export function init(){

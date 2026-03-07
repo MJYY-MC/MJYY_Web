@@ -1,3 +1,7 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 .navbar{
   --bs-bg-opacity: 0.8;
   --navbar-bg-rgb: var(--bs-tertiary-bg-rgb);
@@ -13,7 +17,13 @@
 
   #navbarCollapseContent{
     &.show{
-      overflow-y: scroll;
+      @include media-breakpoint-down(lg) {//当折叠栏开始运作时生效
+        overflow-y: scroll;
+
+        #navbar-backscreen{
+          display:block;
+        }
+      }
     }
 
     max-height: calc(100vh - var(--navbar-normal_offsetHeight));
@@ -21,6 +31,17 @@
     //隐藏滚动条
     scrollbar-width: none;//Firefox
     -ms-overflow-style: none;//IE
+
+    #navbar-backscreen{
+      position:absolute;
+      z-index: -50;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      display:none;
+    }
   }
   #navbarCollapseContent::-webkit-scrollbar {
     display: none; //Chrome隐藏滚动条

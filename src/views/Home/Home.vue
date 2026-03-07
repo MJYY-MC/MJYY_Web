@@ -139,7 +139,7 @@ function toLargeImageView(e:Event){
       >
     </div>
     <broadcast id="broadcast-container"/>
-    <div class="d-flex flex-ai-c flex-jc-c full-wh">
+    <div class="d-flex align-items-center justify-content-center full-wh">
       <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
     </div>
     <div id="mc-status" class="unSelectable">
@@ -195,10 +195,10 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-lg"></div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex flex-ai-c flex-jc-c">
+        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
           <div ref="addressText"></div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex flex-ai-c">
+        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-center">
           <div ref="joinUsText"></div>
         </div>
         <div class="col-lg"></div>

@@ -64,8 +64,9 @@ function passwordEnter(){
         useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.value`,passwordInput.value.value, {
           path: props.savePassword.cookie.path,
           secure: true,
-          sameSite: 'none',
-          maxAge: 2592000,
+          sameSite: 'lax',
+          domain: '.mjyy.top',
+          maxAge: 60*60*24*365,
         });
       }
     }
@@ -81,7 +82,7 @@ function savePaswdSw_change(){
   ) {
     useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.enable`,savePaswdSw.value.checked, {
       path: props.savePassword.cookie.path,
-      maxAge: 2592000,
+      maxAge: 60*60*24*365,
     });
   }
 }
@@ -99,7 +100,7 @@ function autoEnterSw_change(setCookie:boolean=true){
 
     if (setCookie) useCookies().set(`passwordInput.${props.savePassword.cookie.name}.autoEnter`,autoEnterSw.value.checked, {
       path: props.savePassword.cookie.path,
-      maxAge: 2592000,
+      maxAge: 60*60*24*365,
     });
   }
 }

@@ -52,7 +52,9 @@ export function doThemeSel(tme:ThemeSelect_Theme,setCookie:boolean=true){
     html.setAttribute('data-theme-type',dataThemeType_);
     curSelTheme.value=tme;
     if (setCookie)
-        useCookies().set('theme', tme);
+        useCookies().set('theme', tme,{
+            maxAge: 60*60*24*365,
+        });
 }
 
 export function init(){
