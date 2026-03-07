@@ -89,7 +89,7 @@ defineExpose({
 
 const navbarCollapseContent: Ref<HTMLDivElement | null> = ref(null);
 import navbarCollapse from "@/components/navbar/ts/navbarCollapse.ts";
-const { bindNavLinks, } = navbarCollapse(navbarCollapseContent);
+const { bindNavLinks,doHideCollapser, } = navbarCollapse(navbarCollapseContent);
 function sectionLinksComp_onMounted() {
   bindNavLinks();//组件挂载后对其内的链接进行绑定
 }
@@ -110,37 +110,37 @@ imgQuaInit();
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" ref="navbarCollapseContent" id="navbarCollapseContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item nav-btn">
-            <router-link class="nav-link" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
+        <ul class="navbar-nav flex-row flex-wrap me-auto mb-2 mb-lg-0">
+          <li class="nav-item nav-btn col-6 col-lg-auto">
+            <router-link class="nav-link text-center" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
               <strong>{{t(`${lp}.home`)}}</strong>
             </router-link>
           </li>
-          <li class="nav-item nav-btn">
-            <router-link class="nav-link" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
+          <li class="nav-item nav-btn col-6 col-lg-auto">
+            <router-link class="nav-link text-center" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
               <strong>{{t(`${lp}.serverMap`)}}</strong>
             </router-link>
           </li>
-          <li class="nav-item dropdown hover-dropdown nav-btn">
-            <a class="nav-link hover-dropdown-btn" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
+          <li class="nav-item dropdown col-12 col-lg-auto hover-dropdown nav-btn">
+            <a class="nav-link hover-dropdown-btn text-center" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item">
-                <router-link class="nav-link" aria-current="page"
+                <router-link class="nav-link text-center" aria-current="page"
                              :class="{'active':(curRouteName=='analyticsPanel')}"
                              :to="{name: 'analyticsPanel'}">{{t(`${lp}.analyticsPanel`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <router-link class="nav-link" aria-current="page"
+                <router-link class="nav-link text-center" aria-current="page"
                              :class="{'active':(curRouteName=='messageBoard')}"
                              :to="{name: 'messageBoard'}">{{t(`${lp}.messageBoard`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <router-link class="nav-link" aria-current="page"
+                <router-link class="nav-link text-center" aria-current="page"
                              :class="{'active':(curRouteName=='game_fiar')}"
                              :to="{name: 'game_fiar'}">{{t(`${lp}.game_fiar`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <a class="nav-link" aria-current="page" href="https://old.mjyy.top/">
+                <a class="nav-link text-center" aria-current="page" href="https://old.mjyy.top/">
                   <strong>{{t(`${lp}.old`)}}</strong>
                   <svg class="bi" width="12" height="12" ><use xlink:href="#svg-bsi-box-arrow-up-right"></use></svg>
                 </a>
@@ -148,19 +148,23 @@ imgQuaInit();
             </ul>
           </li>
         </ul>
-        <ul class="navbar-nav d-flex nav-2">
+        <ul class="navbar-nav flex-row flex-wrap nav-2">
+          <li v-show="sectionLinksComp!=null" class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+            <hr class="d-lg-none my-2 text-white-50">
+          </li>
           <component
               :is="sectionLinksComp"
               :key="sectionLinksComp_key"
               @onMounted="sectionLinksComp_onMounted"
           />
         </ul>
-        <ul class="navbar-nav d-flex nav-2">
+        <ul class="navbar-nav flex-row flex-wrap d-flex justify-content-evenly nav-2">
           <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50">
           </li>
-          <li class="nav-item dropdown d-flex flex-ai-c">
+          <li class="nav-item dropdown">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use :xlink:href="themeIcon"></use></svg>
             </button>
@@ -198,7 +202,7 @@ imgQuaInit();
               </li>
             </ul>
           </li>
-          <li class="nav-item dropdown d-flex flex-ai-c">
+          <li class="nav-item dropdown">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-translate"></use></svg>
             </button>
@@ -220,7 +224,7 @@ imgQuaInit();
               </li>
             </ul>
           </li>
-          <li class="nav-item dropdown d-flex flex-ai-c">
+          <li class="nav-item dropdown">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-images"></use></svg>
             </button>
@@ -267,6 +271,7 @@ imgQuaInit();
             </ul>
           </li>
         </ul>
+        <div id="navbar-backscreen" @click="doHideCollapser()"></div>
       </div>
     </div>
   </nav>

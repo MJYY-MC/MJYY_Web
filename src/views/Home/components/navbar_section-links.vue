@@ -33,39 +33,39 @@ onMountedCallBack(emit);
 </script>
 
 <template>
-  <li class="nav-item nav-btn">
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
         :class="{'active':(curStayEleId=='home')}"
         :to="{ hash: '#home' }"
-        class="nav-link"
+        class="nav-link text-center"
     >{{t('home')}}</router-link>
   </li>
-  <li class="nav-item nav-btn">
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
         :class="{'active':(curStayEleId=='introduce')}"
         :to="{ hash: '#introduce' }"
-        class="nav-link"
+        class="nav-link text-center"
     >{{t('introduce')}}</router-link>
   </li>
-  <li class="nav-item nav-btn">
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
         :class="{'active':(curStayEleId=='photo')}"
         :to="{ hash: '#photo' }"
-        class="nav-link"
+        class="nav-link text-center"
     >{{t('photo')}}</router-link>
   </li>
-  <li class="nav-item nav-btn">
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
         :class="{'active':(curStayEleId=='rule')}"
         :to="{ hash: '#rule' }"
-        class="nav-link"
+        class="nav-link text-center"
     >{{t('rule')}}</router-link>
   </li>
-  <li class="nav-item nav-btn">
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
         :class="{'active':(curStayEleId=='join-us')}"
         :to="{ hash: '#join-us' }"
-        class="nav-link"
+        class="nav-link text-center"
     >{{t('joinUs')}}</router-link>
   </li>
 </template>
