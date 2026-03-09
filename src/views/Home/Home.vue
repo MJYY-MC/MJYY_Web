@@ -74,8 +74,8 @@ onUnmounted(()=>{
 });*/
 
 import { marked } from "marked";
-const versionText: Ref<HTMLDivElement | null> = ref(null);
-const introduceText:Ref<HTMLDivElement|null> = ref(null);
+/*const versionText: Ref<HTMLDivElement | null> = ref(null);
+const introduceText:Ref<HTMLDivElement|null> = ref(null);*/
 const ruleText:Ref<HTMLDivElement|null> = ref(null);
 const addressText:Ref<HTMLDivElement|null> = ref(null);
 const joinUsText:Ref<HTMLDivElement|null> = ref(null);
@@ -86,7 +86,7 @@ async function doMd(){
   ]
   for (let i=0;i<tryLocale.length;i++){
     try {
-      versionText.value!.innerHTML=
+      /*versionText.value!.innerHTML=
         (marked((await import(`./md/serverVersion.${tryLocale[i]}.md?raw`)).default) as string)
           .replace("{serverVersion}",lt('introduce.version.serverVersion'))
           .replace("{javaVersionMin}",lt('introduce.version.javaVersionMin'))
@@ -94,7 +94,7 @@ async function doMd(){
           .replace("{bedrockVersionMin}",lt("introduce.version.bedrockVersionMin"))
           .replace("{bedrockVersionMax}",lt('introduce.version.bedrockVersionMax'));
       introduceText.value!.innerHTML=
-          (marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string);
+          (marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string);*/
       ruleText.value!.innerHTML=
           (marked((await import(`./md/serverRule.${tryLocale[i]}.md?raw`)).default) as string);
       addressText.value!.innerHTML=
@@ -142,7 +142,7 @@ function toLargeImageView(e:Event){
     <div class="d-flex align-items-center justify-content-center full-wh">
       <div id="home_title">
         <span id="home_title_text1" class="unSelectable home_title_text">谧静幽原</span>
-        <span id="home_title_text2" class="unSelectable home_title_text">觅见有缘</span>
+        <span id="home_title_text2" class="unSelectable home_title_text">相见有缘</span>
       </div>
     </div>
     <div id="mc-status" class="unSelectable">
@@ -210,8 +210,13 @@ function toLargeImageView(e:Event){
       </div>
     </div>
   </section>
-  <section id="introduce" class="pt-6">
+  <section id="feature" class="pt-6">
     <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>特性</h1>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-2">
           <div class="card card_img-box">
@@ -224,7 +229,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p1')">
+                     :src="imgSrc_get('featureSection/p1')">
               </div>
             </div>
             <div class="card-body">
@@ -244,7 +249,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p2')">
+                     :src="imgSrc_get('featureSection/p2')">
               </div>
             </div>
             <div class="card-body">
@@ -264,7 +269,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p3')">
+                     :src="imgSrc_get('featureSection/p3')">
               </div>
             </div>
             <div class="card-body">
@@ -284,7 +289,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p6')">
+                     :src="imgSrc_get('featureSection/p6')">
               </div>
             </div>
             <div class="card-body">
@@ -304,7 +309,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p4')">
+                     :src="imgSrc_get('featureSection/p4')">
               </div>
             </div>
             <div class="card-body">
@@ -324,7 +329,7 @@ function toLargeImageView(e:Event){
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('introduceSection/p7')">
+                     :src="imgSrc_get('featureSection/p7')">
               </div>
             </div>
             <div class="card-body">
@@ -338,6 +343,11 @@ function toLargeImageView(e:Event){
   </section>
   <section id="photo" class="pt-6">
     <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>更多相片</h1>
+        </div>
+      </div>
       <div class="row" :key="imageQuality">
         <div v-for="(pObj,index) in photoObjects" 
              :key="index"
@@ -424,7 +434,7 @@ function toLargeImageView(e:Event){
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/utils.scss"></style>
-<!--<style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>-->
+<style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
 <style scoped lang="scss" src="./scss/imgLoader.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
 

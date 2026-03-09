@@ -75,6 +75,16 @@ export default function (){
                 potato: imgs[`${img_photos_path}/photo-6-potato.webp`] as string,
             },
         },
+        {
+            photo: {
+                source: imgs[`${img_photos_path}/photo-7.png`] as string,
+                high: imgs[`${img_photos_path}/photo-7-high.webp`] as string,
+                normal: imgs[`${img_photos_path}/photo-7-normal.webp`] as string,
+                mid: imgs[`${img_photos_path}/photo-7-medium.webp`] as string,
+                low: imgs[`${img_photos_path}/photo-7-low.webp`] as string,
+                potato: imgs[`${img_photos_path}/photo-7-potato.webp`] as string,
+            },
+        },
     ]);
     //endregion
     const backImgSrc_get:Ref<()=>string>=ref(()=>{
