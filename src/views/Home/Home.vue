@@ -140,10 +140,70 @@ function toLargeImageView(e:Event){
     </div>
     <broadcast id="broadcast-container"/>
     <div class="d-flex align-items-center justify-content-center full-wh">
-      <h1 id="title" class="unSelectable">谧静幽原服务器</h1>
+      <div id="home_title">
+        <span id="home_title_text1" class="unSelectable home_title_text">谧静幽原</span>
+        <span id="home_title_text2" class="unSelectable home_title_text">觅见有缘</span>
+      </div>
     </div>
     <div id="mc-status" class="unSelectable">
       <McStatus/>
+    </div>
+  </section>
+  <section id="version" class="pt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>游戏版本支持</h1>
+        </div>
+      </div>
+      <div id="version_java-row" class="row version_row">
+        <div id="version_java-row_text-div"
+             class="col-12 col-md-7 order-1 order-md-2 version_text-div"
+        >
+          <h2>Java版</h2>
+          <p>服务器原生版本：Java版 1.21.11</p>
+          <p>支持1.9到1.21.x版本的游戏</p>
+          <em>多版本支持，不必担心服务器版本升级后无法进入</em>
+        </div>
+        <div class="col-12 col-md-5 order-2 order-md-1">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('photos/photo-1')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="version_bedrock-row" class="row version_row">
+        <div id="version_bedrock-row_text-div"
+             class="col-12 col-md-7 version_text-div"
+        >
+          <h2>基岩版</h2>
+          <p>支持1.21.111到1.21.130版本的游戏</p>
+          <p>可进行账户同步，即实现在基岩版中游玩Java版账户</p>
+          <em>即使不在电脑旁，也可随时掏出手机享受谧静幽原</em>
+        </div>
+        <div class="col-12 col-md-5">
+          <div class="card card_img-box">
+            <div class="card-body card-body_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('photos/photo-1')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section id="introduce" class="pt-6">
@@ -248,7 +308,7 @@ function toLargeImageView(e:Event){
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/utils.scss"></style>
-<style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>
+<!--<style scoped lang="scss" src="@/assets/scss/font/mzd-font.scss"></style>-->
 <style scoped lang="scss" src="./scss/imgLoader.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
 

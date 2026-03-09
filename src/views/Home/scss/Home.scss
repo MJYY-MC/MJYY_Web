@@ -17,9 +17,26 @@ $home-backimg-filter: blur(2px);
       height: 100%;
     }
   }
-  #title{
-    font-family: "mzd-font", system-ui;
-    z-index: 1;
+  #home_title{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);//auto auto
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+    "g0 g0 g0"
+    ". . g1";
+    .home_title_text{
+      //font-family: "mzd-font", system-ui;
+      z-index: 1;
+      text-align: center;
+    }
+    #home_title_text1{
+      grid-area: g0;
+      font-size: calc(3rem + 2vw);
+    }
+    #home_title_text2{
+      grid-area: g1;
+      font-size: calc(1.5rem + 1.5vw);
+    }
   }
   #mc-status{
     position: absolute;
@@ -49,7 +66,26 @@ $home-backimg-filter: blur(2px);
   }
   #version-text{}
 }
-
+#version{
+  .version_text-div{
+    line-height: 0.8rem;
+    p{
+      font-size: 1.1rem;
+    }
+  }
+  .version_row{
+    display: flex;
+    align-items: center;
+  }
+  #version_java-row{
+    #version_java-row_text-div{
+    }
+  }
+  #version_bedrock-row{
+    #version_bedrock-row_text-div{
+    }
+  }
+}
 #join-us{
   .qrcode-link{
     position: absolute;
