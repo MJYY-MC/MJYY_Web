@@ -173,8 +173,10 @@ function toLargeImageView(e:Event){
               >
                 <div class="loader-animation"></div>
                 <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('photos/photo-1')">
+                     :src="imgSrc_get('versionSection/java_photo')">
               </div>
             </div>
           </div>
@@ -197,8 +199,10 @@ function toLargeImageView(e:Event){
               >
                 <div class="loader-animation"></div>
                 <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
-                     :src="imgSrc_get('photos/photo-1')">
+                     :src="imgSrc_get('versionSection/bedrock_photo')">
               </div>
             </div>
           </div>
@@ -209,13 +213,125 @@ function toLargeImageView(e:Event){
   <section id="introduce" class="pt-6">
     <div class="container">
       <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <div ref="versionText" id="version-text"></div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p1')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>原版</h3>
+              <p>原汁原味的纯净体验</p>
+            </div>
+          </div>
         </div>
-        <div class="col-3"></div>
-        <div class="col-12">
-          <div ref="introduceText" id="introduce-text"></div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p2')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>商店</h3>
+              <p>你的建筑工程将更加轻松</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p3')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>生电</h3>
+              <p>建立属于你的工业园</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p6')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>资源</h3>
+              <p>资源世界让你不必担心资源匮乏</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p4')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>娱乐</h3>
+              <p>多种娱乐项目放松你的心情</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <div class="card card_img-box">
+            <div class="card-header card-header_img-box">
+              <div class="img-box"
+                   :key="imageQuality"
+              >
+                <div class="loader-animation"></div>
+                <img alt="photo"
+                     class="can-click"
+                     @click="toLargeImageView"
+                     @load="imgLoaded" @error="imgError"
+                     :src="imgSrc_get('introduceSection/p7')">
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>聊天</h3>
+              <p>游戏内与QQ群的聊天消息互通</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

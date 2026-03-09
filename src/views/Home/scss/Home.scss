@@ -60,15 +60,10 @@ $home-backimg-filter: blur(2px);
   }
 }
 
-#introduce{
-  #introduce-text{
-
-  }
-  #version-text{}
-}
 #version{
   .version_text-div{
     line-height: 0.8rem;
+    margin-bottom: .5rem;
     p{
       font-size: 1.1rem;
     }
@@ -79,13 +74,19 @@ $home-backimg-filter: blur(2px);
   }
   #version_java-row{
     #version_java-row_text-div{
+      margin-bottom: .3rem;
     }
   }
   #version_bedrock-row{
     #version_bedrock-row_text-div{
+      margin-top: .3rem;
     }
   }
 }
+
+#introduce{
+}
+
 #join-us{
   .qrcode-link{
     position: absolute;
