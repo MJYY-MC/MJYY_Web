@@ -87,7 +87,7 @@ function restartCheck_click(){
 <div id="mcStatus-root">
   <div id="mcStatus-icon_box">
     <img id="mcStatus-icon" ref="icon"
-         src="@/assets/logo/svg/mjyy-logo.svg" alt="server icon"
+         src="@/assets/svg/logo/mjyy-logo.svg" alt="server icon"
          @click="restartCheck_click"
     />
   </div>

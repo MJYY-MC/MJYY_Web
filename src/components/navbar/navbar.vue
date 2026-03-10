@@ -104,7 +104,7 @@ imgQuaInit();
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
-        <img src="@/assets/logo/svg/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
+        <img src="@/assets/svg/logo/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -146,6 +146,16 @@ imgQuaInit();
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item nav-btn col-6 col-lg-auto">
+            <router-link id="donate-link"
+                         class="nav-link text-center"
+                         :class="{'active':(curRouteName=='donate')}"
+                         aria-current="page"
+                         :to="{ name: 'donate'}"
+            >
+              <strong>{{t(`${lp}.donate`)}}</strong>
+            </router-link>
           </li>
         </ul>
         <ul class="navbar-nav flex-row flex-wrap nav-2">

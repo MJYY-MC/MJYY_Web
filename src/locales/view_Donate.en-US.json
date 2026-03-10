@@ -1,0 +1,16 @@
+{
+  "view_Donate": {
+    "title": "Donate - MJYY",
+    "mainTitle": {
+      "h1": "Provide a free multiplayer gaming platform for all players",
+      "h3": "No spending, No membership, only the love for Minecraft."
+    },
+    "patron": {
+      "title": {
+        "h3": "List of Patrons",
+        "em": "Here, we would like to express our gratitude to these players for their support of the MJYY."
+      }
+    },
+    "error": "ERROR"
+  }
+}

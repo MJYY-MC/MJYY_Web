@@ -42,6 +42,13 @@
       opacity: 0;
       display:none;
     }
+
+    #donate-link{
+      color: var(--donate-link-color);
+      &.active{
+        color: var(--donate-link-active-color);
+      }
+    }
   }
   #navbarCollapseContent::-webkit-scrollbar {
     display: none; //Chrome隐藏滚动条

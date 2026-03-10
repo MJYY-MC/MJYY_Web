@@ -1,8 +1,20 @@
 .navbar{
   //导航栏背景色的rgb值
   --navbar-bg-rgb: 240,243,246;
+
+  #donate-link{
+    //导航栏赞助链接文字颜色
+    --donate-link-color: rgb(214, 159, 0);
+    //导航栏赞助链接文字选中高亮色
+    --donate-link-active-color: rgb(221, 185, 55);
+  }
 }
 
 [data-bs-theme=dark] .navbar {
   --navbar-bg-rgb: 26,26,33;
+
+  #donate-link{
+    --donate-link-color: rgb(223, 176, 53);
+    --donate-link-active-color: rgb(228, 197, 105);
+  }
 }
