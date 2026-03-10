@@ -9,7 +9,7 @@ import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {onMounted, onUnmounted, type Ref, ref} from "vue";
 import {imgLoaded,imgError} from "@/views/Home/ts/imgLoader.ts";
 
-const {gt:t,lt}=autoUseI18n();
+const {gt:t}=autoUseI18n();
 const lp:string="view_Home";
 autoLoadLocale(lp,()=>{
   useTitle(t(`${lp}.title`));
@@ -74,11 +74,7 @@ onUnmounted(()=>{
 });*/
 
 import { marked } from "marked";
-/*const versionText: Ref<HTMLDivElement | null> = ref(null);
-const introduceText:Ref<HTMLDivElement|null> = ref(null);*/
 const ruleText:Ref<HTMLDivElement|null> = ref(null);
-/*const addressText:Ref<HTMLDivElement|null> = ref(null);
-const joinUsText:Ref<HTMLDivElement|null> = ref(null);*/
 async function doMd(){
   const tryLocale:string[]=[
     ...[getCurrentLocale()],//当前语言
@@ -86,21 +82,8 @@ async function doMd(){
   ]
   for (let i=0;i<tryLocale.length;i++){
     try {
-      /*versionText.value!.innerHTML=
-        (marked((await import(`./md/serverVersion.${tryLocale[i]}.md?raw`)).default) as string)
-          .replace("{serverVersion}",lt('introduce.version.serverVersion'))
-          .replace("{javaVersionMin}",lt('introduce.version.javaVersionMin'))
-          .replace("{javaVersionMax}",lt('introduce.version.javaVersionMax'))
-          .replace("{bedrockVersionMin}",lt("introduce.version.bedrockVersionMin"))
-          .replace("{bedrockVersionMax}",lt('introduce.version.bedrockVersionMax'));
-      introduceText.value!.innerHTML=
-          (marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string);*/
       ruleText.value!.innerHTML=
           (marked((await import(`./md/serverRule.${tryLocale[i]}.md?raw`)).default) as string);
-      /*addressText.value!.innerHTML=
-          (marked((await import(`./md/serverAddress.${tryLocale[i]}.md?raw`)).default) as string);
-      joinUsText.value!.innerHTML=
-          (marked((await import(`./md/joinUsText.${tryLocale[i]}.md?raw`)).default) as string);*/
       break;
     }catch {}
   }
@@ -153,17 +136,17 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>游戏版本支持</h1>
+          <h1>{{t(`${lp}.versionSection.title`)}}</h1>
         </div>
       </div>
       <div id="version_java-row" class="row version_row">
         <div id="version_java-row_text-div"
              class="col-12 col-md-7 order-1 order-md-2 version_text-div"
         >
-          <h2>Java版</h2>
-          <p>服务器原生版本：Java版 1.21.11</p>
-          <p>支持1.9到1.21.x版本的游戏</p>
-          <em>多版本支持，不必担心服务器版本升级后无法进入</em>
+          <h2>{{t(`${lp}.versionSection.javaEdition.h2`)}}</h2>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-0.0`)}}<strong>{{t(`${lp}.versionSection.javaEdition.p-0.1`)}}</strong>{{t(`${lp}.versionSection.javaEdition.p-0.2`)}}<strong>{{t('global.onlyOne.gameVersion.serverVersion')}}</strong></p>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{t('global.onlyOne.gameVersion.javaVersionMin')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{t('global.onlyOne.gameVersion.javaVersionMax')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
+          <em>{{t(`${lp}.versionSection.javaEdition.em`)}}</em>
         </div>
         <div class="col-12 col-md-5 order-2 order-md-1">
           <div class="card card_img-box">
@@ -186,10 +169,10 @@ function toLargeImageView(e:Event){
         <div id="version_bedrock-row_text-div"
              class="col-12 col-md-7 version_text-div"
         >
-          <h2>基岩版</h2>
-          <p>支持1.21.111到1.21.130版本的游戏</p>
-          <p>可进行账户同步，即实现在基岩版中游玩Java版账户</p>
-          <em>即使不在电脑旁，也可随时掏出手机享受谧静幽原</em>
+          <h2>{{t(`${lp}.versionSection.bedrockEdition.h2`)}}</h2>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMin')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMax')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
+          <p>{{t(`${lp}.versionSection.bedrockEdition.p`)}}</p>
+          <em>{{t(`${lp}.versionSection.bedrockEdition.em`)}}</em>
         </div>
         <div class="col-12 col-md-5">
           <div class="card card_img-box">
@@ -214,7 +197,7 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>特性</h1>
+          <h1>{{t(`${lp}.featureSection.title`)}}</h1>
         </div>
       </div>
       <div class="row">
@@ -233,8 +216,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>原版</h3>
-              <p>原汁原味的纯净体验</p>
+              <h3>{{t(`${lp}.featureSection.card-0.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-0.p`)}}</p>
             </div>
           </div>
         </div>
@@ -253,8 +236,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>商店</h3>
-              <p>你的建筑工程将更加轻松</p>
+              <h3>{{t(`${lp}.featureSection.card-1.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-1.p`)}}</p>
             </div>
           </div>
         </div>
@@ -273,8 +256,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>生电</h3>
-              <p>建立属于你的工业园</p>
+              <h3>{{t(`${lp}.featureSection.card-2.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-2.p`)}}</p>
             </div>
           </div>
         </div>
@@ -293,8 +276,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>资源</h3>
-              <p>资源世界让你不必担心资源匮乏</p>
+              <h3>{{t(`${lp}.featureSection.card-3.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-3.p`)}}</p>
             </div>
           </div>
         </div>
@@ -313,8 +296,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>娱乐</h3>
-              <p>多种娱乐项目放松你的心情</p>
+              <h3>{{t(`${lp}.featureSection.card-4.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-4.p`)}}</p>
             </div>
           </div>
         </div>
@@ -333,8 +316,8 @@ function toLargeImageView(e:Event){
               </div>
             </div>
             <div class="card-body">
-              <h3>聊天</h3>
-              <p>游戏内与QQ群的聊天消息互通</p>
+              <h3>{{t(`${lp}.featureSection.card-5.h3`)}}</h3>
+              <p>{{t(`${lp}.featureSection.card-5.p`)}}</p>
             </div>
           </div>
         </div>
@@ -345,7 +328,7 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>更多相片</h1>
+          <h1>{{t(`${lp}.photoSection.title`)}}</h1>
         </div>
       </div>
       <div class="row" :key="imageQuality">
@@ -372,7 +355,7 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>服务器规则</h1>
+          <h1>{{t(`${lp}.ruleSection.title`)}}</h1>
         </div>
       </div>
       <div class="row">
@@ -387,12 +370,14 @@ function toLargeImageView(e:Event){
   <section id="join-us" class="pt-6">
     <div class="container">
       <div class="row">
-        <h1 class="col-12 text-center">加入我们</h1>
+        <div class="col-12 text-center">
+          <h1>{{t(`${lp}.joinUsSection.title`)}}</h1>
+        </div>
       </div>
       <div class="row">
         <div class="col-12 col-sm-10 col-md-8 mx-auto text-center">
-          <em>在这里创造属于你的故事</em>
-          <p>服务器地址：mc.mjyy.top</p>
+          <em>{{t(`${lp}.joinUsSection.text.em`)}}</em>
+          <p>{{t(`${lp}.joinUsSection.text.p-0.0`)}}<code>{{t('global.onlyOne.serverAddress.main.je.addrs')}}</code></p>
         </div>
       </div>
       <div class="row">
@@ -407,7 +392,7 @@ function toLargeImageView(e:Event){
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqGroupQRcode')">
                 <a href="https://qm.qq.com/q/siqAtkac9i" class="qrcode-link">
-                  <span>{{t(`${lp}.joinUs.qgQrcodeHover`)}}</span>
+                  <span>{{t(`${lp}.joinUsSection.qgQrcodeHover`)}}</span>
                 </a>
               </div>
             </div>
@@ -424,7 +409,7 @@ function toLargeImageView(e:Event){
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqDiscodeQRCode')">
                 <a href="https://pd.qq.com/s/cci7lavxo" class="qrcode-link">
-                  <span>{{t(`${lp}.joinUs.qdQrcodeHover`)}}</span>
+                  <span>{{t(`${lp}.joinUsSection.qdQrcodeHover`)}}</span>
                 </a>
               </div>
             </div>
@@ -443,19 +428,3 @@ function toLargeImageView(e:Event){
 <style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
 
 <style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
-
-<i18n>
-{
-  "en-US": {
-    "introduce": {
-      "version": {
-        "serverVersion": "1.21.11",
-        "javaVersionMin": "1.9",
-        "javaVersionMax": "1.21.x",
-        "bedrockVersionMin": "1.21.111",
-        "bedrockVersionMax": "1.21.130"
-      }
-    }
-  }
-}
-</i18n>

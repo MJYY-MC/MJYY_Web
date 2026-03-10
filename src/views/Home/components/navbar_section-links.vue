@@ -6,7 +6,8 @@ const {lt:t}=autoUseI18n();
 
 const {curStayEleId}=scrollSpy([
     document.getElementById('home')!,
-    document.getElementById('introduce')!,
+    document.getElementById('version')!,
+  document.getElementById('feature')!,
     document.getElementById('photo')!,
     document.getElementById('rule')!,
     document.getElementById('join-us')!,
@@ -42,10 +43,17 @@ onMountedCallBack(emit);
   </li>
   <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
-        :class="{'active':(curStayEleId=='introduce')}"
-        :to="{ hash: '#introduce' }"
+        :class="{'active':(curStayEleId=='version')}"
+        :to="{ hash: '#version' }"
         class="nav-link text-center"
-    >{{t('introduce')}}</router-link>
+    >{{t('version')}}</router-link>
+  </li>
+  <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
+    <router-link
+        :class="{'active':(curStayEleId=='feature')}"
+        :to="{ hash: '#feature' }"
+        class="nav-link text-center"
+    >{{t('feature')}}</router-link>
   </li>
   <li class="nav-item nav-btn col-6 col-md-4 col-lg-auto">
     <router-link
@@ -78,14 +86,16 @@ onMountedCallBack(emit);
 {
   "zh-CN": {
     "home": "首页",
-    "introduce": "介绍",
+    "version":"版本",
+    "feature": "特性",
     "photo": "相片",
     "rule": "规则",
     "joinUs": "加入我们"
   },
   "en-US": {
     "home": "Title",
-    "introduce": "Introduce",
+    "version":"Version",
+    "feature": "Features",
     "photo": "Photo",
     "rule": "Rule",
     "joinUs": "Join Us"
