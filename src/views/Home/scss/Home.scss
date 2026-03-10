@@ -87,6 +87,13 @@ $home-backimg-filter: blur(2px);
 #feature{
 }
 
+#rule{
+  #rule-text{
+    height: 50vh;
+    overflow-y: scroll;
+  }
+}
+
 #join-us{
   .qrcode-link{
     position: absolute;

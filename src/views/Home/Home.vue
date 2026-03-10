@@ -77,8 +77,8 @@ import { marked } from "marked";
 /*const versionText: Ref<HTMLDivElement | null> = ref(null);
 const introduceText:Ref<HTMLDivElement|null> = ref(null);*/
 const ruleText:Ref<HTMLDivElement|null> = ref(null);
-const addressText:Ref<HTMLDivElement|null> = ref(null);
-const joinUsText:Ref<HTMLDivElement|null> = ref(null);
+/*const addressText:Ref<HTMLDivElement|null> = ref(null);
+const joinUsText:Ref<HTMLDivElement|null> = ref(null);*/
 async function doMd(){
   const tryLocale:string[]=[
     ...[getCurrentLocale()],//当前语言
@@ -97,10 +97,10 @@ async function doMd(){
           (marked((await import(`./md/serverIntroductory.${tryLocale[i]}.md?raw`)).default) as string);*/
       ruleText.value!.innerHTML=
           (marked((await import(`./md/serverRule.${tryLocale[i]}.md?raw`)).default) as string);
-      addressText.value!.innerHTML=
+      /*addressText.value!.innerHTML=
           (marked((await import(`./md/serverAddress.${tryLocale[i]}.md?raw`)).default) as string);
       joinUsText.value!.innerHTML=
-          (marked((await import(`./md/joinUsText.${tryLocale[i]}.md?raw`)).default) as string);
+          (marked((await import(`./md/joinUsText.${tryLocale[i]}.md?raw`)).default) as string);*/
       break;
     }catch {}
   }
@@ -371,8 +371,15 @@ function toLargeImageView(e:Event){
   <section id="rule" class="pt-6">
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <div ref="ruleText"></div>
+        <div class="col-12 text-center">
+          <h1>服务器规则</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 mx-auto">
+          <div class="card">
+            <div id="rule-text" ref="ruleText" class="card-body"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -380,18 +387,16 @@ function toLargeImageView(e:Event){
   <section id="join-us" class="pt-6">
     <div class="container">
       <div class="row">
-        <div class="col-lg"></div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-          <div ref="addressText"></div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-center">
-          <div ref="joinUsText"></div>
-        </div>
-        <div class="col-lg"></div>
+        <h1 class="col-12 text-center">加入我们</h1>
       </div>
       <div class="row">
-        <div class="col-md"></div>
-        <div class="col-6 col-md-5 col-lg-3">
+        <div class="col-12 col-sm-10 col-md-8 mx-auto text-center">
+          <em>在这里创造属于你的故事</em>
+          <p>服务器地址：mc.mjyy.top</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md-5 col-lg-3 offset-0 offset-md-1 offset-lg-3">
           <div class="card card_img-box joinUs-qrcode-card">
             <div class="card-body card-body_img-box">
               <div class="img-box"
@@ -425,7 +430,6 @@ function toLargeImageView(e:Event){
             </div>
           </div>
         </div>
-        <div class="col-md"></div>
       </div>
     </div>
   </section>
