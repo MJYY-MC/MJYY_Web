@@ -1,0 +1,12 @@
+#donate {
+  .title-svg {
+    //赞助页面中两侧大logo的颜色
+    --main-logo-color: #919191;
+  }
+}
+
+[data-bs-theme=dark] #donate {
+  .title-svg {
+    --main-logo-color: #3a3a3a;
+  }
+}

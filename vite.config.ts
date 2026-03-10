@@ -31,7 +31,7 @@ export default defineConfig(({}) =>{
             createSvgIconsPlugin({
                 iconDirs: [//获取svg的目录
                     path.resolve(__dirname, 'src/assets/_svg'),
-                    path.resolve(__dirname, 'src/assets/logo/svg'),
+                    path.resolve(__dirname, 'src/assets/svg'),
                 ],
                 symbolId: 'svg-[dir]-[name]',
                 customDomId: '__svg__icons__dom__',

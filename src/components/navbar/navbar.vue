@@ -104,7 +104,7 @@ imgQuaInit();
   >
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{ name: 'home'}">
-        <img src="@/assets/logo/svg/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
+        <img src="@/assets/svg/logo/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
