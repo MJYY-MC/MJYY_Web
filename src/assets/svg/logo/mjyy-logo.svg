@@ -11,7 +11,7 @@
         <cc:Work rdf:about="">
           <dc:title>mjyy logo</dc:title>
           <dc:creator>Hgnim</dc:creator>
-          <dc:rights>Copyright (C) 2025 Hgnim, All rights reserved.</dc:rights>
+          <dc:rights>Copyright (C) 2025-2026 Hgnim, All rights reserved.</dc:rights>
           <cc:license rdf:resource="https://github.com/MJYY-MC/logo/blob/main/LICENSE"/>
         </cc:Work>
       </rdf:RDF>
@@ -47,6 +47,5 @@
             L67 71
         z
         "
-        style="fill:#000;"
     />
 </svg>
