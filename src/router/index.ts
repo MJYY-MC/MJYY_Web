@@ -144,6 +144,14 @@ const router = createRouter({
                 localePrefix: 'view_rpsp_game_fiar',
             }
         },
+        {
+            path: '/donate',
+            name: 'donate',
+            component: ()=>import('@/views/Donate/Donate.vue'),
+            meta:{
+                app_view_usePaddingTop: true,
+            },
+        },
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

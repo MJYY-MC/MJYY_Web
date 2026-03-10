@@ -147,6 +147,16 @@ imgQuaInit();
               </li>
             </ul>
           </li>
+          <li class="nav-item nav-btn col-6 col-lg-auto">
+            <router-link id="donate-link"
+                         class="nav-link text-center"
+                         :class="{'active':(curRouteName=='donate')}"
+                         aria-current="page"
+                         :to="{ name: 'donate'}"
+            >
+              <strong>{{t(`${lp}.donate`)}}</strong>
+            </router-link>
+          </li>
         </ul>
         <ul class="navbar-nav flex-row flex-wrap nav-2">
           <li v-show="sectionLinksComp!=null" class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
