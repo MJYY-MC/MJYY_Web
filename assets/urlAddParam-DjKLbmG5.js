@@ -1,1 +1,0 @@
-import{Q as l}from"./virtual_svg-icons-register-BY2zIGwv.js";const s="https://web.mjyy.top/mjyy/server",a="5v2co487ycn7t8qorhntov584r7ghcqo45nv7ghqru4io75vyn";function c(n){return l?null:{code:3}}function i(n,o){let t=n,u=!0;return o.params.forEach(e=>{e.value!==void 0&&e.value!==null&&(u?(u=!1,t+=`?${e.name}=${e.value}`):t+=`&${e.name}=${e.value}`)}),t}export{a,s as b,c,i as u};
