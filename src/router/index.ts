@@ -1,35 +1,37 @@
 import {createMemoryHistory, createRouter, createWebHashHistory, createWebHistory} from 'vue-router';
 import {nextTick} from "vue";
 import renderMode from "@/ts/env/renderMode.ts";
+import {isClient} from "@/ts/env/ssr.ts";
 
 export function hashCheckAndScroll(){
-    //元素锚点跳转处理。示例url：/#/#home
-    nextTick(() => {
-        const hash:string[] = window.location.hash.split('#');
-        if (hash.length>1) {
-            const sectionHash: string | undefined = (()=>{
-                const popStr:string|undefined=hash.pop();
-                if (popStr!=undefined){
-                    const urlParCheck=popStr.split('?');
-                    if (urlParCheck.length!=1)
-                        return `#${urlParCheck[0]}`
-                    else
-                        return `#${popStr}`;
-                }
-                else
-                    return undefined;
-            })();
-            if (sectionHash!=undefined) {
-                const targetEl: HTMLElement | null = document.querySelector<HTMLElement>(sectionHash);
-                if (targetEl) {
-                    targetEl.scrollIntoView({
-                        behavior: 'smooth',//平滑
-                        block: 'start',//元素顶对其视口顶
-                    });
+    if (isClient) {
+        //元素锚点跳转处理。示例url：/#/#home
+        nextTick(() => {
+            const hash: string[] = window.location.hash.split('#');
+            if (hash.length > 1) {
+                const sectionHash: string | undefined = (() => {
+                    const popStr: string | undefined = hash.pop();
+                    if (popStr != undefined) {
+                        const urlParCheck = popStr.split('?');
+                        if (urlParCheck.length != 1)
+                            return `#${urlParCheck[0]}`
+                        else
+                            return `#${popStr}`;
+                    } else
+                        return undefined;
+                })();
+                if (sectionHash != undefined) {
+                    const targetEl: HTMLElement | null = document.querySelector<HTMLElement>(sectionHash);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({
+                            behavior: 'smooth',//平滑
+                            block: 'start',//元素顶对其视口顶
+                        });
+                    }
                 }
             }
-        }
-    }).then();
+        }).then();
+    }
 }
 
 const router = createRouter({

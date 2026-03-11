@@ -1,5 +1,10 @@
 {
   "global": {
+    "toast": {
+      "title": {
+        "info": "Info"
+      }
+    },
     "onlyOne": {
       "gameVersion": {
         "serverVersion": "1.21.11",

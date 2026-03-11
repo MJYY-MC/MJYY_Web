@@ -94,7 +94,7 @@ function sectionLinksComp_onMounted() {
   bindNavLinks();//组件挂载后对其内的链接进行绑定
 }
 
-imgQuaInit();
+imgQuaInit(lp);
 </script>
 
 <template>

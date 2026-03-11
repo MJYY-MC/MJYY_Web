@@ -1,17 +1,27 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import scrollSpy from '@/ts/global/navbar_sectionLinks/vue/scrollSpy.ts';
+import {isClient} from "@/ts/env/ssr.ts";
 
 const {lt:t}=autoUseI18n();
 
-const {curStayEleId}=scrollSpy([
-    document.getElementById('home')!,
-    document.getElementById('version')!,
-  document.getElementById('feature')!,
-    document.getElementById('photo')!,
-    document.getElementById('rule')!,
-    document.getElementById('join-us')!,
-]);
+const {curStayEleId}=(()=>{
+  if (isClient){
+    return scrollSpy([
+      document.getElementById('home')!,
+      document.getElementById('version')!,
+      document.getElementById('feature')!,
+      document.getElementById('photo')!,
+      document.getElementById('rule')!,
+      document.getElementById('join-us')!,
+    ]);
+  }
+  else{
+    return {
+      curStayEleId: null,
+    }
+  }
+})();
 
 
 import renderMode from "@/ts/env/renderMode.ts";
