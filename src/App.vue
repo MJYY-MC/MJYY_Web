@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import navbar from "@/components/navbar/navbar.vue";
+import toast from "@/components/toast/toast.vue";
 import {autoSetHtmlLang, loadGlobalLocale} from "@/utils/i18nUtils.ts";
 import {computed, onMounted, ref, type Ref, watch} from "vue";
 import {useRoute} from "vue-router";
 import { useHead } from '@unhead/vue';
 import {isServer} from "@/ts/env/ssr.ts";
+import toastInit from "@/ts/App/toastInit.ts";
 
 if (isServer) {
   useHead({
@@ -96,6 +98,11 @@ onMounted(()=>{
 
   autoSetHtmlLang();//加载完毕后自动设置一下html标签的lang属性
 });
+
+//region toast
+const toastRef:Ref<InstanceType<typeof toast>|null>=ref(null);
+toastInit(toastRef);
+//endregion
 </script>
 
 <template>
@@ -105,6 +112,7 @@ onMounted(()=>{
   <div id="view" ref="view">
     <router-view :key="meta.route.reloadKey"/>
   </div>
+  <toast ref="toastRef"/>
 </template>
 
 <style scoped lang="scss">

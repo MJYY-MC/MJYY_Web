@@ -8,6 +8,8 @@ import {useTitle} from "@vueuse/core";
 import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
 import {onMounted, onUnmounted, type Ref, ref} from "vue";
 import {imgLoaded,imgError} from "@/views/Home/ts/imgLoader.ts";
+import {isDev} from "@/ts/env/packMode.ts";
+import createToast from "@/ts/global/function/createToast.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Home";
@@ -106,6 +108,20 @@ const largeImageView:Ref<InstanceType<typeof LargeImageView>|null> = ref(null);
 function toLargeImageView(e:Event){
   if (largeImageView.value && e.target)
     largeImageView.value.largeImageView_show((e.target as HTMLImageElement).src);
+}
+
+
+
+
+if (isDev){
+  createToast({
+    title:{
+      content: '你好，开发者'
+    },
+    body:{
+      content: '当前处为开发模式。'
+    }
+  });
 }
 </script>
 

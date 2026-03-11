@@ -28,6 +28,12 @@
     "game_fiar": "五子棋小游戏",
     "serverMap": "卫星地图",
     "analyticsPanel": "分析面板",
-    "donate": "赞助"
+    "donate": "赞助",
+    "toast": {
+      "imageQuality": {
+        "isCellular": "检测到移动数据，已降低图像品质",
+        "isSlow": "检测到网络速度缓慢，已降低图像品质"
+      }
+    }
   }
 }
