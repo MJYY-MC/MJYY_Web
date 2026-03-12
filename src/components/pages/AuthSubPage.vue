@@ -4,6 +4,12 @@ import {type PropType, ref, type Ref} from "vue";
 import PasswordInput, {type SavePasswordProp} from "@/components/passwordInput.vue";
 import {useCookies} from "@vueuse/integrations/useCookies";
 import urlAddParam from "@/utils/urlAddParam.ts";
+//import {autoUseI18n} from "@/utils/i18nUtils.ts";
+import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+
+//const {gt:t}=autoUseI18n();
+const lp:string="comp_page_AuthSubPage";
+autoLoadLocale(lp);
 
 const props = defineProps({
   targetUrlPath: {
@@ -145,6 +151,36 @@ function mainIframe_onLoad(){
     }
   }
 }
+
+//region toast
+import {hostname as webHostname,protocol as webProtocol} from "@/ts/env/web.ts";
+import createToast from "@/ts/global/function/createToast.ts";
+import {isClient} from "@/ts/env/ssr.ts";
+if (isClient){
+  const winLoc: Location = window.location;
+  if (
+        winLoc.hostname!=webHostname
+      && webHostname
+      && webProtocol
+  ){
+    createToast({
+      title:{
+        content:'global.toast.title.warning',
+        i18n:{
+          isI18nKey:true,
+        }
+      },
+      body:{
+        content:`${lp}.toast.hostnameIsNotMain`,
+        i18n:{
+          isI18nKey:true,
+          i18nArgs:{targetUrl:winLoc.href.replace(winLoc.origin,`${webProtocol}//${webHostname}`)},
+        }
+      }
+    })
+  }
+}
+//endregion
 </script>
 
 <template>

@@ -2,7 +2,8 @@
   "global": {
     "toast": {
       "title": {
-        "info": "提示"
+        "info": "提示",
+        "warning": "警告"
       }
     }
   }

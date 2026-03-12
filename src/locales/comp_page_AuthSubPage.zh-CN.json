@@ -1,0 +1,7 @@
+{
+  "comp_page_AuthSubPage": {
+    "toast": {
+      "hostnameIsNotMain": "该网页可能无法进行验证，请访问：{targetUrl}"
+    }
+  }
+}

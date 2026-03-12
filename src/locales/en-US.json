@@ -2,7 +2,8 @@
   "global": {
     "toast": {
       "title": {
-        "info": "Info"
+        "info": "Info",
+        "warning": "Warning"
       }
     },
     "onlyOne": {
