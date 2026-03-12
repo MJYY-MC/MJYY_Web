@@ -27,6 +27,7 @@
   "dependencies": {
     "@vueuse/core": "^14.1.0",
     "@vueuse/integrations": "^14.1.0",
+    "aos": "^2.3.4",
     "bootstrap": "^5.3.8",
     "dayjs": "^1.11.19",
     "marked": "^17.0.1",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^11.0.3",
+    "@types/aos": "^3.0.7",
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",

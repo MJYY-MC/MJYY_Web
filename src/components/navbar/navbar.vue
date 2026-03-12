@@ -103,8 +103,10 @@ imgQuaInit(lp);
       class="navbar navbar-expand-lg"
   >
     <div class="container-fluid">
-      <router-link class="navbar-brand" :to="{ name: 'home'}">
-        <img src="@/assets/svg/logo/mjyy-logo.svg" class="svg-logo" alt="logo" width="40" height="40">
+      <router-link class="navbar-brand" :to="{ name: 'home'}" draggable="false">
+        <svg class="navbar-logo unSelectable"
+             width="40" height="40"
+        ><use xlink:href="#svg-logo-mjyy-logo"></use></svg>
       </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapseContent" aria-controls="navbarCollapseContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -112,35 +114,35 @@ imgQuaInit(lp);
       <div class="collapse navbar-collapse" ref="navbarCollapseContent" id="navbarCollapseContent">
         <ul class="navbar-nav flex-row flex-wrap me-auto mb-2 mb-lg-0">
           <li class="nav-item nav-btn col-6 col-lg-auto">
-            <router-link class="nav-link text-center" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
+            <router-link class="nav-link text-center unSelectable" :class="{'active':(curRouteName=='home')}" aria-current="page" :to="{ name: 'home'}">
               <strong>{{t(`${lp}.home`)}}</strong>
             </router-link>
           </li>
           <li class="nav-item nav-btn col-6 col-lg-auto">
-            <router-link class="nav-link text-center" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
+            <router-link class="nav-link text-center unSelectable" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
               <strong>{{t(`${lp}.serverMap`)}}</strong>
             </router-link>
           </li>
           <li class="nav-item dropdown col-12 col-lg-auto hover-dropdown nav-btn">
-            <a class="nav-link hover-dropdown-btn text-center" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
+            <a class="nav-link hover-dropdown-btn text-center unSelectable" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item">
-                <router-link class="nav-link text-center" aria-current="page"
+                <router-link class="nav-link text-center unSelectable" aria-current="page"
                              :class="{'active':(curRouteName=='analyticsPanel')}"
                              :to="{name: 'analyticsPanel'}">{{t(`${lp}.analyticsPanel`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <router-link class="nav-link text-center" aria-current="page"
+                <router-link class="nav-link text-center unSelectable" aria-current="page"
                              :class="{'active':(curRouteName=='messageBoard')}"
                              :to="{name: 'messageBoard'}">{{t(`${lp}.messageBoard`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <router-link class="nav-link text-center" aria-current="page"
+                <router-link class="nav-link text-center unSelectable" aria-current="page"
                              :class="{'active':(curRouteName=='game_fiar')}"
                              :to="{name: 'game_fiar'}">{{t(`${lp}.game_fiar`)}}</router-link>
               </li>
               <li class="dropdown-item">
-                <a class="nav-link text-center" aria-current="page" href="https://old.mjyy.top/">
+                <a class="nav-link text-center unSelectable" aria-current="page" href="https://old.mjyy.top/">
                   <strong>{{t(`${lp}.old`)}}</strong>
                   <svg class="bi" width="12" height="12" ><use xlink:href="#svg-bsi-box-arrow-up-right"></use></svg>
                 </a>
@@ -149,7 +151,7 @@ imgQuaInit(lp);
           </li>
           <li class="nav-item nav-btn col-6 col-lg-auto">
             <router-link id="donate-link"
-                         class="nav-link text-center"
+                         class="nav-link text-center unSelectable"
                          :class="{'active':(curRouteName=='donate')}"
                          aria-current="page"
                          :to="{ name: 'donate'}"
@@ -174,7 +176,7 @@ imgQuaInit(lp);
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50">
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown unSelectable">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use :xlink:href="themeIcon"></use></svg>
             </button>
@@ -212,7 +214,7 @@ imgQuaInit(lp);
               </li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown unSelectable">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-translate"></use></svg>
             </button>
@@ -234,7 +236,7 @@ imgQuaInit(lp);
               </li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown unSelectable">
             <button type="button" class="btn btn-link nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-images"></use></svg>
             </button>
@@ -290,3 +292,5 @@ imgQuaInit(lp);
 <style scoped lang="scss" src="./scss/navbar.scss"></style>
 <style scoped lang="scss" src="./scss/navbar-change.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/color/component/navbar.scss"></style>
+
+<style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>

@@ -1,0 +1,7 @@
+{
+  "comp_page_AuthSubPage": {
+    "toast": {
+      "hostnameIsNotMain": "This webpage may not be verified. Please visit: {targetUrl}"
+    }
+  }
+}
