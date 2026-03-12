@@ -65,9 +65,8 @@
 }
 
 .navbar-brand{
-  .svg-logo{
-    //实现改变svg颜色
-    filter: drop-shadow(150vw 0 var(--logo-color));
-    transform: translateX(-150vw);
+  .navbar-logo{
+    fill: var(--logo-color);
+    pointer-events: none;
   }
 }
