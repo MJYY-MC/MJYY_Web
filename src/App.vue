@@ -40,6 +40,12 @@ const meta = computed(() => ({
               ? route.meta.app_view_useFullScreen
               : false
       ) as boolean,
+      //是否将view的overflow-x设置为hidden
+      useOverflowXHidden:(
+          route.meta.app_view_useOverflowXHidden != undefined
+              ? route.meta.app_view_useOverflowXHidden
+              : false
+      ) as boolean,
     },
   },
 }));
@@ -81,6 +87,13 @@ function routeName_onChange(){
     else{
       view.value.style.height='';
       view.value.style.width='';
+    }
+
+    if (meta.value.app.view.useOverflowXHidden){
+      view.value.style.overflowX = 'hidden';
+    }
+    else{
+      view.value.style.overflowX = '';
     }
   }
 }

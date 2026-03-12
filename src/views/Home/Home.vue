@@ -107,6 +107,9 @@ function toLargeImageView(e:Event){
   if (largeImageView.value && e.target)
     largeImageView.value.largeImageView_show((e.target as HTMLImageElement).src);
 }
+
+import aos from "@/views/Home/plugin/aos.ts";
+aos();
 </script>
 
 <template>
@@ -125,11 +128,17 @@ function toLargeImageView(e:Event){
     <broadcast id="broadcast-container"/>
     <div class="d-flex align-items-center justify-content-center full-wh">
       <div id="home_title">
-        <span id="home_title_text1" class="unSelectable home_title_text">谧静幽原</span>
-        <span id="home_title_text2" class="unSelectable home_title_text">相见有缘</span>
+        <span id="home_title_text1" class="unSelectable home_title_text"
+              data-aos="zoom-in-down"
+        >谧静幽原</span>
+        <span id="home_title_text2" class="unSelectable home_title_text"
+              data-aos="zoom-in-up"
+        >相见有缘</span>
       </div>
     </div>
-    <div id="mc-status" class="unSelectable">
+    <div id="mc-status" class="unSelectable"
+         data-aos="flip-left"
+    >
       <McStatus/>
     </div>
   </section>
@@ -137,12 +146,13 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>{{t(`${lp}.versionSection.title`)}}</h1>
+          <h1 data-aos="fade-in">{{t(`${lp}.versionSection.title`)}}</h1>
         </div>
       </div>
       <div id="version_java-row" class="row version_row">
         <div id="version_java-row_text-div"
              class="col-12 col-md-7 order-1 order-md-2 version_text-div"
+             data-aos="fade-left"
         >
           <h2>{{t(`${lp}.versionSection.javaEdition.h2`)}}</h2>
           <p>{{t(`${lp}.versionSection.javaEdition.p-0.0`)}}<strong>{{t(`${lp}.versionSection.javaEdition.p-0.1`)}}</strong>{{t(`${lp}.versionSection.javaEdition.p-0.2`)}}<strong>{{t('global.onlyOne.gameVersion.serverVersion')}}</strong></p>
@@ -150,7 +160,9 @@ function toLargeImageView(e:Event){
           <em>{{t(`${lp}.versionSection.javaEdition.em`)}}</em>
         </div>
         <div class="col-12 col-md-5 order-2 order-md-1">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-right"
+          >
             <div class="card-body card-body_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -169,6 +181,7 @@ function toLargeImageView(e:Event){
       <div id="version_bedrock-row" class="row version_row">
         <div id="version_bedrock-row_text-div"
              class="col-12 col-md-7 version_text-div"
+             data-aos="fade-right"
         >
           <h2>{{t(`${lp}.versionSection.bedrockEdition.h2`)}}</h2>
           <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMin')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMax')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
@@ -176,7 +189,9 @@ function toLargeImageView(e:Event){
           <em>{{t(`${lp}.versionSection.bedrockEdition.em`)}}</em>
         </div>
         <div class="col-12 col-md-5">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-left"
+          >
             <div class="card-body card-body_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -198,12 +213,14 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>{{t(`${lp}.featureSection.title`)}}</h1>
+          <h1 data-aos="fade-in">{{t(`${lp}.featureSection.title`)}}</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -223,7 +240,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -243,7 +262,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -263,7 +284,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -283,7 +306,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -303,7 +328,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="fade-up"
+          >
             <div class="card-header card-header_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -329,14 +356,16 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>{{t(`${lp}.photoSection.title`)}}</h1>
+          <h1 data-aos="fade-in">{{t(`${lp}.photoSection.title`)}}</h1>
         </div>
       </div>
       <div class="row" :key="imageQuality">
         <div v-for="(pObj,index) in photoObjects" 
              :key="index"
              class="col-12 col-sm-6 col-md-4 col-xl-3 mt-2">
-          <div class="card card_img-box">
+          <div class="card card_img-box"
+               data-aos="zoom-in-up"
+          >
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
@@ -356,12 +385,14 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>{{t(`${lp}.ruleSection.title`)}}</h1>
+          <h1 data-aos="fade-in">{{t(`${lp}.ruleSection.title`)}}</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-12 col-sm-8 col-md-6 mx-auto">
-          <div class="card">
+          <div class="card"
+               data-aos="zoom-out-up"
+          >
             <div id="rule-text" ref="ruleText" class="card-body"></div>
           </div>
         </div>
@@ -372,18 +403,22 @@ function toLargeImageView(e:Event){
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>{{t(`${lp}.joinUsSection.title`)}}</h1>
+          <h1 data-aos="fade-in">{{t(`${lp}.joinUsSection.title`)}}</h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-sm-10 col-md-8 mx-auto text-center">
+        <div class="col-12 col-sm-10 col-md-8 mx-auto text-center"
+             data-aos="fade-up"
+        >
           <em>{{t(`${lp}.joinUsSection.text.em`)}}</em>
           <p>{{t(`${lp}.joinUsSection.text.p-0.0`)}}<code>{{t('global.onlyOne.serverAddress.main.je.addrs')}}</code></p>
         </div>
       </div>
       <div class="row">
         <div class="col-6 col-md-5 col-lg-3 offset-0 offset-md-1 offset-lg-3">
-          <div class="card card_img-box joinUs-qrcode-card">
+          <div class="card card_img-box joinUs-qrcode-card"
+               data-aos="flip-down"
+          >
             <div class="card-body card-body_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -400,7 +435,9 @@ function toLargeImageView(e:Event){
           </div>
         </div>
         <div class="col-6 col-md-5 col-lg-3">
-          <div class="card card_img-box joinUs-qrcode-card">
+          <div class="card card_img-box joinUs-qrcode-card"
+               data-aos="flip-down"
+          >
             <div class="card-body card-body_img-box">
               <div class="img-box"
                    :key="imageQuality"
@@ -429,3 +466,4 @@ function toLargeImageView(e:Event){
 <style scoped lang="scss" src="@/assets/scss/color/view/Home.scss"></style>
 
 <style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
+<style scoped lang="css" src="aos/dist/aos.css"></style>

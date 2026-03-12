@@ -52,6 +52,9 @@ const router = createRouter({
             component: () => import('@/views/Home/Home.vue'),
             meta:{
                 navbar_sectionLinks_Comp: () => import("@/views/Home/components/navbar_section-links.vue"),
+
+                //将view的overflow-x设置为hidden
+                app_view_useOverflowXHidden:true,
             }
         },
         {
