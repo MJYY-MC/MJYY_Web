@@ -116,7 +116,8 @@ function toLargeImageView(e:Event){
          :key="imageQuality"
     ><!--由于loadstart经测试后不生效，所以将:key放置到父元素上，以解决重复加载不同质量的图片时图片加载动画不显示的问题-->
       <div class="loader-animation"></div>
-      <img alt="background"
+      <img alt="background" draggable="false"
+           class="unSelectable"
            @load="imgLoaded" @error="imgError"
            :src="backImgSrc_get()"
       >
@@ -155,7 +156,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -181,7 +182,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -208,7 +209,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -228,7 +229,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -248,7 +249,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -268,7 +269,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -288,7 +289,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -308,7 +309,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -339,7 +340,7 @@ function toLargeImageView(e:Event){
             <div class="card-body card-body_img-box">
               <div class="img-box">
                 <div class="loader-animation"></div>
-                <img alt="photo"
+                <img alt="photo" loading="lazy"
                      class="can-click"
                      @click="toLargeImageView"
                      @load="imgLoaded" @error="imgError"
@@ -388,7 +389,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="qrcode"
+                <img alt="qrcode" loading="lazy"
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqGroupQRcode')">
                 <a href="https://qm.qq.com/q/siqAtkac9i" class="qrcode-link">
@@ -405,7 +406,7 @@ function toLargeImageView(e:Event){
                    :key="imageQuality"
               >
                 <div class="loader-animation"></div>
-                <img alt="qrcode"
+                <img alt="qrcode" loading="lazy"
                      @load="imgLoaded" @error="imgError"
                      :src="imgSrc_get('qrcode/qqDiscodeQRCode')">
                 <a href="https://pd.qq.com/s/cci7lavxo" class="qrcode-link">
