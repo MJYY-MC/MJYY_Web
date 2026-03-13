@@ -157,6 +157,14 @@ const router = createRouter({
                 app_view_usePaddingTop: true,
             },
         },
+        {
+            path: '/docs',
+            name:'document',
+            component: ()=>import('@/views/Document/Document.vue'),
+            meta:{
+                app_view_usePaddingTop: true,
+            },
+        }
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

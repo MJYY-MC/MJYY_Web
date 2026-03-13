@@ -29,6 +29,7 @@
     "serverMap": "卫星地图",
     "analyticsPanel": "分析面板",
     "donate": "赞助",
+    "document": "文档",
     "toast": {
       "imageQuality": {
         "isCellular": "检测到移动数据，已降低图像品质",
