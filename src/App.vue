@@ -63,24 +63,14 @@ function normal_offsetHeight_onInit(normal_offsetHeight:number){
 function routeName_onChange(){
   if (view.value && navbarRef.value) {
     if (meta.value.app.view.usePaddingTop) {
-      /*function setPaddingTop(){
-        view.value!.style.paddingTop = `${
+      if (navbarRef.value.normal_offsetHeight_get()!=undefined) {
+        const val=
             navbarRef.value!.normal_offsetHeight_get()
             || navbarRef.value!.offsetHeight_get()
-            || 0
-        }px`;
+            || undefined;
+        if (val!=undefined)
+          view.value!.style.paddingTop = `${val}px`;
       }
-      if (navbarRef.value.normal_offsetHeight_get()==undefined) {
-        //如果访问时navbarRef.value.normal_offsetHeight还未被赋值，则使用回调函数等待其赋值后再进行设置
-        normal_offsetHeight_onInit = (normal_offsetHeight: number) => {
-          view.value!.style.paddingTop = normal_offsetHeight + 'px';
-          normal_offsetHeight_onInit = (_normal_offsetHeight:number)=>{};
-        }
-        if (navbarRef.value.normal_offsetHeight_get()!=undefined)//加一道保险，得确保顶部内间距被设置
-          setPaddingTop();
-      }else {
-        setPaddingTop();
-      }*/
     }
     else{
       view.value.style.paddingTop = '0';
