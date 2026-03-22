@@ -22,14 +22,24 @@
   ul{
     list-style: none;
     padding-left: 1.5rem;
+    span{
+      font-size: 1.2rem;
+    }
     li{
       font-weight: normal;
       &.parent{
         font-weight: bold;
       }
       a{
-        color: inherit;
+        font-size: 1.18rem;
         text-decoration: none;
+        color: var(--doc-list-link-color);
+        &.active{
+          color: var(--doc-list-link-active-color);
+        }
+      }
+      a:hover{
+        color: var(--doc-list-link-hover-color);
       }
     }
   }
@@ -39,5 +49,6 @@
   #docMd{
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
   }
 }

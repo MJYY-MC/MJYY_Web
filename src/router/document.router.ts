@@ -10,7 +10,7 @@ export default [
         children: [
             {
                 path: 'test',
-                name: 'doc_test',
+                name: 'docs_test',
                 component: ()=>import('@/views/Document/Document.vue'),
                 meta:{
                     doc_mdFileRelativePath: 'test.{lang}.md'

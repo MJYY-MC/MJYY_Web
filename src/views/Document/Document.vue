@@ -13,22 +13,26 @@ const meta = computed(() => ({
 const docMd:Ref<HTMLDivElement|null> = ref(null);
 const {doLoad} = docLoader(docMd);
 
-onMounted(()=>{
+const curRouteName:Ref<string|undefined>=ref(undefined);
+function routeName_onChange(){
   if (meta.value.doc.doc_mdFileRelativePath)
     doLoad(meta.value.doc.doc_mdFileRelativePath);
+
+  curRouteName.value=route.name as string|undefined;
+}
+
+onMounted(()=>{
+  routeName_onChange();
 });
 
 watch(
     ()=>route.name,
-    ()=>{
-      if (meta.value.doc.doc_mdFileRelativePath)
-        doLoad(meta.value.doc.doc_mdFileRelativePath);
-    }
+    ()=>{routeName_onChange();}
 );
 </script>
 
 <template>
-<div class="container container-full">
+<div id="document" class="container container-full">
   <div class="row row-full">
     <div id="doc-list" class="col-3">
       <ul>
@@ -36,7 +40,9 @@ watch(
           <span>test</span>
           <ul>
             <li>
-              <router-link :to="{name:'doc_test'}">test</router-link>
+              <router-link :to="{name:'docs_test'}"
+                           :class="{'active':(curRouteName=='docs_test')}"
+              >test</router-link>
             </li>
           </ul>
         </li>
@@ -50,3 +56,4 @@ watch(
 </template>
 
 <style scoped lang="scss" src="./scss/Document.scss"></style>
+<style scoped lang="scss" src="@/assets/scss/color/view/Document.scss"></style>

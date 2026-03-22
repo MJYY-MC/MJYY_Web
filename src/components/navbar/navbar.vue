@@ -120,7 +120,7 @@ imgQuaInit(lp);
           </li>
           <li class="nav-item nav-btn col-6 col-lg-auto">
             <router-link class="nav-link text-center unSelectable" aria-current="page"
-                         :class="{'active':(curRouteName=='document')}"
+                         :class="{'active':(curRouteName=='document'||curRouteName?.startsWith('docs_'))}"
                          :to="{ name: 'document'}"
             ><strong>{{t(`${lp}.document`)}}</strong></router-link>
           </li>
