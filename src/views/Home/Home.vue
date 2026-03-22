@@ -5,7 +5,7 @@ import LargeImageView from "@/components/largeImageView.vue";
 
 import {autoUseI18n, getCurrentLocale, getFallbackLocale, localeEvents} from "@/utils/i18nUtils.ts";
 import {useTitle} from "@vueuse/core";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {onMounted, onUnmounted, type Ref, ref} from "vue";
 import {imgLoaded,imgError} from "@/views/Home/ts/imgLoader.ts";
 import {isDev} from "@/ts/env/packMode.ts";
