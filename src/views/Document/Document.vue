@@ -61,9 +61,9 @@ watch(
 <template>
 <div id="document" class="container container-full">
   <div class="row row-full">
-    <div id="doc-list" class="col-3">
+    <div id="doc-list" class="col-3 col-xl-2">
       <ul class="unSelectable">
-        <li class="parent">
+        <!--<li class="parent">
           <span>{{t(`${lp}.listParent.test`)}}</span>
           <ul>
             <li>
@@ -72,10 +72,76 @@ watch(
               >{{t(`${lp}.docs_test`)}}</router-link>
             </li>
           </ul>
+        </li>-->
+        <li class="parent"
+            v-for="(data,index) in [
+                                     {
+                                       key: 'faq',
+                                       sub:[
+                                         {
+                                           name: 'docs_faq',
+                                         }  ,
+                                       ],
+                                     },
+                                     {
+                                       key:'join',
+                                       sub:[
+                                         {
+                                           name: 'docs_game',
+                                         },
+                                         {
+                                           name: 'docs_access',
+                                         },
+                                       ],
+                                     },
+                                     {
+                                       key: 'ingame',
+                                       sub:[
+                                           {
+                                             name: 'docs_menu',
+                                           },
+                                       ],
+                                     },
+                                     {
+                                       key:'world',
+                                       sub:[
+                                           {
+                                             name: 'docs_world',
+                                           },
+                                           {
+                                             name: 'docs_overworld',
+                                           },
+                                           {
+                                             name: 'docs_freeWorld',
+                                           },
+                                           {
+                                             name: 'docs_landOfChaos',
+                                           },
+                                           {
+                                             name: 'docs_backroom',
+                                           },
+                                           {
+                                             name: 'docs_funWorld',
+                                           },
+                                       ],
+                                     },
+                                   ]"
+            :key="index"
+        >
+          <span>{{t(`${lp}.listParent.${data.key}`)}}</span>
+          <ul>
+            <li v-for="(subdata,subindex) in data.sub"
+                :key="subindex"
+            >
+              <router-link :to="{name:subdata.name}"
+                           :class="{'active':(curRouteName==subdata.name)}"
+              >{{t(`${lp}.${subdata.name}`)}}</router-link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
-    <div id="doc-content" class="col-9">
+    <div id="doc-content" class="col-9 col-xl-10">
       <div ref="docMd" id="docMd"></div>
     </div>
   </div>

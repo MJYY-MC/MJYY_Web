@@ -19,11 +19,13 @@
   border-right: var(--bs-border-color) 1px solid;
   padding: 1rem 1.5rem 1rem 0;
   overflow-y: scroll;
+  height: 100%;
+  overflow-wrap: break-word;
   ul{
     list-style: none;
     padding-left: 1.5rem;
     span{
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     li{
       font-weight: normal;
@@ -31,7 +33,7 @@
         font-weight: bold;
       }
       a{
-        font-size: 1.18rem;
+        font-size: 1.05rem;
         text-decoration: none;
         color: var(--doc-list-link-color);
         &.active{
@@ -46,9 +48,13 @@
 }
 #doc-content{
   border-left: var(--bs-border-color) 1px solid;
+  height: 100%;
+  padding: 0;
+  overflow-wrap: break-word;
   #docMd{
     height: 100%;
     width: 100%;
     overflow-y: scroll;
+    padding: .5rem 1rem;
   }
 }
