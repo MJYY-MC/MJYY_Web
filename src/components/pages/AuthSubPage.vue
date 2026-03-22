@@ -5,7 +5,7 @@ import PasswordInput, {type SavePasswordProp} from "@/components/passwordInput.v
 import {useCookies} from "@vueuse/integrations/useCookies";
 import urlAddParam from "@/utils/urlAddParam.ts";
 //import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 
 //const {gt:t}=autoUseI18n();
 const lp:string="comp_page_AuthSubPage";

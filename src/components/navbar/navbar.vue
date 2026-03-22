@@ -9,14 +9,15 @@ import {
   type Ref,
   watch,
 } from "vue";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useRoute} from "vue-router";
 import {curSelTheme, doThemeSel, themeIcon, init as themeInit} from "@/components/navbar/ts/theme.ts";
 import {doImgQualSel, imageQuality, init as imgQuaInit} from "@/components/navbar/ts/imageQuality.ts";
+import {sleep} from "@/utils/sleep.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
-autoLoadLocale(lp);
+const {isReady:localeIsReady} = autoLoadLocale(lp);
 
 const route = useRoute();
 const meta = computed(() => ({
@@ -26,7 +27,7 @@ const meta = computed(() => ({
 }));
 
 const emit = defineEmits<{
-  (e: 'normal_offsetHeight_onInit',normal_offsetHeight:number):void;
+  (e: 'normal_offsetHeight_init',normal_offsetHeight:number):void;
 }>();
 
 const curLoc:Ref<string>= ref(getCurrentLocale());
@@ -74,10 +75,18 @@ function routeName_onChange(){
 
 onMounted(()=>{
   routeName_onChange();
+});
+onMounted(async ()=>{
+  while (true){
+    if (localeIsReady.value){
+      normal_offsetHeight=navbar.value!.offsetHeight;
+      emit('normal_offsetHeight_init',normal_offsetHeight);
+      document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
 
-  normal_offsetHeight=navbar.value!.offsetHeight;
-  emit('normal_offsetHeight_onInit',normal_offsetHeight);
-  document.documentElement.style.setProperty('--navbar-normal_offsetHeight',normal_offsetHeight.toString()+'px');
+      break;
+    }
+    await sleep(500);
+  }
 });
 
 //导航栏正常大小下的高度。只被赋值一次，避免导航栏后续进行展开等导致高度被改变。
