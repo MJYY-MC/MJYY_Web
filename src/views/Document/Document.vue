@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import docLoader from "@/views/Document/ts/docLoader.ts";
-import {computed, onMounted, ref, type Ref, watch} from "vue";
+import {computed, onMounted, onUnmounted, ref, type Ref, watch} from "vue";
 import {useRoute} from "vue-router";
-import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import {autoUseI18n, localeEvents} from "@/utils/i18nUtils.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Document";
-const {isReady:localeIsReady} = autoLoadLocale(lp,()=>{
+function titleSet(){
   if (route.name!='document')
-    useTitle(t(`${lp}.${route.name as string}.titleHead`)+t(`${lp}.title`));
+    useTitle(t(`${lp}.${route.name as string}`)+t(`${lp}.title`));
   else
     useTitle(t(`${lp}.title`));
+}
+const {isReady:localeIsReady} = autoLoadLocale(lp,()=>{
+  titleSet();
 });
+function handle_afterLocaleChange(){
+  if (meta.value.doc.doc_mdFileRelativePath)
+    doLoad(meta.value.doc.doc_mdFileRelativePath);
+}
 
 const route = useRoute();
 const meta = computed(() => ({
@@ -31,10 +38,18 @@ function routeName_onChange(){
     doLoad(meta.value.doc.doc_mdFileRelativePath);
 
   curRouteName.value=route.name as string|undefined;
+
+  if (localeIsReady)
+    titleSet();
 }
 
 onMounted(()=>{
   routeName_onChange();
+
+  localeEvents.on('afterLocaleChange',handle_afterLocaleChange);
+});
+onUnmounted(()=>{
+  localeEvents.off('afterLocaleChange',handle_afterLocaleChange);
 });
 
 watch(
@@ -49,12 +64,12 @@ watch(
     <div id="doc-list" class="col-3">
       <ul class="unSelectable">
         <li class="parent">
-          <span>test</span>
+          <span>{{t(`${lp}.listParent.test`)}}</span>
           <ul>
             <li>
               <router-link :to="{name:'docs_test'}"
                            :class="{'active':(curRouteName=='docs_test')}"
-              >test</router-link>
+              >{{t(`${lp}.docs_test`)}}</router-link>
             </li>
           </ul>
         </li>

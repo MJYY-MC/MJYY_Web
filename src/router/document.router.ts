@@ -6,6 +6,8 @@ export default [
         meta:{
             app_view_usePaddingTop: true,
             app_view_useFullScreen: true,
+
+            doc_mdFileRelativePath: 'home.{lang}.md',
         },
         children: [
             {

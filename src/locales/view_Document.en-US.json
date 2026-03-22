@@ -1,8 +1,9 @@
 {
   "view_Document": {
     "title": "Documents - MJYY",
-    "docs_test": {
-      "titleHead": "Test"
-    }
+    "listParent": {
+      "test": "Test"
+    },
+    "docs_test": "Test"
   }
 }
