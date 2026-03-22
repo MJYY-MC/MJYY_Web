@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
 import {type Ref, ref} from "vue";
 

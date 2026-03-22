@@ -3,7 +3,7 @@ import AuthSubPage from "@/components/pages/AuthSubPage.vue";
 import {useRoute} from "vue-router";
 import {computed} from "vue";
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
 import type {SavePasswordProp} from "@/components/passwordInput.vue";
 

@@ -55,11 +55,15 @@ const meta = computed(() => ({
 const view:Ref<HTMLDivElement|null> = ref(null);
 const navbarRef:Ref<InstanceType<typeof navbar>|null>=ref(null);
 
-let normal_offsetHeight_onInit=(_normal_offsetHeight:number)=>{};
+function normal_offsetHeight_onInit(normal_offsetHeight:number){
+  if (meta.value.app.view.usePaddingTop){
+    view.value!.style.paddingTop = normal_offsetHeight + 'px';
+  }
+}
 function routeName_onChange(){
   if (view.value && navbarRef.value) {
     if (meta.value.app.view.usePaddingTop) {
-      function setPaddingTop(){
+      /*function setPaddingTop(){
         view.value!.style.paddingTop = `${
             navbarRef.value!.normal_offsetHeight_get()
             || navbarRef.value!.offsetHeight_get()
@@ -76,7 +80,7 @@ function routeName_onChange(){
           setPaddingTop();
       }else {
         setPaddingTop();
-      }
+      }*/
     }
     else{
       view.value.style.paddingTop = '0';
@@ -120,7 +124,7 @@ toastInit(toastRef);
 
 <template>
   <navbar ref="navbarRef"
-          @normal_offsetHeight_onInit="normal_offsetHeight_onInit"
+          @normal_offsetHeight_init="normal_offsetHeight_onInit"
   />
   <div id="view" ref="view">
     <router-view :key="meta.route.reloadKey"/>
