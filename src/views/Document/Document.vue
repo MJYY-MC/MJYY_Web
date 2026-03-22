@@ -2,6 +2,18 @@
 import docLoader from "@/views/Document/ts/docLoader.ts";
 import {computed, onMounted, ref, type Ref, watch} from "vue";
 import {useRoute} from "vue-router";
+import {autoUseI18n} from "@/utils/i18nUtils.ts";
+import {autoLoadLocale} from "@/ts/global/vue/autoLoadLocale.ts";
+import {useTitle} from "@vueuse/core";
+
+const {gt:t}=autoUseI18n();
+const lp:string="view_Document";
+const {isReady:localeIsReady} = autoLoadLocale(lp,()=>{
+  if (route.name!='document')
+    useTitle(t(`${lp}.${route.name as string}.titleHead`)+t(`${lp}.title`));
+  else
+    useTitle(t(`${lp}.title`));
+});
 
 const route = useRoute();
 const meta = computed(() => ({
@@ -35,7 +47,7 @@ watch(
 <div id="document" class="container container-full">
   <div class="row row-full">
     <div id="doc-list" class="col-3">
-      <ul>
+      <ul class="unSelectable">
         <li class="parent">
           <span>test</span>
           <ul>
@@ -57,3 +69,4 @@ watch(
 
 <style scoped lang="scss" src="./scss/Document.scss"></style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Document.scss"></style>
+<style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
