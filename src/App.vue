@@ -115,7 +115,6 @@ toastInit(toastRef);
 <template>
   <navbar ref="navbarRef"
           @normal_offsetHeight_init="normal_offsetHeight_onInit"
-          @normal_offsetHeight_init="normal_offsetHeight_onInit"
   />
   <div id="view" ref="view">
     <router-view :key="meta.route.reloadKey"/>
