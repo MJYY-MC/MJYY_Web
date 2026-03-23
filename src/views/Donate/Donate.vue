@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import donateShowOrHidden from "@/views/Donate/ts/donateShowOrHidden.ts";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+
+if (!donateShowOrHidden()){
+  router.push({ name: 'donate_hateMjyy'});
+}
+
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
@@ -11,10 +20,14 @@ autoLoadLocale(lp,()=>{
 });
 
 const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load();
+
+function hateMjyyBtn_click(){
+  router.push({ name: 'donate_hateMjyy'});
+}
 </script>
 
 <template>
-  <div id="donate">
+  <div id="donate" v-if="donateShowOrHidden()">
     <div class="container mt-5">
       <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
@@ -91,6 +104,11 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
         </div>
       </div>
     </div>
+    <div id="hateMjyyBtn_div">
+      <button type="button" class="btn btn-outline-danger"
+              @click="hateMjyyBtn_click"
+      >{{t(`${lp}.hateMjyyBtn`)}}</button>
+    </div>
   </div>
 </template>
 
@@ -154,6 +172,13 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
         }
       }
     }
+  }
+
+  #hateMjyyBtn_div {
+    margin-top: 80vh;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
   }
 }
 </style>

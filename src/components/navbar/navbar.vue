@@ -14,6 +14,7 @@ import {useRoute} from "vue-router";
 import {curSelTheme, doThemeSel, themeIcon, init as themeInit} from "@/components/navbar/ts/theme.ts";
 import {doImgQualSel, imageQuality, init as imgQuaInit} from "@/components/navbar/ts/imageQuality.ts";
 import {sleep} from "@/utils/sleep.ts";
+import donateShowOrHidden from "@/views/Donate/ts/donateShowOrHidden.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="comp_navbar";
@@ -165,7 +166,7 @@ imgQuaInit(lp);
               </li>
             </ul>
           </li>
-          <li class="nav-item nav-btn col-6 col-lg-auto">
+          <li class="nav-item nav-btn col-6 col-lg-auto" v-if="donateShowOrHidden()">
             <router-link id="donate-link"
                          class="nav-link text-center unSelectable"
                          :class="{'active':(curRouteName=='donate')}"
