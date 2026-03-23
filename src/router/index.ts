@@ -2,6 +2,7 @@ import {createMemoryHistory, createRouter, createWebHashHistory, createWebHistor
 import {nextTick} from "vue";
 import renderMode from "@/ts/env/renderMode.ts";
 import {isClient} from "@/ts/env/ssr.ts";
+import documentRouter from "@/router/document.router.ts";
 
 export function hashCheckAndScroll(){
     if (isClient) {
@@ -157,6 +158,7 @@ const router = createRouter({
                 app_view_usePaddingTop: true,
             },
         },
+        ...documentRouter,
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {

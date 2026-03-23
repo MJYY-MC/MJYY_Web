@@ -29,6 +29,7 @@
     "serverMap": "Game Map",
     "analyticsPanel": "Analytics Panel",
     "donate": "DONATE",
+    "document": "Documents",
     "toast": {
       "imageQuality": {
         "isCellular": "Cellular has been detected and the image quality has been reduced.",
