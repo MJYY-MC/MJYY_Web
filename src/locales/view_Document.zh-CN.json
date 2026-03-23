@@ -1,0 +1,27 @@
+{
+  "view_Document": {
+    "title": "文档-谧静幽原",
+    "listParent": {
+      "test": "测试",
+      "join": "如何多人游戏",
+      "ingame": "游戏中",
+      "faq": "常见问题",
+      "world": "世界"
+    },
+    "docs_test": "测试",
+
+    "docs_game": "启动游戏",
+    "docs_access": "进入服务器",
+
+    "docs_menu": "游戏菜单",
+
+    "docs_faq": "常见问题",
+
+    "docs_world": "世界简介",
+    "docs_overworld": "主世界",
+    "docs_freeWorld": "动态世界",
+    "docs_landOfChaos": "混沌之地",
+    "docs_backroom": "后室",
+    "docs_funWorld": "娱乐世界"
+  }
+}

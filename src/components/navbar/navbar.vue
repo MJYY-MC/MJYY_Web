@@ -128,13 +128,20 @@ imgQuaInit(lp);
             </router-link>
           </li>
           <li class="nav-item nav-btn col-6 col-lg-auto">
-            <router-link class="nav-link text-center unSelectable" :class="{'active':(curRouteName=='serverMap')}" aria-current="page" :to="{ name: 'serverMap'}">
-              <strong>{{t(`${lp}.serverMap`)}}</strong>
-            </router-link>
+            <router-link class="nav-link text-center unSelectable" aria-current="page"
+                         :class="{'active':(curRouteName=='document'||curRouteName?.startsWith('docs_'))}"
+                         :to="{ name: 'document'}"
+            ><strong>{{t(`${lp}.document`)}}</strong></router-link>
           </li>
           <li class="nav-item dropdown col-12 col-lg-auto hover-dropdown nav-btn">
             <a class="nav-link hover-dropdown-btn text-center unSelectable" aria-current="page" role="button">{{t(`${lp}.more`)}}</a>
             <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <router-link class="nav-link text-center unSelectable" aria-current="page"
+                             :class="{'active':(curRouteName=='serverMap')}"
+                             :to="{ name: 'serverMap'}"
+                >{{t(`${lp}.serverMap`)}}</router-link>
+              </li>
               <li class="dropdown-item">
                 <router-link class="nav-link text-center unSelectable" aria-current="page"
                              :class="{'active':(curRouteName=='analyticsPanel')}"

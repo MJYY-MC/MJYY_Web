@@ -1,0 +1,26 @@
+#document{
+  #doc-list{
+    ul{
+      li{
+        //文档列表链接文字颜色
+        --doc-list-link-color: rgba(0,0,0,.65);
+        //文档列表链接高亮时的文字颜色
+        --doc-list-link-active-color: rgba(0,0,0,1);
+        //文档列表链接鼠标悬停时的文字颜色
+        --doc-list-link-hover-color: rgba(0,0,0,.8);
+      }
+    }
+  }
+}
+
+[data-bs-theme=dark] #document{
+  #doc-list{
+    ul{
+      li{
+        --doc-list-link-color: rgba(255,255,255,.65);
+        --doc-list-link-active-color: rgba(255,255,255,1);
+        --doc-list-link-hover-color: rgba(255,255,255,.8);
+      }
+    }
+  }
+}
