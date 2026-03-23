@@ -5,6 +5,14 @@
         "info": "提示",
         "warning": "警告"
       }
+    },
+    "feedback": {
+      "loading": "加载中",
+      "failed": "加载失败",
+      "inText": {
+        "loading": "[加载中]",
+        "failed": "[加载失败]"
+      }
     }
   }
 }

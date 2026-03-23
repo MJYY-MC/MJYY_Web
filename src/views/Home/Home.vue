@@ -113,6 +113,18 @@ function toLargeImageView(e:Event){
 import aos from "@/views/Home/plugin/aos.ts";
 aos();
 
+import {
+  getMcServerAddress,
+  getMcServerVersion,
+  type McServerAddress,
+  type McServerVersion
+} from "@/ts/global/getMcServerInfo.ts";
+const msVersion:Ref<McServerVersion|undefined|null>=ref(undefined);
+const msAddress:Ref<McServerAddress|undefined|null>=ref(undefined);
+(async ()=>{
+  msVersion.value = await getMcServerVersion();
+  msAddress.value= await getMcServerAddress();
+})();
 
 
 
@@ -171,8 +183,8 @@ if (isDev){
              data-aos="fade-left"
         >
           <h2>{{t(`${lp}.versionSection.javaEdition.h2`)}}</h2>
-          <p>{{t(`${lp}.versionSection.javaEdition.p-0.0`)}}<strong>{{t(`${lp}.versionSection.javaEdition.p-0.1`)}}</strong>{{t(`${lp}.versionSection.javaEdition.p-0.2`)}}<strong>{{t('global.onlyOne.gameVersion.serverVersion')}}</strong></p>
-          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{t('global.onlyOne.gameVersion.javaVersionMin')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{t('global.onlyOne.gameVersion.javaVersionMax')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-0.0`)}}<strong>{{t(`${lp}.versionSection.javaEdition.p-0.1`)}}</strong>{{t(`${lp}.versionSection.javaEdition.p-0.2`)}}<strong>{{(msVersion)?msVersion.serverVersion:(msVersion===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</strong></p>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{(msVersion)?msVersion.javaVersionMin:(msVersion===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{(msVersion)?msVersion.javaVersionMax:(msVersion===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
           <em>{{t(`${lp}.versionSection.javaEdition.em`)}}</em>
         </div>
         <div class="col-12 col-md-5 order-2 order-md-1">
@@ -200,7 +212,7 @@ if (isDev){
              data-aos="fade-right"
         >
           <h2>{{t(`${lp}.versionSection.bedrockEdition.h2`)}}</h2>
-          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMin')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{t('global.onlyOne.gameVersion.bedrockVersionMax')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
+          <p>{{t(`${lp}.versionSection.javaEdition.p-1.0`)}}<strong>{{(msVersion)?msVersion.bedrockVersionMin:(msVersion===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.1`)}}<strong>{{(msVersion)?msVersion.bedrockVersionMax:(msVersion===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</strong>{{t(`${lp}.versionSection.javaEdition.p-1.2`)}}</p>
           <p>{{t(`${lp}.versionSection.bedrockEdition.p`)}}</p>
           <em>{{t(`${lp}.versionSection.bedrockEdition.em`)}}</em>
         </div>
@@ -427,7 +439,7 @@ if (isDev){
              data-aos="fade-up"
         >
           <em>{{t(`${lp}.joinUsSection.text.em`)}}</em>
-          <p>{{t(`${lp}.joinUsSection.text.p-0.0`)}}<code>{{t('global.onlyOne.serverAddress.main.je.addrs')}}</code></p>
+          <p>{{t(`${lp}.joinUsSection.text.p-0.0`)}}<code>{{(msAddress)?msAddress.addresses[0]?.je.addrs:(msAddress===undefined)?t('global.feedback.inText.loading'):t('global.feedback.inText.failed')}}</code></p>
         </div>
       </div>
       <div class="row">

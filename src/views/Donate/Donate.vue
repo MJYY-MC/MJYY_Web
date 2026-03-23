@@ -3,6 +3,7 @@ import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
 import {type Ref, ref} from "vue";
+import staticDataAddress from "@/ts/env/staticDataAddress.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Donate";
@@ -13,7 +14,7 @@ autoLoadLocale(lp,()=>{
 const patronsData:Ref<string[]> = ref([]);
 const patronsData_isLoaded:Ref<boolean> = ref(false);
 (async ()=>{
-  const res=await fetch('https://data.www.mjyy.top/donate/patron/data.json');
+  const res=await fetch(`${staticDataAddress}/donate/patron/data.json`);
   if (res.ok){
     const resJson = await res.json();
 
