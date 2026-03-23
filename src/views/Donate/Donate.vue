@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import donateShowOrHidden from "@/views/Donate/ts/donateShowOrHidden.ts";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+
+if (!donateShowOrHidden()){
+  router.push({ name: 'donate_hateMjyy'});
+}
+
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
-import {type Ref, ref} from "vue";
-import staticDataAddress from "@/ts/env/staticDataAddress.ts";
+import patronsData_load from "@/views/Donate/ts/patronsData_load.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Donate";
@@ -11,103 +19,54 @@ autoLoadLocale(lp,()=>{
   useTitle(t(`${lp}.title`));
 });
 
-const patronsData:Ref<string[]> = ref([]);
-const patronsData_isLoaded:Ref<boolean> = ref(false);
-(async ()=>{
-  const res=await fetch(`${staticDataAddress}/donate/patron/data.json`);
-  if (res.ok){
-    const resJson = await res.json();
+const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load();
 
-
-    type SimplJson={
-      patrons:{
-        name:string,
-        allValue:number,
-      }[]
-    }
-    //简化的json
-    let simplJson:SimplJson={patrons:[]};
-    //排序的json
-    let sortJson:SimplJson={patrons:[]};
-
-    resJson.patron.forEach((item:any)=>{//为simplJson赋值
-      simplJson.patrons.push({
-        name: item.name,
-        allValue: (()=>{
-          let outputValue:number=0;
-          item.donateData.forEach((ite:any)=>{
-            outputValue+=Number(ite.value as string);
-          });
-          return outputValue;
-        })(),
-      })
-    });
-
-    {//为sortJson赋值
-      let pushedIndex:number[]=[];
-      while (simplJson.patrons.length != pushedIndex.length) {
-        let maxValIndex: number = -1;
-        {
-          let lastMax = 0;
-          for (let i = 0; i < simplJson.patrons.length; i++) {
-            {
-              let isCon=false;
-              for (let j=0;j<pushedIndex.length; j++){
-                if (pushedIndex[j]==i) {
-                  isCon = true;
-                  break;
-                }
-              }
-              if (isCon)
-                continue;
-            }
-            if (simplJson.patrons[i]!.allValue > lastMax) {
-              lastMax = simplJson.patrons[i]!.allValue;
-              maxValIndex = i;
-            }
-          }
-        }
-        sortJson.patrons.push(simplJson.patrons[maxValIndex]!);
-        pushedIndex.push(maxValIndex);
-      }
-    }
-
-    {//将最终值赋值至patronsData
-      let output:string[]=[];
-      sortJson.patrons.forEach((item) => {
-        output.push(item.name);
-      });
-      patronsData.value=output;
-    }
-
-    patronsData_isLoaded.value=true;
-  }else{
-    patronsData_isLoaded.value=true;
-    patronsData.value=[t(`${lp}.error`)];
-  }
-})();
+function hateMjyyBtn_click(){
+  router.push({ name: 'donate_hateMjyy'});
+}
 </script>
 
 <template>
-  <div id="donate">
+  <div id="donate" v-if="donateShowOrHidden()">
     <div class="container mt-5">
       <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
           <div id="main-title" class="text-center">
-            <h1>
-              <svg id="title-svg-0" class="title-svg"><use xlink:href="#svg-logo-mjyy-logo"></use></svg>
-              {{t(`${lp}.mainTitle.h1`)}}
-              <svg id="title-svg-1" class="title-svg"><use xlink:href="#svg-logo-mjyy-logo"></use></svg>
-            </h1>
-            <h3>{{t(`${lp}.mainTitle.h3`)}}</h3>
+            <svg id="title-svg-0" class="title-svg"><use xlink:href="#svg-logo-mjyy-logo"></use></svg>
+            <h1>{{t(`${lp}.mainTitle.h1`)}}</h1>
+            <h4>{{t(`${lp}.mainTitle.h4`)}}</h4>
+            <svg id="title-svg-1" class="title-svg"><use xlink:href="#svg-logo-mjyy-logo"></use></svg>
           </div>
         </div>
       </div>
     </div>
-    <div class="container mt-2">
-      <div style="height: 30vh"></div><!--暂时占位，后续在此添加赞助渠道-->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-1">
+          <h5 class="text-center">{{t(`${lp}.content.0.h5`)}}</h5>
+          <span>{{t(`${lp}.content.0.span.0`)}}</span>
+          <br/>
+          <span>{{t(`${lp}.content.0.span.1`)}}</span>
+        </div>
+        <div class="col-12 col-md-6 mb-1">
+          <h5 class="text-center">{{t(`${lp}.content.1.h5`)}}</h5>
+          <span>{{t(`${lp}.content.1.span`)}}</span>
+        </div>
+        <!--<div class="col-12 col-md-6">
+          <h5>资金用处</h5>
+          <span>服务器的硬件与电力损耗；</span>
+          <br/>
+          <span>维护兼开发人员的薪酬。</span>
+        </div>-->
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 text-center">
+          <h4>{{t(`${lp}.content.2.h4`)}}</h4>
+          <span>{{t(`${lp}.content.2.span`)}}</span>
+        </div>
+      </div>
     </div>
-    <div class="container mt-2">
+    <div id="patron" class="container mt-5">
       <div class="row">
         <div class="col-12 text-center">
           <h3>{{t(`${lp}.patron.title.h3`)}}</h3>
@@ -124,14 +83,31 @@ const patronsData_isLoaded:Ref<boolean> = ref(false);
             </div>
           </div>
         </div>
+        <div class="col-12 text-center"
+             :style="(patronsData_isFailed==true)?{}:{display:'none'}"
+        >
+          <strong>{{t(`${lp}.failed`)}}</strong>
+        </div>
 
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2 mx-auto text-center"
+        <div class="patron-obj col-12 col-sm-6 col-lg-4 col-xxl-3 text-center"
              v-for="(patronData,pdIndex) in patronsData"
              :key="pdIndex"
         >
-          <p>{{patronData}}</p>
+          <svg class="rank-head rank-icon unSelectable"
+               :class="`ri-n${pdIndex+1}`"
+               v-if="pdIndex<=2"
+          ><use :xlink:href="`#svg-bsi-${pdIndex+1}-circle-fill`"></use></svg>
+          <span class="rank-head rank-text unSelectable"
+                v-if="pdIndex>2"
+          >{{pdIndex+1}}</span>
+          <span :title="patronData.value.toString()">{{patronData.name}}</span>
         </div>
       </div>
+    </div>
+    <div id="hateMjyyBtn_div">
+      <button type="button" class="btn btn-outline-danger"
+              @click="hateMjyyBtn_click"
+      >{{t(`${lp}.hateMjyyBtn`)}}</button>
     </div>
   </div>
 </template>
@@ -153,6 +129,7 @@ const patronsData_isLoaded:Ref<boolean> = ref(false);
       position: absolute;
       z-index: -1;
       fill: var(--main-logo-color);
+      top: 0;
     }
 
     #title-svg-0 {
@@ -165,6 +142,45 @@ const patronsData_isLoaded:Ref<boolean> = ref(false);
       transform: translateX(50%) rotate(45deg);
     }
   }
+
+  #patron{
+    .patron-obj{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: .8rem;
+
+      .rank-head{
+        margin-right: .25rem;
+        &.rank-icon{
+          width: 1rem;
+          height: 1rem;
+          &.ri-n1{
+            color: var(--rank-icon-n1-color);
+          }
+          &.ri-n2{
+            color: var(--rank-icon-n2-color);
+          }
+          &.ri-n3{
+            color: var(--rank-icon-n3-color);
+          }
+        }
+        &.rank-text{
+          color: var(--rank-text-color);
+          font-weight: lighter;
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+
+  #hateMjyyBtn_div {
+    margin-top: 80vh;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
 }
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Donate.scss"></style>
+<style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
