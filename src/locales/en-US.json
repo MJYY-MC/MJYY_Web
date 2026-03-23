@@ -6,45 +6,12 @@
         "warning": "Warning"
       }
     },
-    "onlyOne": {
-      "gameVersion": {
-        "serverVersion": "1.21.11",
-        "javaVersionMin": "1.9",
-        "javaVersionMax": "1.21.x",
-        "bedrockVersionMin": "1.21.111",
-        "bedrockVersionMax": "1.21.130"
-      },
-      "serverAddress": {
-        "main": {
-          "je": {
-            "addrs": "mc.mjyy.top",
-            "port": "25565"
-          },
-          "be": {
-            "addrs": "mc.mjyy.top",
-            "port": "19132"
-          }
-        },
-        "spare": {
-          "je": {
-            "addrs": "je.mjyy.top",
-            "port": "30303"
-          },
-          "be": {
-            "addrs": "be.mjyy.top",
-            "port": "30303"
-          }
-        },
-        "spare2": {
-          "je": {
-            "addrs": "sp.mjyy.top",
-            "port": "25565"
-          },
-          "be": {
-            "addrs": "sp.mjyy.top",
-            "port": "19132"
-          }
-        }
+    "feedback": {
+      "loading": "Loading",
+      "failed": "Load failed",
+      "inText": {
+        "loading": "[Loading]",
+        "failed": "[Load failed]"
       }
     }
   }

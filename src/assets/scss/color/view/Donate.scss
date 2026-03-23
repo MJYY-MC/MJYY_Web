@@ -3,10 +3,32 @@
     //赞助页面中两侧大logo的颜色
     --main-logo-color: #919191;
   }
+  #patron .patron-obj {
+    .rank-icon {
+      //排名图标的颜色
+      --rank-icon-n1-color: rgb(255, 215, 0);
+      --rank-icon-n2-color: rgb(192, 192, 192);
+      --rank-icon-n3-color: rgb(184, 115, 51);
+    }
+    .rank-text{
+      //排名文字的颜色
+      --rank-text-color: #6b6b6b;
+    }
+  }
 }
 
 [data-bs-theme=dark] #donate {
   .title-svg {
     --main-logo-color: #3a3a3a;
+  }
+  #patron .patron-obj {
+    .rank-icon {
+      --rank-icon-n1-color: rgb(255, 215, 0);
+      --rank-icon-n2-color: rgb(192, 192, 192);
+      --rank-icon-n3-color: rgb(184, 115, 51);
+    }
+    .rank-text{
+      --rank-text-color: #6b6b6b;
+    }
   }
 }

@@ -158,6 +158,15 @@ const router = createRouter({
                 app_view_usePaddingTop: true,
             },
         },
+        {
+            path: '/donate/hatemjyy',
+            name: 'donate_hateMjyy',
+            component: ()=>import('@/views/Donate/pages/hateMjyy.vue'),
+            meta:{
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+            },
+        },
         ...documentRouter,
     ],
 });
