@@ -27,10 +27,33 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
         </div>
       </div>
     </div>
-    <div class="container mt-2">
-      <div style="height: 30vh"></div><!--暂时占位，后续在此添加赞助渠道-->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-1">
+          <h5 class="text-center">{{t(`${lp}.content.0.h5`)}}</h5>
+          <span>{{t(`${lp}.content.0.span.0`)}}</span>
+          <br/>
+          <span>{{t(`${lp}.content.0.span.1`)}}</span>
+        </div>
+        <div class="col-12 col-md-6 mb-1">
+          <h5 class="text-center">{{t(`${lp}.content.1.h5`)}}</h5>
+          <span>{{t(`${lp}.content.1.span`)}}</span>
+        </div>
+        <!--<div class="col-12 col-md-6">
+          <h5>资金用处</h5>
+          <span>服务器的硬件与电力损耗；</span>
+          <br/>
+          <span>维护兼开发人员的薪酬。</span>
+        </div>-->
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 text-center">
+          <h4>{{t(`${lp}.content.2.h4`)}}</h4>
+          <span>{{t(`${lp}.content.2.span`)}}</span>
+        </div>
+      </div>
     </div>
-    <div id="patron" class="container mt-2">
+    <div id="patron" class="container mt-5">
       <div class="row">
         <div class="col-12 text-center">
           <h3>{{t(`${lp}.patron.title.h3`)}}</h3>
