@@ -1,8 +1,13 @@
 import staticDataAddress from "@/ts/env/staticDataAddress.ts";
 import {ref, type Ref} from "vue";
 
+export type PatronsData={
+    name: string;
+    value: number;
+}[];
+
 export default function () {
-    const patronsData:Ref<string[]> = ref([]);
+    const patronsData:Ref<PatronsData> = ref([]);
     const patronsData_isLoaded:Ref<boolean> = ref(false);
     const patronsData_isFailed:Ref<boolean> = ref(false);
 
@@ -66,9 +71,12 @@ export default function () {
             }
 
             {//将最终值赋值至patronsData
-                let output:string[]=[];
+                let output:PatronsData=[];
                 sortJson.patrons.forEach((item) => {
-                    output.push(item.name);
+                    output.push({
+                        name: item.name,
+                        value: item.allValue,
+                    });
                 });
                 patronsData.value=output;
             }

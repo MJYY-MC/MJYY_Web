@@ -30,7 +30,7 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
     <div class="container mt-2">
       <div style="height: 30vh"></div><!--暂时占位，后续在此添加赞助渠道-->
     </div>
-    <div class="container mt-2">
+    <div id="patron" class="container mt-2">
       <div class="row">
         <div class="col-12 text-center">
           <h3>{{t(`${lp}.patron.title.h3`)}}</h3>
@@ -53,11 +53,18 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
           <strong>{{t(`${lp}.failed`)}}</strong>
         </div>
 
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2 mx-auto text-center"
+        <div class="patron-obj col-12 col-sm-6 col-lg-4 col-xxl-3 text-center"
              v-for="(patronData,pdIndex) in patronsData"
              :key="pdIndex"
         >
-          <p>{{patronData}}</p>
+          <svg class="rank-head rank-icon unSelectable"
+               :class="`ri-n${pdIndex+1}`"
+               v-if="pdIndex<=2"
+          ><use :xlink:href="`#svg-bsi-${pdIndex+1}-circle-fill`"></use></svg>
+          <span class="rank-head rank-text unSelectable"
+                v-if="pdIndex>2"
+          >{{pdIndex+1}}</span>
+          <span :title="patronData.value.toString()">{{patronData.name}}</span>
         </div>
       </div>
     </div>
@@ -94,6 +101,38 @@ const {patronsData,patronsData_isLoaded,patronsData_isFailed} = patronsData_load
       transform: translateX(50%) rotate(45deg);
     }
   }
+
+  #patron{
+    .patron-obj{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: .8rem;
+
+      .rank-head{
+        margin-right: .25rem;
+        &.rank-icon{
+          width: 1rem;
+          height: 1rem;
+          &.ri-n1{
+            color: var(--rank-icon-n1-color);
+          }
+          &.ri-n2{
+            color: var(--rank-icon-n2-color);
+          }
+          &.ri-n3{
+            color: var(--rank-icon-n3-color);
+          }
+        }
+        &.rank-text{
+          color: var(--rank-text-color);
+          font-weight: lighter;
+          font-size: .8rem;
+        }
+      }
+    }
+  }
 }
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Donate.scss"></style>
+<style scoped lang="css" src="@/assets/css/global/unSelect.css"></style>
