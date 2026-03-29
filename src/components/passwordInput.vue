@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
-import {onMounted, type PropType, type Ref, ref} from "vue";
+import {onMounted, type PropType, type Ref, ref, watch} from "vue";
 import type {NamedValue} from "vue-i18n";
 import {useCookies} from "@vueuse/integrations/useCookies";
 
@@ -104,7 +104,7 @@ function autoEnterSw_change(setCookie:boolean=true){
     });
   }
 }
-onMounted(()=>{
+function getCookiesAndInit(){
   if (props.savePassword!=null){
     savePaswdSw.value!.disabled=false;
     autoEnterSw.value!.disabled=false;
@@ -123,6 +123,15 @@ onMounted(()=>{
       }
     }
   }
+}
+watch(
+    ()=>props.savePassword?.cookie.name,
+    ()=>{
+      getCookiesAndInit();
+    },
+)
+onMounted(()=>{
+  getCookiesAndInit();
 });
 
 /**
