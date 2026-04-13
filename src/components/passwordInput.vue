@@ -3,6 +3,7 @@ import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import {onMounted, type PropType, type Ref, ref, watch} from "vue";
 import type {NamedValue} from "vue-i18n";
 import {useCookies} from "@vueuse/integrations/useCookies";
+import {isProd} from "@/ts/env/packMode.ts";
 
 const {lt:t} = autoUseI18n();
 
@@ -62,10 +63,10 @@ function passwordEnter(){
           &&savePaswdSw.value.checked
       ){
         useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.value`,passwordInput.value.value, {
-          path: props.savePassword.cookie.path,
+          //path: props.savePassword.cookie.path,
           secure: true,
           sameSite: 'lax',
-          domain: '.mjyy.top',
+          domain: isProd?'mjyy.top':undefined,
           maxAge: 60*60*24*365,
         });
       }
@@ -81,7 +82,7 @@ function savePaswdSw_change(){
       &&savePaswdSw.value
   ) {
     useCookies().set(`passwordInput.${props.savePassword.cookie.name}.savePassword.enable`,savePaswdSw.value.checked, {
-      path: props.savePassword.cookie.path,
+      //path: props.savePassword.cookie.path,
       maxAge: 60*60*24*365,
     });
   }
@@ -99,7 +100,7 @@ function autoEnterSw_change(setCookie:boolean=true){
     else savePaswdSw.value.disabled=false;
 
     if (setCookie) useCookies().set(`passwordInput.${props.savePassword.cookie.name}.autoEnter`,autoEnterSw.value.checked, {
-      path: props.savePassword.cookie.path,
+      //path: props.savePassword.cookie.path,
       maxAge: 60*60*24*365,
     });
   }
