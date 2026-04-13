@@ -5,6 +5,7 @@ import {useRoute} from "vue-router";
 import {autoUseI18n, localeEvents} from "@/utils/i18nUtils.ts";
 import autoLoadLocale from "@/ts/global/vue/autoLoadLocale.ts";
 import {useTitle} from "@vueuse/core";
+import docList from "@/views/Document/ts/docList.ts";
 
 const {gt:t}=autoUseI18n();
 const lp:string="view_Document";
@@ -73,58 +74,7 @@ watch(
         </ul>
       </li>-->
       <li class="parent"
-          v-for="(data,index) in [
-                                   {
-                                     key: 'faq',
-                                     sub:[
-                                       {
-                                         name: 'docs_faq',
-                                       }  ,
-                                     ],
-                                   },
-                                   {
-                                     key:'join',
-                                     sub:[
-                                       {
-                                         name: 'docs_game',
-                                       },
-                                       {
-                                         name: 'docs_access',
-                                       },
-                                     ],
-                                   },
-                                   {
-                                     key: 'ingame',
-                                     sub:[
-                                         {
-                                           name: 'docs_menu',
-                                         },
-                                     ],
-                                   },
-                                   {
-                                     key:'world',
-                                     sub:[
-                                         {
-                                           name: 'docs_world',
-                                         },
-                                         {
-                                           name: 'docs_overworld',
-                                         },
-                                         {
-                                           name: 'docs_freeWorld',
-                                         },
-                                         {
-                                           name: 'docs_landOfChaos',
-                                         },
-                                         {
-                                           name: 'docs_backroom',
-                                         },
-                                         {
-                                           name: 'docs_funWorld',
-                                         },
-                                     ],
-                                   },
-                                 ]"
+          v-for="(data,index) in docList"
           :key="index"
       >
         <span>{{t(`${lp}.listParent.${data.key}`)}}</span>
