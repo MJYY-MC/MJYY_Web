@@ -26,41 +26,20 @@ function loadDoneAdd(){
   }
 }
 
-import {scrollValue} from "@/ts/global/vue/scroll.ts";
-import {toggleClass as navbar_toggleClass} from "@/components/navbar/ts/style.ts";
-const {scrollY,callback}=scrollValue();
+const homeSection:Ref<HTMLTableSectionElement|null> = ref(null);
+const versionSection:Ref<HTMLTableSectionElement|null> = ref(null);
+
+import onScroll from "@/views/Home/ts/onScroll.ts";
+const {toggleNavbarBackground} = onScroll({
+  titleRef: homeSection,
+  titleUnderRef: versionSection,
+});
 onMounted(()=>{
-  let navbarBgIsTran:boolean|null=null;
-  let tbcCloseTimeoutLock:boolean=false;
-  function toggleNavbarBackground():void{
-    if (scrollY.value>200) {//在顶部时导航栏全透明，往下滚动后导航栏变为半透明
-      if (navbarBgIsTran!=false){
-        navbar_toggleClass('background-color-transparent', false);
-        if (!tbcCloseTimeoutLock) {
-          tbcCloseTimeoutLock = true;
-          setTimeout(() => {
-            navbar_toggleClass('transition-background-color', false);
-            tbcCloseTimeoutLock = false;
-          }, 1000);
-        }
-        navbarBgIsTran=false;
-      }
-    }
-    else {
-      if (navbarBgIsTran!=true){
-        navbar_toggleClass('transition-background-color', true);
-        navbar_toggleClass('background-color-transparent', true);
-        navbarBgIsTran=true;
-      }
-    }
-  }
-  callback.onScroll=toggleNavbarBackground;
   toggleNavbarBackground();
 
   loadDoneAdd();
 });
 onUnmounted(()=>{
-  callback.onScroll=null;
 })
 
 /*import {sectionEvent} from "@/ts/global/navbar_sectionLinks/sectionEvent.ts";
@@ -141,7 +120,7 @@ if (isDev){
 </script>
 
 <template>
-  <section id="home">
+  <section id="home" ref="homeSection">
     <div id="backimg"
          class="img-box"
          :key="imageQuality"
@@ -164,13 +143,11 @@ if (isDev){
         >相见有缘</span>
       </div>
     </div>
-    <div id="mc-status" class="unSelectable"
-         data-aos="flip-left"
-    >
+    <div id="mc-status" class="unSelectable"><!--data-aos="flip-left"-->
       <McStatus/>
     </div>
   </section>
-  <section id="version" class="pt-6">
+  <section id="version" ref="versionSection" class="pt-6">
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
