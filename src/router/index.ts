@@ -48,7 +48,12 @@ const router = createRouter({
                 throw new Error(`Unknown RENDER_MODE: ${renderMode}`);
         }
     })(),
-    scrollBehavior(_to, _from, savedPosition) {
+    scrollBehavior(to, _from, savedPosition) {
+        if (to.name=="home"){
+            if (to.hash!=""){
+                return ;
+            }
+        }
         if (savedPosition) return savedPosition;
         else return { top: 0 };
     },
