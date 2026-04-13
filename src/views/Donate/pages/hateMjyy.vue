@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {autoUseI18n} from "@/utils/i18nUtils.ts";
 import donateShowOrHidden, {doHidden, doShow} from "@/views/Donate/ts/donateShowOrHidden.ts";
-import {nextTick, ref, type Ref} from "vue";
+import {ref, type Ref} from "vue";
 import {useRouter} from "vue-router";
 
 const {lt:t}=autoUseI18n();
