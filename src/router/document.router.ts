@@ -51,6 +51,14 @@ export default [
                 }
             },
             {
+                path: 'faq/web/gamemap',
+                name: 'docs_web_gamemap',
+                component: ()=>import('@/views/Document/Document.vue'),
+                meta:{
+                    doc_mdFileRelativePath: 'faq_web_gamemap.{lang}.md',
+                }
+            },
+            {
                 path: 'world',
                 name: 'docs_world',
                 component: ()=>import('@/views/Document/Document.vue'),
