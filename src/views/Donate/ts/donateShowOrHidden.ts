@@ -9,9 +9,12 @@ export default function ():boolean{
 
 export function doHidden(){
     useCookies().set('isHateMjyy',true,{
+        path: '/',
         maxAge: 60*60*24*365*100,
     });
 }
 export function doShow(){
-    useCookies().remove('isHateMjyy');
+    useCookies().remove('isHateMjyy',{
+        path: '/',
+    });
 }
