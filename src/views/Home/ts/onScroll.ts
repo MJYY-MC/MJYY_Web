@@ -44,7 +44,10 @@ export default function (
 
     let titleSplitFuncStatusCode:number=(()=>{
         if (isClient){
-            if(window.location.hash!='#home')
+            if(
+                   window.location.hash!='#home'
+                && window.location.hash!=''
+            )
                 return 1;
             else
                 return 0;
