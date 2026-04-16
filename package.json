@@ -23,7 +23,8 @@
     "build-quick:spa": "npm run type-check && npm run build-only:spa",
     "build-quick:spa-hash": "npm run type-check && npm run build-only:spa-hash",
     "build-quick:ssg": "npm run type-check && npm run build-only:ssg",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build_codeMode:cf": "cross-env VITE_CODE_MODE=cf npm run build"
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
@@ -49,6 +50,7 @@
     "@vue/tsconfig": "^0.8.1",
     "bootstrap-icons": "^1.13.1",
     "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
     "download-github-release": "^0.3.2",
     "network-information-types": "^0.1.1",
     "sass": "^1.97.0",

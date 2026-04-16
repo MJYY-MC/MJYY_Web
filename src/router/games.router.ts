@@ -1,3 +1,5 @@
+import codeMode from "@/ts/env/codeMode.ts";
+
 export default [
     {
         path: '/game',
@@ -37,7 +39,10 @@ export default [
           //将view大小固定为全屏
           app_view_useFullScreen: true,
 
-          game_htmlPath: '/gameFiles/defender/mjyy-web-game_defender.html',
+          game_htmlPath:
+              (codeMode=='cf')
+              ?'https://bak.mjyy.top/game/defender'//cf不支持超过25M的单个文件，所以只能使用github page的地址
+              :'/gameFiles/defender/mjyy-web-game_defender.html',
       },
     },
 ];

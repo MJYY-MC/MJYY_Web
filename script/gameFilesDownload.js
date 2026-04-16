@@ -5,6 +5,8 @@ import path from 'path';
 import {fileURLToPath} from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import dgr from 'download-github-release';
+import getCodeMode from "../src/ts/env/codeMode.node.js";
+import dotenv from "dotenv";
 
 function doDownload(data){
     console.log(`${logHeader} '${data.user}/${data.repo}'开始下载，输出目录：'${data.outputDir}'`);
@@ -38,7 +40,9 @@ function checkDir(targetDir,doClear=false){
     }
 }
 
-{
+dotenv.config();//获取环境变量
+
+if (getCodeMode()!=='cf'){
     const td= path.resolve(__dirname, '../public/gameFiles/defender');
     checkDir(td,true);
     doDownload({
@@ -54,4 +58,6 @@ function checkDir(targetDir,doClear=false){
         },
         leaveZipped: false,
     });
+}else{
+    console.log(`${logHeader} 当前代码模式为cf，不执行目标文件下载`);
 }
