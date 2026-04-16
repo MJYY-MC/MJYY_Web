@@ -1,1 +1,0 @@
-const e={view_Game:{title:{t:0,b:{t:2,i:[{t:3}],s:"Web Games - MJYY"}},body:{title:{t:0,b:{t:2,i:[{t:3}],s:"MJYY Web Games"}}},game:{defender:{t:0,b:{t:2,i:[{t:3}],s:"Defender"}},fiar:{t:0,b:{t:2,i:[{t:3}],s:"Gomoku game"}}}}};export{e as default};
