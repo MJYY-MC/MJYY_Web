@@ -155,8 +155,8 @@ imgQuaInit(lp);
               </li>
               <li class="dropdown-item">
                 <router-link class="nav-link text-center unSelectable" aria-current="page"
-                             :class="{'active':(curRouteName=='game_fiar')}"
-                             :to="{name: 'game_fiar'}">{{t(`${lp}.game_fiar`)}}</router-link>
+                             :class="{'active':(curRouteName=='game')}"
+                             :to="{name: 'game'}">{{t(`${lp}.game`)}}</router-link>
               </li>
               <li class="dropdown-item">
                 <a class="nav-link text-center unSelectable" aria-current="page" href="https://old.mjyy.top/">

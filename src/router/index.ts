@@ -3,6 +3,7 @@ import {nextTick} from "vue";
 import renderMode from "@/ts/env/renderMode.ts";
 import {isClient} from "@/ts/env/ssr.ts";
 import documentRouter from "@/router/document.router.ts";
+import gamesRouter from "@/router/games.router.ts";
 
 export function hashCheckAndScroll(){
     if (isClient) {
@@ -140,26 +141,6 @@ const router = createRouter({
             }
         },
         {
-            path: '/game/fiar',
-            name: 'game_fiar',
-            component: () => import('@/views/ReuseParentSubPage.vue'),
-            meta:{
-                route_reloadKey: "game_fiar",
-
-                app_view_usePaddingTop: true,
-                app_view_useFullScreen: true,
-
-                authSubPage_targetUrlPath: '/gateway/post/game_fiar',
-                authSubPage_savePassword:{
-                    cookie: {
-                        path: '/game/fiar',
-                        name: 'game_fiar'
-                    }
-                },
-                localePrefix: 'view_rpsp_game_fiar',
-            }
-        },
-        {
             path: '/donate',
             name: 'donate',
             component: ()=>import('@/views/Donate/Donate.vue'),
@@ -177,6 +158,7 @@ const router = createRouter({
             },
         },
         ...documentRouter,
+        ...gamesRouter,
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {
