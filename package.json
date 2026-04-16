@@ -24,7 +24,8 @@
     "build-quick:spa-hash": "npm run type-check && npm run build-only:spa-hash",
     "build-quick:ssg": "npm run type-check && npm run build-only:ssg",
     "preview": "vite preview",
-    "build_codeMode:cf": "cross-env VITE_CODE_MODE=cf npm run build"
+    "build_codeMode:cf": "cross-env VITE_CODE_MODE=cf npm run build",
+    "build-quick_codeMode:cf": "cross-env VITE_CODE_MODE=cf npm run build-quick"
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",

@@ -41,7 +41,7 @@ export default [
 
           game_htmlPath:
               (codeMode=='cf')
-              ?'https://bak.mjyy.top/game/defender'//cf不支持超过25M的单个文件，所以只能使用github page的地址
+              ?'https://bak.mjyy.top/gameFiles/defender/mjyy-web-game_defender.html'//cf不支持超过25M的单个文件，所以只能使用github page的地址
               :'/gameFiles/defender/mjyy-web-game_defender.html',
       },
     },
