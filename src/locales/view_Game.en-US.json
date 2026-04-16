@@ -1,0 +1,12 @@
+{
+  "view_Game": {
+    "title": "Web Games - MJYY",
+    "body": {
+      "title": "MJYY Web Games"
+    },
+    "game": {
+      "defender": "Defender",
+      "fiar": "Gomoku game"
+    }
+  }
+}

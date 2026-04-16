@@ -36,9 +36,12 @@ export default defineConfig(({}) =>{
                 symbolId: 'svg-[dir]-[name]',
                 customDomId: '__svg__icons__dom__',
             }),
-            createHtmlPlugin({
-                minify: true,
-            }),
+            isProd//仅在生产模式中使用，如果在开发模式中使用会导致访问public中的内容时返回index.html
+                ? createHtmlPlugin({
+                    minify: true,
+                })
+                : undefined
+            ,
         ],
         resolve: {
             alias: {

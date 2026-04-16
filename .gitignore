@@ -1,11 +1,13 @@
-node_modules
-dist
+/node_modules
+/dist
 .vite-ssg-temp
 
-.vscode
-.idea
+/.vscode
+/.idea
 
 *.log
 npm-debug.log*
 
-src/assets/_svg
+/src/assets/_svg
+
+/public/gameFiles/defender
