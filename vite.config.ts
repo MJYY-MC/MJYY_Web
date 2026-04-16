@@ -7,12 +7,14 @@ import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
 import { createHtmlPlugin } from "vite-plugin-html";
 import renderMode from "./src/ts/env/renderMode.node.ts";
 import {isDev, isProd, mode} from "./src/ts/env/packMode.node.ts";
+import codeMode from "./src/ts/env/codeMode.node.ts";
 
 const distPath=path.resolve(__dirname, 'dist');
 
 export default defineConfig(({}) =>{
     console.log(`当前模式：${mode}\nisDev: ${isDev}\nisProd: ${isProd}`);
     console.log(`当前渲染模式：${renderMode}`);
+    console.log(`当前代码模式：${codeMode}`);
 
     return {
         plugins: [
