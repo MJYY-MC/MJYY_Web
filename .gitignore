@@ -4,6 +4,7 @@
 
 /.vscode
 /.idea
+/script/test.js
 
 *.log
 npm-debug.log*
