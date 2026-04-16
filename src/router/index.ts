@@ -159,6 +159,25 @@ const router = createRouter({
         },
         ...documentRouter,
         ...gamesRouter,
+
+        {
+            path: '/404',//使预渲染工具构建一个404.html以供github page使用
+            name: '404',
+            component: ()=>import('@/views/404.vue'),
+            meta:{
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+            },
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'notFound',
+            component: ()=>import('@/views/404.vue'),
+            meta:{
+                app_view_usePaddingTop: true,
+                app_view_useFullScreen: true,
+            },
+        },
     ],
 });
 router.afterEach((_to,_from)/*(to,from)*/ => {
