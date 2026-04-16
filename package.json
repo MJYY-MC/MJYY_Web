@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "copy-files": "node script/copySvgIcons.js",
-    "before-build": "npm run copy-files",
+    "download-files": "node script/gameFilesDownload.js",
+    "before-build": "npm run copy-files && npm run download-files",
     "type-check": "vue-tsc -b",
     "dev": "npm run dev:spa",
     "dev:host": "cross-env VITE_RENDER_MODE=spa vite --host",
@@ -48,6 +49,7 @@
     "@vue/tsconfig": "^0.8.1",
     "bootstrap-icons": "^1.13.1",
     "cross-env": "^10.1.0",
+    "download-github-release": "^0.3.2",
     "network-information-types": "^0.1.1",
     "sass": "^1.97.0",
     "typescript": "~5.9.3",
