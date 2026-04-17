@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
-import {computed} from "vue";
+import {computed, ref, type Ref} from "vue";
+import {useFullscreen} from "@vueuse/core";
 
 const route = useRoute();
 const meta = computed(() => ({
@@ -9,6 +10,12 @@ const meta = computed(() => ({
     htmlPath: route.meta.game_htmlPath as string,
   },
 }));
+
+const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
+
+function fullscreenBtn_click(){
+  useFullscreen(mainIframe.value).enter();
+}
 </script>
 
 <template>
@@ -19,9 +26,16 @@ const meta = computed(() => ({
             webkitallowfullscreen="true"
             mozallowfullscreen="true"
     />
+    <button id="fullscreenBtn" type="button"
+            class="btn btn-link nav-link d-flex align-items-center justify-content-center"
+            @click="fullscreenBtn_click"
+    >
+      <svg><use xlink:href="#svg-bsi-arrows-fullscreen"></use></svg>
+    </button>
   </div>
 </template>
 
+<style scoped lang="scss" src="@/assets/scss/color/view/gameView.scss"></style>
 <style scoped lang="scss">
 #main{
   position: relative;
@@ -37,5 +51,18 @@ const meta = computed(() => ({
   top:0;
   left:0;
   border:none;
+}
+#fullscreenBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: .5rem;
+  padding: .3rem;
+  background: var(--fullscreen-btn-bg);
+  fill: var(--bs-body-color);
+  svg{
+    width: 24px;
+    height: 24px;
+  }
 }
 </style>
