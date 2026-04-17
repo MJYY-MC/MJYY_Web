@@ -26,7 +26,7 @@ onMounted(()=>{
         const res = await fetch(path,{
           method: 'GET',
         });
-        if (res.ok && mainIframe_src.value == '') {
+        if ((res.ok || res.status==304) && mainIframe_src.value == '') {
           mainIframe_src.value = path;//直接应用最先响应成功的地址
           if (isDev)
             console.debug('[gameView.vue] 已找到最佳地址并应用：',path);
