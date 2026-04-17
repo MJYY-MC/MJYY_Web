@@ -1,27 +1,47 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
-import {computed, ref, type Ref} from "vue";
+import {computed, onMounted, ref, type Ref} from "vue";
 import {useFullscreen} from "@vueuse/core";
+import {isDev} from "@/ts/env/packMode.ts";
 
 const route = useRoute();
 const meta = computed(() => ({
   game:{
     //游戏的html文件路径
-    htmlPath: route.meta.game_htmlPath as string,
+    htmlPath: route.meta.game_htmlPath as string[],
   },
 }));
 
 const mainIframe:Ref<HTMLIFrameElement|null> = ref(null);
+const mainIframe_src:Ref<string> = ref('');
 
 function fullscreenBtn_click(){
   useFullscreen(mainIframe.value).enter();
 }
+
+onMounted(()=>{
+  if (meta.value.game.htmlPath.length>1) {
+    meta.value.game.htmlPath.forEach(hp => {//多个地址则选择速度最快的地址
+      (async (path: string) => {
+        const res = await fetch(path,{
+          method: 'GET',
+        });
+        if (res.ok && mainIframe_src.value == '') {
+          mainIframe_src.value = path;//直接应用最先响应成功的地址
+          if (isDev)
+            console.debug('[gameView.vue] 已找到最佳地址并应用：',path);
+        }
+      })(hp);
+    });
+  }
+  else mainIframe_src.value = meta.value.game.htmlPath[0]!;
+});
 </script>
 
 <template>
   <div id="main">
     <iframe ref="mainIframe" id="mainIframe"
-            :src='meta.game.htmlPath'
+            :src='mainIframe_src'
             allow="fullscreen; pointer-lock;"
             webkitallowfullscreen="true"
             mozallowfullscreen="true"
