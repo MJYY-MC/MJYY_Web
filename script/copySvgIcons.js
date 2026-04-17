@@ -19,6 +19,7 @@ const iconsName = [//需要复制的图标名
     '1-circle-fill',
     '2-circle-fill',
     '3-circle-fill',
+    'arrows-fullscreen',
 ];
 const sourceDir = path.resolve(__dirname, '../node_modules/bootstrap-icons/icons');
 const targetDir = path.resolve(__dirname, '../src/assets/_svg/bsi');
