@@ -1,0 +1,1 @@
+import{ad as t}from"./virtual_svg-icons-register-Dpr1rzQ3.js";import"./app-hS8hX5af.js";async function r(){const e=document.getElementById("mainIframe");e&&(e.style.height="0",await t(1),e.style.height="")}export{r as default};
