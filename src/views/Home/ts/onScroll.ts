@@ -65,7 +65,7 @@ export default function (
             (async () => {
                 let lastScrollY=scrollY.value;
                 while (titleSplitFuncStatusCode==1||titleSplitFuncStatusCode==3) {//且这些状态值代表滚动条是被锁定的状态
-                    await sleep(500);
+                    await sleep(100);
                     if(lastScrollY==scrollY.value)//如果和上一个值相同，则代表滚动条已停下且没有成功解锁
                         break;
                     else
