@@ -1,1 +1,0 @@
-import{X as t,af as a}from"./virtual_svg-icons-register-60_TuEct.js";import"./app-H6MeXtUr.js";async function f(){if(t){const e=document.getElementById("mainIframe");e&&(e.style.height="0",await a(1),e.style.height="")}}export{f as default};
